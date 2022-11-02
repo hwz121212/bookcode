@@ -1,0 +1,31 @@
+Microsoft Developer Studio Workspace File, Format Version 5.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "TestLead"=.\TestLead.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+    {19332100-5738-11CF-9C69-0020AF26F0CB}
+    {8996B0A1-D7BE-101B-8650-00AA003A5593}
+}}}
+
+###############################################################################
+

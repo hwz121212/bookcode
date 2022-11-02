@@ -1,0 +1,9 @@
+本目录下为所有例图
+1.bmp:2色bmp图
+16bmp:16色bmp图
+24.bmp:真彩色bmp图
+256.bmp:256色bmp图
+gray.bmp:256级灰度bmp图
+test.jpg:真彩色jpg图
+test.pcx:256色pcx图
+test.avi:avi文件

@@ -1,0 +1,2604 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0045)http://www-scf.usc.edu/~flv/ipbook/chap05.htm -->
+<HTML><HEAD><TITLE>第5章 直方图修正和彩色变换</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=GB2312"><LINK 
+href="./chap05.files/editdata.mso" rel=Edit-Time-Data><LINK 
+href="./chap05.files/oledata.mso" rel=OLE-Object-Data>
+<STYLE>.Normal {
+	TEXT-JUSTIFY: inter-ideograph; FONT-SIZE: 10.5pt; TEXT-INDENT: 0pt; LINE-HEIGHT: normal; FONT-FAMILY: "Times New Roman"; TEXT-ALIGN: justify
+}
+.a {
+	FONT-SIZE: 12pt; TEXT-INDENT: 0pt; LINE-HEIGHT: 20pt; FONT-FAMILY: "Times New Roman"; TEXT-ALIGN: center
+}
+</STYLE>
+
+<META content="MSHTML 6.00.2800.1400" name=GENERATOR></HEAD>
+<BODY class=Normal lang=ZH-CN vLink=purple link=blue bgColor=#ffffff>
+<DIV style="LAYOUT-GRID:  15.6pt none">
+<H1><A name=_Toc486331881></A><A name=_Toc486332881></A><A 
+name=_Toc486338990></A><A name=_Toc454810855></A><A 
+name=_Toc454856629><SPAN><SPAN>第<SPAN 
+lang=EN-US>5</SPAN></SPAN></SPAN></A><SPAN><SPAN><SPAN 
+style="FONT-FAMILY: 黑体">章</SPAN> </SPAN></SPAN><SPAN><SPAN><SPAN 
+style="FONT-FAMILY: 黑体">直方图修正和彩色变换</SPAN></SPAN></SPAN></H1>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">这一章，我们主要和调色板打交道。先从最简单的反色讲起。</SPAN></P>
+<H2><SPAN lang=EN-US>5.1</SPAN> <SPAN lang=EN-US></SPAN><A 
+name=_Toc486331882></A><A name=_Toc486332882></A><A name=_Toc486338991></A><A 
+name=_Toc454810856></A><A 
+name=_Toc454856630><SPAN><SPAN>反色</SPAN></SPAN></A></H2>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">反色</SPAN><SPAN 
+lang=EN-US>(invert)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">就是形成底片效果。例如，图</SPAN><SPAN lang=EN-US>5.2</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为图</SPAN><SPAN lang=EN-US>5.1</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">反色后的结果。</SPAN></P>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD class=Normal vAlign=top width=276>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=211 
+      src="第5章 直方图修正和彩色变换.files/image002.jpg" width=264 v:shapes="_x0000_i1025"> 
+      </SPAN></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN>5.1&nbsp;&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+      style="FONT-FAMILY: 宋体">原图</SPAN><SPAN lang=EN-US></SPAN></B></P></TD>
+    <TD class=Normal vAlign=top width=276>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=213 
+      src="第5章 直方图修正和彩色变换.files/image004.jpg" width=266 v:shapes="_x0000_i1026"> 
+      </SPAN></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN>5.2&nbsp;&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN><SPAN lang=EN-US>5.1</SPAN></B><B><SPAN 
+      style="FONT-FAMILY: 宋体">反色后的结果</SPAN><SPAN 
+  lang=EN-US></SPAN></B></P></TD></TR></TBODY></TABLE>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">反色有时是很有用的，比如，图</SPAN><SPAN lang=EN-US>5.1</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">中黑色区域占绝大多数，这样打印起来很费墨，我们可以先进行反色处理后再打印。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">反色的实际含义是将</SPAN><SPAN 
+lang=EN-US>R</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>G</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>B</SPAN><SPAN style="FONT-FAMILY: 宋体">值反转。若颜色的量化级别是</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN style="FONT-FAMILY: 宋体">，则新图的</SPAN><SPAN 
+lang=EN-US>R</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>G</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>B</SPAN><SPAN style="FONT-FAMILY: 宋体">值为</SPAN><SPAN 
+lang=EN-US>255</SPAN><SPAN style="FONT-FAMILY: 宋体">减去原图的</SPAN><SPAN 
+lang=EN-US>R</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>G</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>B</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">值。这里针对的是所有图，包括真彩图、带调色板的彩色图</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN style="FONT-FAMILY: 宋体">又称为伪彩色图</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN style="FONT-FAMILY: 宋体">、和灰度图。针对不同种类有不同的处理。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">先看看真彩图。我们知道真彩图不带调色板，每个象素用</SPAN><SPAN 
+lang=EN-US>3</SPAN><SPAN style="FONT-FAMILY: 宋体">个字节，表示</SPAN><SPAN 
+lang=EN-US>R</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>G</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>B</SPAN><SPAN style="FONT-FAMILY: 宋体">三个分量。所以处理很简单，把反转后的</SPAN><SPAN 
+lang=EN-US>R</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>G</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>B</SPAN><SPAN style="FONT-FAMILY: 宋体">值写入新图即可。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">再来看看带调色板的彩色图，我们知道位图中的数据只是对应调色板中的一个索引值，我们只需要将调色板中的颜色反转，形成新调色板，而位图数据不用动，就能够实现反转。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">灰度图是一种特殊的伪彩色图，只不过调色板中的</SPAN><SPAN 
+lang=EN-US>R</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>G</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>B</SPAN><SPAN style="FONT-FAMILY: 宋体">值</SPAN> <SPAN 
+style="FONT-FAMILY: 宋体">都是一样的而已。所以反转的处理和上面讲的一样。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">这里，我想澄清一个概念。过去我们讲二值图时，一直都说成黑白图。二值位图一定是黑白的吗？答案是不一定。我们安装</SPAN><SPAN 
+lang=EN-US>Windows95</SPAN><SPAN style="FONT-FAMILY: 宋体">时看到的那幅</SPAN><SPAN 
+lang=EN-US>setup.bmp</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">是由蓝色和黑色组成的，但它实际上是二值图。原来，它的调色板中的两种颜色是黑与蓝，而不是黑与白。所以说二值图也可以是彩色的，只不过一般情况下是黑白图而已。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">下面的程序实现了反色，注意其中真彩图和调色板位图处理时的差别。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>BOOL Invert(HWND hWnd)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DWORD 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+OffBits,BufSize;</P>
+<P style="LINE-HEIGHT: 18pt">LPBITMAPINFOHEADER&nbsp;&nbsp;&nbsp; lpImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lpPtr;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HLOCAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPBITMAPINFOHEADER&nbsp;&nbsp;&nbsp; lpTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp; lpTempPtr;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HDC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp; hDc;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HFILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hf;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LONG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp; x,y;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+LOGPALETTE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+*pPal;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+HPALETTE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hPrevPalette=NULL; </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HLOCAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hPal;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp; i;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>unsigned char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Red,Green,Blue;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>OffBits=bf.bfOffBits-sizeof(BITMAPFILEHEADER);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>BufSize=OffBits+bi.biHeight*LineBytes; //<SPAN 
+style="FONT-FAMILY: 宋体">新开缓冲区的大小</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if((hTempImgData=LocalAlloc(LHND,BufSize))==NULL)</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MessageBox(hWnd,"Error alloc 
+memory!","Error Message",MB_OK|</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MB_ICONEXCLAMATION);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>return FALSE;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt">lpImgData=(LPBITMAPINFOHEADER)GlobalLock(hImgData);&nbsp;&nbsp;&nbsp; 
+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempImgData=(LPBITMAPINFOHEADER)LocalLock(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">拷贝头信息</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>memcpy(lpTempImgData,lpImgData,BufSize);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>hDc=GetDC(hWnd);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if(NumColors!=0){ //NumColors<SPAN style="FONT-FAMILY: 宋体">不为</SPAN><SPAN 
+lang=EN-US>0</SPAN><SPAN style="FONT-FAMILY: 宋体">说明是带调色板的</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>lpPtr=(char 
+*)lpImgData+sizeof(BITMAPINFOHEADER); </SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">指向原图数据</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>lpTempPtr=(char 
+*)lpTempImgData+sizeof(BITMAPINFOHEADER); </SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">指向新图数据</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为新调色板分配内存</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>hPal=LocalAlloc(LHND,sizeof(LOGPALETTE)+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>NumColors*sizeof(PALETTEENTRY));</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>pPal =(LOGPALETTE 
+*)LocalLock(hPal);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>pPal-&gt;palNumEntries =(WORD) 
+NumColors;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt">pPal-&gt;palVersion&nbsp;&nbsp;&nbsp; = 0x300;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>for (i = 0; i &lt; NumColors; i++) 
+{</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Blue=(unsigned char )(*lpPtr++);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Green=(unsigned char )(*lpPtr++);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Red=(unsigned char )(*lpPtr++);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpPtr++;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">反转调色板中的颜色，存入新的调色板</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palPalEntry[i].peRed=(BYTE)(255-Red);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>pPal-&gt;palPalEntry[i].peGreen=(BYTE)(255-Green);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palPalEntry[i].peBlue=(BYTE)(255-Blue);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palPalEntry[i].peFlags=0;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)(255-Blue);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)(255-Green);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)(255-Red);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=0;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt">if(hPalette!=NULL)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DeleteObject(hPalette);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>hPalette=CreatePalette(pPal); 
+//</SPAN><SPAN style="FONT-FAMILY: 宋体">产生新的调色板</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>LocalUnlock(hPal);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>LocalFree(hPal);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>if(hPalette){</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>hPrevPalette=SelectPalette(hDc,hPalette,FALSE);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>RealizePalette(hDc);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>else{ //<SPAN style="FONT-FAMILY: 宋体">不带调色板，说明是真彩色图</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(y=0;y&lt;bi.biHeight;y++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpPtr=(char *)lpImgData+(BufSize-LineBytes-y*LineBytes);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempPtr=(char *)lpTempImgData+(BufSize-LineBytes-y*LineBytes);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(x=0;x&lt;bi.biWidth;x++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Blue=(unsigned char )(*lpPtr++);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Green=(unsigned char )(*lpPtr++);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Red=(unsigned char )(*lpPtr++);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">反转位图数据中的颜色，存入新的位图数据中</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)(255-Blue);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)(255-Green);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)(255-Red);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>if(hBitmap!=NULL)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp; DeleteObject(hBitmap);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>hBitmap=CreateDIBitmap(hDc,(LPBITMAPINFOHEADER)lpTempImgData,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LONG)CBM_INIT,</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LPSTR)lpTempImgData+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>sizeof(BITMAPINFOHEADER)+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp; </SPAN>&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NumColors*sizeof(RGBQUAD),</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LPBITMAPINFO)lpTempImgData,</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DIB_RGB_COLORS);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if(hPalette &amp;&amp; hPrevPalette){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>SelectPalette(hDc,hPrevPalette,FALSE);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>RealizePalette(hDc);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>hf=_lcreat("c:\\invert.bmp",0);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lwrite(hf,(LPSTR)&amp;bf,sizeof(BITMAPFILEHEADER)); </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lwrite(hf,(LPSTR)lpTempImgData,BufSize);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lclose(hf);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">释放内存和资源</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;</SPAN>&nbsp;&nbsp;&nbsp;&nbsp; 
+ReleaseDC(hWnd,hDc);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalUnlock(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalFree(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>GlobalUnlock(hImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>return TRUE;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<H2><SPAN lang=EN-US>5.2</SPAN> <SPAN lang=EN-US></SPAN><A 
+name=_Toc486331883></A><A name=_Toc486332883></A><A name=_Toc486338992></A><A 
+name=_Toc454810857></A><A 
+name=_Toc454856631><SPAN><SPAN>彩色图转灰度图</SPAN></SPAN></A></H2>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">第</SPAN><SPAN 
+lang=EN-US>2</SPAN><SPAN style="FONT-FAMILY: 宋体">章中提到了</SPAN><SPAN 
+lang=EN-US>YUV</SPAN><SPAN style="FONT-FAMILY: 宋体">的颜色表示方法，在这种表示方法中，</SPAN><SPAN 
+lang=EN-US>Y</SPAN><SPAN style="FONT-FAMILY: 宋体">分量的物理含义就是亮度，它含了灰度图</SPAN><SPAN 
+lang=EN-US>(grayscale)</SPAN><SPAN style="FONT-FAMILY: 宋体">的所有信息，只用</SPAN><SPAN 
+lang=EN-US>Y</SPAN><SPAN style="FONT-FAMILY: 宋体">分量就完全能够表示出一幅灰度图来。</SPAN><SPAN 
+lang=EN-US>YUV</SPAN><SPAN style="FONT-FAMILY: 宋体">和</SPAN><SPAN 
+lang=EN-US>RGB</SPAN><SPAN style="FONT-FAMILY: 宋体">之间有着如下的对应关系：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><SUB><IMG height=77 src="第5章 直方图修正和彩色变换.files/image006.gif" width=352 
+v:shapes="_x0000_i1027"> </SUB></SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">我们利用上式，根据</SPAN><SPAN 
+lang=EN-US>R</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>G</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>B</SPAN><SPAN style="FONT-FAMILY: 宋体">的值求出</SPAN><SPAN 
+lang=EN-US>Y</SPAN><SPAN style="FONT-FAMILY: 宋体">值后，将</SPAN><SPAN 
+lang=EN-US>R</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>G</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>B</SPAN><SPAN style="FONT-FAMILY: 宋体">值都赋值成</SPAN><SPAN 
+lang=EN-US>Y</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，就能表示出灰度图来，这就是彩色图转灰度图的原理。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">先看看真彩图。我们知道真彩图不带调色板，每个象素用</SPAN><SPAN 
+lang=EN-US>3</SPAN><SPAN style="FONT-FAMILY: 宋体">个字节，表示</SPAN><SPAN 
+lang=EN-US>R</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>G</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>B</SPAN><SPAN style="FONT-FAMILY: 宋体">三个分量。所以处理很简单，根据</SPAN><SPAN 
+lang=EN-US>R</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>G</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>B</SPAN><SPAN style="FONT-FAMILY: 宋体">的值求出</SPAN><SPAN 
+lang=EN-US>Y</SPAN><SPAN style="FONT-FAMILY: 宋体">值后，将</SPAN><SPAN 
+lang=EN-US>R</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>G</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>B</SPAN><SPAN style="FONT-FAMILY: 宋体">值都赋值成</SPAN><SPAN 
+lang=EN-US>Y</SPAN><SPAN style="FONT-FAMILY: 宋体">，写入新图即可。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">再来看看带调色板的彩色图，我们知道位图中的数据只是对应调色板中的一个索引值，我们只需要将调色板中的彩色变成灰度，形成新调色板，而位图数据不用动，就可以了。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">下面的程序实现了彩色图到灰度图的转换，注意其中真彩图和调色板位图处理时的差别。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>BOOL ColortoGrayScale(HWND 
+hWnd)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt">DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+SrcOffBits,SrcBufSize,DstBufSize,DstLineBytes;</P>
+<P style="LINE-HEIGHT: 18pt">LPBITMAPINFOHEADER&nbsp;&nbsp;&nbsp; lpImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp; lpPtr;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HLOCAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPBITMAPINFOHEADER&nbsp;&nbsp;&nbsp; lpTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp; lpTempPtr;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HDC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp; hDc;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HFILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp; hf;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LONG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp; x,y;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>BITMAPFILEHEADER&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DstBf;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>BITMAPINFOHEADER &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DstBi;</P>
+<P 
+style="LINE-HEIGHT: 18pt">LOGPALETTE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; *pPal;</P>
+<P 
+style="LINE-HEIGHT: 18pt">HPALETTE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+hPrevPalette; </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HLOCAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hPal;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NewNumColors;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>WORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+NewBitCount;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Y;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; i;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>unsigned char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Red,Green,Blue,Gray;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>NewNumColors=NumColors; //NewNumColors<SPAN 
+style="FONT-FAMILY: 宋体">为新图的颜色数</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>NewBitCount=bi.biBitCount;&nbsp; //NewBitCount<SPAN 
+style="FONT-FAMILY: 宋体">为新图的颜色位数</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if(NumColors==0) //<SPAN style="FONT-FAMILY: 宋体">真彩图</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>NewNumColors=256;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>NewBitCount=8;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">由于颜色位数有可能发生了改变，所以要重新计算每行占用的字节数以及</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">新图的缓冲区大小</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstLineBytes=(DWORD)WIDTHBYTES(bi.biWidth*NewBitCount);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstBufSize=(DWORD)(sizeof(BITMAPINFOHEADER)+NewNumColors*</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>sizeof(RGBQUAD)+(DWORD)DstLineBytes*bi.biHeight);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN><A name=b1></A>//DstBf<SPAN style="FONT-FAMILY: 宋体">和</SPAN><SPAN 
+lang=EN-US>DstBi</SPAN><SPAN style="FONT-FAMILY: 宋体">为新的</SPAN><SPAN 
+lang=EN-US>BITMAPFILEHEADER</SPAN><SPAN style="FONT-FAMILY: 宋体">和</SPAN><SPAN 
+lang=EN-US>BITMAPINFOHEADER</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">拷贝原来的头信息</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memcpy((char *)&amp;DstBf,(char *)&amp;bf,sizeof(BITMAPFILEHEADER));</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memcpy((char *)&amp;DstBi,(char *)&amp;bi,sizeof(BITMAPINFOHEADER));</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">做必要的改变</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstBf.bfSize=DstBufSize+sizeof(BITMAPFILEHEADER);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstBf.bfOffBits=(DWORD)(NewNumColors*sizeof(RGBQUAD)+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>sizeof(BITMAPFILEHEADER)+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>sizeof(BITMAPINFOHEADER));</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstBi.biClrUsed=0;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstBi.biBitCount=NewBitCount;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">原图的缓冲区的大小</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>SrcOffBits=bf.bfOffBits- sizeof(BITMAPFILEHEADER);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>SrcBufSize=SrcOffBits+bi.biHeight*LineBytes;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if((hTempImgData=LocalAlloc(LHND,DstBufSize))==NULL)</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MessageBox(hWnd,"Error alloc 
+memory!","Error Message",MB_OK|</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MB_ICONEXCLAMATION);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>return FALSE;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; </SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+lpImgData=(LPBITMAPINFOHEADER)GlobalLock(hImgData);&nbsp;&nbsp;&nbsp; </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempImgData=(LPBITMAPINFOHEADER)LocalLock(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">拷贝头信息和位图数据</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memcpy(lpTempImgData,lpImgData,DstBufSize);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">用新的</SPAN><SPAN 
+lang=EN-US>BITMAPINFOHEADER</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">替换原来的头信息</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memcpy(lpTempImgData,(char *)&amp;DstBi,sizeof(BITMAPINFOHEADER));</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//lpPtr<SPAN style="FONT-FAMILY: 宋体">指向原图的数据</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpPtr=(char *)lpImgData+sizeof(BITMAPINFOHEADER);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//lpTempPtr<SPAN style="FONT-FAMILY: 宋体">指向新图的数据</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempPtr=(char *)lpTempImgData+sizeof(BITMAPINFOHEADER);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为新的调色板分配内存</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>hPal=LocalAlloc(LHND,sizeof(LOGPALETTE) + NewNumColors</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>* 
+sizeof(PALETTEENTRY));</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>pPal =(LOGPALETTE 
+*)LocalLock(hPal);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>pPal-&gt;palNumEntries =(WORD) 
+NewNumColors;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palVersion&nbsp;&nbsp;&nbsp; = 0x300;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if(NumColors==0) //<SPAN style="FONT-FAMILY: 宋体">真彩色</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for (i = 0; i &lt; 256; i++) { //<SPAN 
+style="FONT-FAMILY: 宋体">灰度从</SPAN><SPAN lang=EN-US>(0,0,0)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">到</SPAN><SPAN lang=EN-US>(255,255,255)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+pPal-&gt;palPalEntry[i].peRed=(BYTE)i;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+pPal-&gt;palPalEntry[i].peGreen=(BYTE)i;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palPalEntry[i].peBlue=(BYTE)i;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palPalEntry[i].peFlags=(BYTE)0;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)i;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)i;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)i;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=0;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>else </P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for (i = 0; i &lt; NewNumColors; i++) { //<SPAN 
+style="FONT-FAMILY: 宋体">带调色板的彩色图</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Blue=(unsigned char )(*lpPtr++);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Green=(unsigned char )(*lpPtr++);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Red=(unsigned char )(*lpPtr++);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Y=(float)(Red*0.299+Green*0.587+Blue*0.114);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Gray=(BYTE)Y;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpPtr++;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">从原来的调色板中的颜色计算得到</SPAN><SPAN 
+lang=EN-US>Y</SPAN><SPAN style="FONT-FAMILY: 宋体">值，写入新的调色板</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+pPal-&gt;palPalEntry[i].peRed=Gray;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palPalEntry[i].peGreen=Gray;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palPalEntry[i].peBlue=Gray;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palPalEntry[i].peFlags=0;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)Gray;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)Gray;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)Gray;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=0;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if(hPalette!=NULL)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DeleteObject(hPalette);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">生成新的逻辑调色板</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>hPalette=CreatePalette(pPal);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalUnlock(hPal);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalFree(hPal);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>hDc=GetDC(hWnd);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if(hPalette){</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp; 
+hPrevPalette=SelectPalette(hDc,hPalette,FALSE);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>RealizePalette(hDc);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if(NumColors==0) //<SPAN style="FONT-FAMILY: 宋体">真彩色图才需要处理位图数据</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(y=0;y&lt;bi.biHeight;y++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpPtr=(char *)lpImgData+(SrcBufSize-LineBytes-y*LineBytes);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempPtr=(char*)lpTempImgData+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>(DstBufSize-DstLineBytes-y*DstLineBytes);</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(x=0;x&lt;bi.biWidth;x++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Blue=(unsigned char )(*lpPtr++);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Green=(unsigned char )(*lpPtr++);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Red=(unsigned char )(*lpPtr++);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Y=(float)(Red*0.299+Green*0.587+Blue*0.114);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">从位图数据计算得到</SPAN><SPAN 
+lang=EN-US>Y</SPAN><SPAN style="FONT-FAMILY: 宋体">值，写入新图中</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Gray=(BYTE)Y; </P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)Gray;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>if(hBitmap!=NULL)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp; DeleteObject(hBitmap);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">产生新的位图</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>hBitmap=CreateDIBitmap(hDc,(LPBITMAPINFOHEADER)lpTempImgData,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LONG)CBM_INIT,</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LPSTR)lpTempImgData+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>sizeof(BITMAPINFOHEADER)+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>NewNumColors*sizeof(RGBQUAD),</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LPBITMAPINFO)lpTempImgData,</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DIB_RGB_COLORS);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>if(hPalette &amp;&amp; 
+hPrevPalette){</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>SelectPalette(hDc,hPrevPalette,FALSE);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>RealizePalette(hDc);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>hf=_lcreat("c:\\gray.bmp",0);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lwrite(hf,(LPSTR)&amp;DstBf,sizeof(BITMAPFILEHEADER)); </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lwrite(hf,(LPSTR)lpTempImgData,DstBufSize);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lclose(hf);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">释放内存和资源</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;</SPAN>&nbsp;&nbsp;&nbsp;&nbsp; 
+ReleaseDC(hWnd,hDc);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalUnlock(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalFree(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>GlobalUnlock(hImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>return TRUE;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<H2><SPAN lang=EN-US>5.3</SPAN> <SPAN lang=EN-US></SPAN><A 
+name=_Toc486331884></A><A name=_Toc486332884></A><A name=_Toc486338993></A><A 
+name=_Toc454810858></A><A name=_Toc454856632><SPAN><SPAN>真彩图转<SPAN 
+lang=EN-US>256</SPAN></SPAN></SPAN></A><SPAN><SPAN><SPAN 
+style="FONT-FAMILY: 黑体">色图</SPAN></SPAN></SPAN><SPAN lang=EN-US> </SPAN></H2>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">我们知道，真彩图中包含最多达</SPAN><SPAN 
+lang=EN-US>2<SUP>24</SUP></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">种颜色，怎样从中选出</SPAN><SPAN lang=EN-US>256</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">种颜色，又要使颜色的失真比较小，这是一个比较复杂的问题。一种简单的做法是将</SPAN><SPAN 
+lang=EN-US>R</SPAN><SPAN style="FONT-FAMILY: 宋体">：</SPAN><SPAN 
+lang=EN-US>G</SPAN><SPAN style="FONT-FAMILY: 宋体">：</SPAN><SPAN 
+lang=EN-US>B</SPAN><SPAN style="FONT-FAMILY: 宋体">以</SPAN><SPAN 
+lang=EN-US>3</SPAN><SPAN style="FONT-FAMILY: 宋体">：</SPAN><SPAN 
+lang=EN-US>3</SPAN><SPAN style="FONT-FAMILY: 宋体">：</SPAN><SPAN 
+lang=EN-US>2</SPAN><SPAN style="FONT-FAMILY: 宋体">表示，即取</SPAN><SPAN 
+lang=EN-US>R</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>G</SPAN><SPAN style="FONT-FAMILY: 宋体">的高</SPAN><SPAN 
+lang=EN-US>3</SPAN><SPAN style="FONT-FAMILY: 宋体">位，</SPAN><SPAN 
+lang=EN-US>B</SPAN><SPAN style="FONT-FAMILY: 宋体">的高两位，组成一个字节，这样就可以表示</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">种颜色了，但不难想象，这种方法的失真肯定很严重。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">我们下面介绍的算法能够比较好地实现真彩图到</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">色图的转换。它的思想是：准备一个长度为</SPAN><SPAN 
+lang=EN-US>4096</SPAN><SPAN style="FONT-FAMILY: 宋体">的数组，代表</SPAN><SPAN 
+lang=EN-US>4096</SPAN><SPAN style="FONT-FAMILY: 宋体">种颜色。对图中的每一个象素，取</SPAN><SPAN 
+lang=EN-US>R</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>G</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>B</SPAN><SPAN style="FONT-FAMILY: 宋体">的最高四位，拼成一个</SPAN><SPAN 
+lang=EN-US>12</SPAN><SPAN style="FONT-FAMILY: 宋体">位的整数，对应的数组元素加</SPAN><SPAN 
+lang=EN-US>1</SPAN><SPAN style="FONT-FAMILY: 宋体">。全部统计完后，就得到了这</SPAN><SPAN 
+lang=EN-US>4096</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">种颜色的使用频率。其中，可能有一些颜色一次也没用到，即对应的数组元素为零</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN style="FONT-FAMILY: 宋体">假设不为零的数组元素共有</SPAN><SPAN 
+lang=EN-US>PalCounts</SPAN><SPAN style="FONT-FAMILY: 宋体">个</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN style="FONT-FAMILY: 宋体">。将这些为零的数组元素清除出去，使得前</SPAN><SPAN 
+lang=EN-US>PalCounts</SPAN><SPAN style="FONT-FAMILY: 宋体">个元素都不为零。将这</SPAN><SPAN 
+lang=EN-US>PalCounts</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">个数按从大到小的顺序排列</SPAN><SPAN lang=EN-US>(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">这里我们使用起泡排序</SPAN><SPAN lang=EN-US>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。这样，前</SPAN><SPAN lang=EN-US>256</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">种颜色就是用的最多的颜色，它们将作为调色板上的</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN style="FONT-FAMILY: 宋体">种颜色。对于剩下的</SPAN><SPAN 
+lang=EN-US>PalCounts-256</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">种颜色并不是简单地丢弃，而是用前</SPAN><SPAN lang=EN-US>256</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">种颜色中的一种来代替，代替的原则是找有最小平方误差的那个。再次对图中的每一个象素，取</SPAN><SPAN 
+lang=EN-US>R</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>G</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>B</SPAN><SPAN style="FONT-FAMILY: 宋体">的最高四位，拼成一个</SPAN><SPAN 
+lang=EN-US>12</SPAN><SPAN style="FONT-FAMILY: 宋体">位的整数，如果对应值在前</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">种颜色中，则直接将该索引值填入位图数据中，如果是在后</SPAN><SPAN 
+lang=EN-US>PalCounts-256</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">种颜色中，则用代替色的索引值填入位图数据中。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">下面的两幅图中，图</SPAN><SPAN 
+lang=EN-US>5.3</SPAN><SPAN style="FONT-FAMILY: 宋体">是原真彩图，图</SPAN><SPAN 
+lang=EN-US>.54</SPAN><SPAN style="FONT-FAMILY: 宋体">是用上面的算法转换成的</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN style="FONT-FAMILY: 宋体">色图，可以看出，效果还不错。</SPAN></P>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD class=Normal vAlign=top width=276>
+      <P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=200 
+      src="第5章 直方图修正和彩色变换.files/image008.jpg" width=220 v:shapes="_x0000_i1028"> 
+      </SPAN></P>
+      <P class=a style="LINE-HEIGHT: 18pt"><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN>5.3&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+      style="FONT-FAMILY: 宋体">原真彩图</SPAN><SPAN lang=EN-US></SPAN></B></P></TD>
+    <TD class=Normal vAlign=top width=276>
+      <P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=200 
+      src="第5章 直方图修正和彩色变换.files/image009.gif" width=220 v:shapes="_x0000_i1029"> 
+      </SPAN></P>
+      <P class=a style="LINE-HEIGHT: 18pt"><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN>5.4&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+      style="FONT-FAMILY: 宋体">转换后的</SPAN><SPAN lang=EN-US>256</SPAN></B><B><SPAN 
+      style="FONT-FAMILY: 宋体">色图</SPAN><SPAN 
+  lang=EN-US></SPAN></B></P></TD></TR></TBODY></TABLE>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">下面是上述算法的源程序。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>BOOL Trueto256(HWND 
+hWnd)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P style="LINE-HEIGHT: 18pt">DWORD 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+SrcBufSize,OffBits,DstBufSize,DstLineBytes;</P>
+<P style="LINE-HEIGHT: 18pt">LPBITMAPINFOHEADER&nbsp;&nbsp;&nbsp; lpImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp; lpPtr;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HLOCAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; hTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPBITMAPINFOHEADER&nbsp;&nbsp;&nbsp; lpTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp; lpTempPtr;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HDC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp; hDc;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HFILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; hf;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LONG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; x,y;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>BITMAPFILEHEADER&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; DstBf;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>BITMAPINFOHEADER&nbsp;&nbsp; &nbsp;&nbsp; DstBi;</P>
+<P 
+style="LINE-HEIGHT: 18pt">LOGPALETTE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; *pPal;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+HPALETTE&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 
+hPrevPalette; </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HLOCAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; hPal;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>WORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp; i,j;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Red,Green,Blue,ClrIndex;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; ColorHits[4096];</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>WORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp; ColorIndex[4096];</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; PalCounts,temp;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>long&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
+ColorError1,ColorError2;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if(NumColors!=0){ //NumColors<SPAN 
+style="FONT-FAMILY: 宋体">不为零，所以不是真彩图</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MessageBox(hWnd,"Must be a true 
+color bitmap!","Error Message",</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>MB_OK|MB_ICONEXCLAMATION);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>return FALSE;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">由于颜色位数有可能发生了改变，所以要重新计算每行占用的字节数以及</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">新图的缓冲区大小</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstLineBytes=(DWORD)WIDTHBYTES(bi.biWidth*8);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstBufSize=(DWORD)(sizeof(BITMAPINFOHEADER)+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>256*sizeof(RGBQUAD)+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>(DWORD)DstLineBytes*bi.biHeight);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//DstBf<SPAN style="FONT-FAMILY: 宋体">和</SPAN><SPAN 
+lang=EN-US>DstBi</SPAN><SPAN style="FONT-FAMILY: 宋体">为新的</SPAN><SPAN 
+lang=EN-US>BITMAPFILEHEADER</SPAN><SPAN style="FONT-FAMILY: 宋体">和</SPAN><SPAN 
+lang=EN-US>BITMAPINFOHEADER</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">拷贝原来的头信息</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memcpy((char *)&amp;DstBf,(char *)&amp;bf,sizeof(BITMAPFILEHEADER));</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memcpy((char *)&amp;DstBi,(char *)&amp;bi,sizeof(BITMAPINFOHEADER));</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">做必要的改变</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstBf.bfSize=DstBufSize+sizeof(BITMAPFILEHEADER);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstBf.bfOffBits=(DWORD)(256*sizeof(RGBQUAD)+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>sizeof(BITMAPFILEHEADER)</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>+sizeof(BITMAPINFOHEADER));</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstBi.biClrUsed=0;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstBi.biBitCount=8;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//OffBits<SPAN style="FONT-FAMILY: 宋体">为到实际位图数据的偏移值</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>OffBits=bf.bfOffBits-sizeof(BITMAPFILEHEADER);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//SrcBufSize<SPAN style="FONT-FAMILY: 宋体">为原图缓冲区的大小</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>SrcBufSize=OffBits+bi.biHeight*LineBytes;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><A 
+name=b2></A><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if((hTempImgData=LocalAlloc(LHND,DstBufSize))==NULL)</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MessageBox(hWnd,"Error alloc 
+memory!","Error Message",MB_OK|</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MB_ICONEXCLAMATION);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;return FALSE;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+lpImgData=(LPBITMAPINFOHEADER)GlobalLock(hImgData);&nbsp;&nbsp;&nbsp; </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempImgData=(LPBITMAPINFOHEADER)LocalLock(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">拷贝位图数据</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memcpy(lpTempImgData,lpImgData,OffBits);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">用新的头信息取代旧的头信息</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memcpy(lpTempImgData,(char *)&amp;DstBi,sizeof(BITMAPINFOHEADER));</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//ColorHits</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为记录颜色使用频率的数组，</SPAN><SPAN 
+lang=EN-US>ColorIndex</SPAN><SPAN style="FONT-FAMILY: 宋体">为记录颜色索引值的</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">数组</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">先全部清零</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memset(ColorHits,0,4096*sizeof(DWORD));</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memset(ColorIndex,0,4096*sizeof(WORD));</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(y=0;y&lt;bi.biHeight;y++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpPtr=(unsigned char *)lpImgData+(SrcBufSize-LineBytes-y*LineBytes);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(x=0;x&lt;bi.biWidth;x++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//R<SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>G</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>B</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">各取</SPAN><SPAN lang=EN-US>4</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">位</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Blue=(int)(*(lpPtr++) &amp; 0xf0);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Green=(int)(*(lpPtr++) &amp; 0xf0);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Red=(int)(*(lpPtr++) &amp; 0xf0);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">拼成一个</SPAN><SPAN 
+lang=EN-US>12</SPAN><SPAN style="FONT-FAMILY: 宋体">位整数</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>ClrIndex=(Blue&lt;&lt;4) + Green +(Red &gt;&gt;4);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">相应的数组元素加</SPAN><SPAN 
+lang=EN-US>1</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>ColorHits[ClrIndex]++;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>PalCounts=0;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">将为零的元素清除出去</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; for (ClrIndex = 0; 
+ClrIndex &lt; 4096; ClrIndex++)</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; {</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if(ColorHits[ClrIndex]!=0){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>ColorHits[PalCounts]=ColorHits[ClrIndex];</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">注意调整相应的索引值</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>ColorIndex[PalCounts]=ClrIndex;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>PalCounts++; //<SPAN style="FONT-FAMILY: 宋体">颜色数加</SPAN><SPAN 
+lang=EN-US>1</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">用起泡排序将</SPAN><SPAN lang=EN-US>PalCounts</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">种颜色按从大到小的顺序排列</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; for (i = 0; i &lt; 
+PalCounts-1; i++)</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for (j = i + 1; j &lt; PalCounts; j++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if (ColorHits[j] &gt; ColorHits[i]){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>temp = ColorHits[i];</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>ColorHits[i] = ColorHits[j];</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>ColorHits[j] = temp;&nbsp; </P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">注意调整相应的索引值</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+temp = ColorIndex[i];</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ColorIndex[i] = ColorIndex[j];</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ColorIndex[j] = 
+(WORD)temp;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为新的调色板分配内存</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+hPal=LocalAlloc(LHND,sizeof(LOGPALETTE) +</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>256* 
+sizeof(PALETTEENTRY));</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; pPal =(LOGPALETTE 
+*)LocalLock(hPal);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+pPal-&gt;palNumEntries =(WORD) 256;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palVersion&nbsp;&nbsp;&nbsp; = 0x300;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempPtr=(char *)lpTempImgData+sizeof(BITMAPINFOHEADER);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for (i = 0; i &lt; 256; i++) {</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">由</SPAN><SPAN lang=EN-US>12</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">位索引值得到</SPAN><SPAN lang=EN-US>R</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>G</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>B</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的最高</SPAN><SPAN lang=EN-US>4</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">位值</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+pPal-&gt;palPalEntry[i].peRed=(BYTE)((ColorIndex[i] &amp; 0x00f) &lt;&lt; 
+4);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palPalEntry[i].peGreen=(BYTE)((ColorIndex[i] &amp; 0x0f0));</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palPalEntry[i].peBlue=(BYTE)((ColorIndex[i] &amp; 0xf00) 
+&gt;&gt; 4);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palPalEntry[i].peFlags=(BYTE)0;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)((ColorIndex[i] &amp; 0xf00) &gt;&gt; 
+4);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)((ColorIndex[i] &amp; 0x0f0));</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)((ColorIndex[i] &amp; 0x00f) &lt;&lt; 
+4);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=0;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//ColorHits</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">作为颜色记数的作用已经完成了，下面的作用是记录</SPAN><SPAN 
+lang=EN-US>12</SPAN><SPAN style="FONT-FAMILY: 宋体">位索</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">引值对应的调色板</SPAN><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">中的索引值</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>ColorHits[i]=i;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">其余的颜色依据最小平方误差近似为前</SPAN><SPAN lang=EN-US>256</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">中最接近的一种</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; if (PalCounts &gt; 
+256){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for (i = 256; i &lt; PalCounts; i++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//ColorError1<SPAN style="FONT-FAMILY: 宋体">记录最小平方误差，一开始赋一个很大的值</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>ColorError1=1000000000;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">由</SPAN><SPAN lang=EN-US>12</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">位索引值得到</SPAN><SPAN lang=EN-US>R</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>G</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>B</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的最高</SPAN><SPAN lang=EN-US>4</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">位值</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Blue = (long)((ColorIndex[i] &amp; 0xf00) &gt;&gt; 4);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Green = (long)((ColorIndex[i] &amp; 0x0f0));</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Red = (long)((ColorIndex[i] &amp; 0x00f) &lt;&lt; 4);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>ClrIndex = 0;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for (j = 0; j &lt; 256; j++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//ColorError2<SPAN style="FONT-FAMILY: 宋体">计算当前的平方误差</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>ColorError2=(long)(Blue-pPal-&gt;palPalEntry[j].peBlue)*</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>(Blue-pPal-&gt;palPalEntry[j].peBlue)+ 
+(long)(Green-pPal-&gt;palPalEntry[j].peGreen)*</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>(Green-pPal-&gt;palPalEntry[j].peGreen)+</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+(long)(Red-pPal-&gt;palPalEntry[j].peRed)*</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>(Red-pPal-&gt;palPalEntry[j].peRed); </SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>if (ColorError2 &lt; ColorError1){ 
+//</SPAN><SPAN style="FONT-FAMILY: 宋体">找到更小的了</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>ColorError1 = ColorError2;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>ClrIndex = j; //<SPAN style="FONT-FAMILY: 宋体">记录对应的调色板的索引值</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp; }</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//ColorHits</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">记录</SPAN><SPAN lang=EN-US>12</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">位索引值对应的调色板中的索引值</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>ColorHits[i] = ClrIndex;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P 
+style="LINE-HEIGHT: 18pt">}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if(hPalette!=NULL)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DeleteObject(hPalette);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">产生新的逻辑调色板</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>hPalette=CreatePalette(pPal);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalUnlock(hPal);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalFree(hPal);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>hDc=GetDC(hWnd);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if(hPalette){</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp; 
+hPrevPalette=SelectPalette(hDc,hPalette,FALSE);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>RealizePalette(hDc);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(y=0;y&lt;bi.biHeight;y++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpPtr=(char *)lpImgData+(SrcBufSize-LineBytes-y*LineBytes);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempPtr=(char*)lpTempImgData+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>(DstBufSize-DstLineBytes-y*DstLineBytes);</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(x=0;x&lt;bi.biWidth;x++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//R<SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>G</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>B</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">各取</SPAN><SPAN lang=EN-US>4</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">位</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Blue=(int)(*(lpPtr++) &amp; 0xf0);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Green=(int)(*(lpPtr++) &amp; 0xf0);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Red=(int)(*(lpPtr++) &amp; 0xf0);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">拼成一个</SPAN><SPAN 
+lang=EN-US>12</SPAN><SPAN style="FONT-FAMILY: 宋体">位整数</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>ClrIndex=(Blue&lt;&lt;4) + Green +(Red &gt;&gt;4);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i = 0; i &lt; 
+PalCounts;i++)</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if (ClrIndex == ColorIndex[i]){</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">根据</SPAN><SPAN lang=EN-US>12</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">索引值取得对应的调色板中的索引值</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>*(lpTempPtr++)=(unsigned 
+char)ColorHits[i];</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+break;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>if(hBitmap!=NULL)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp; DeleteObject(hBitmap);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN 
+style="FONT-FAMILY: 宋体">产生新的位图</SPAN><SPAN>&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>hBitmap=CreateDIBitmap(hDc,(LPBITMAPINFOHEADER)lpTempImgData,</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LONG)CBM_INIT,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LPSTR)lpTempImgData+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>sizeof(BITMAPINFOHEADER)+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>256*sizeof(RGBQUAD),</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LPBITMAPINFO)lpTempImgData,</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DIB_RGB_COLORS);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>if(hPalette &amp;&amp; 
+hPrevPalette){</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>SelectPalette(hDc,hPrevPalette,FALSE);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>RealizePalette(hDc);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+hf=_lcreat("c:\\256.bmp",0);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lwrite(hf,(LPSTR)&amp;DstBf,sizeof(BITMAPFILEHEADER)); </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lwrite(hf,(LPSTR)lpTempImgData,DstBufSize);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lclose(hf);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">释放内存和资源</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;</SPAN>&nbsp;&nbsp;&nbsp;&nbsp; 
+ReleaseDC(hWnd,hDc);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalUnlock(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalFree(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>GlobalUnlock(hImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>return TRUE;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">以下我们将要介绍灰度变换，针对的都是</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN style="FONT-FAMILY: 宋体">级灰度图。</SPAN></P>
+<H2><SPAN lang=EN-US>5.4</SPAN> <SPAN lang=EN-US></SPAN><A 
+name=_Toc486331885></A><A name=_Toc486332885></A><A name=_Toc486338994></A><A 
+name=_Toc454810859></A><A 
+name=_Toc454856633><SPAN><SPAN>对比度扩展</SPAN></SPAN></A></H2>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">假设有一幅图，由于成象时光照不足，使得整幅图偏暗</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN style="FONT-FAMILY: 宋体">例如，灰度范围从</SPAN><SPAN 
+lang=EN-US>0</SPAN><SPAN style="FONT-FAMILY: 宋体">到</SPAN><SPAN 
+lang=EN-US>63)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">；或者成象时光照过强，使得整幅图偏亮</SPAN><SPAN lang=EN-US>(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">例如，灰度范围从</SPAN><SPAN lang=EN-US>200</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">到</SPAN><SPAN lang=EN-US>255)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，我们称这些情况为低对比度，即灰度都挤在一起，没有拉开。灰度扩展的意思就是把你所感性趣的灰度范围拉开，使得该范围内的象素，亮的越亮，暗的越暗，从而达到了增强对比度的目的。我们可以用图</SPAN><SPAN 
+lang=EN-US>5.5</SPAN><SPAN style="FONT-FAMILY: 宋体">来说明对比度扩展</SPAN><SPAN 
+lang=EN-US>(contrast stretching)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的原理。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><IMG height=219 src="第5章 直方图修正和彩色变换.files/image011.jpg" width=304 
+v:shapes="_x0000_i1030"> </SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>5.5&nbsp;&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">对比度扩展的原理</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">图</SPAN><SPAN 
+lang=EN-US>5.5</SPAN><SPAN style="FONT-FAMILY: 宋体">中的横坐标</SPAN><SPAN 
+lang=EN-US>g<SUB>old</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">表示原图的灰度值，纵坐标</SPAN><SPAN 
+lang=EN-US>g<SUB>new</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">表示</SPAN><SPAN 
+lang=EN-US>g<SUB>old</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">经过对比度扩展后得到了新的灰度值。</SPAN><SPAN 
+lang=EN-US>a,b,c</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为三段直线的斜率，因为是对比度扩展，所以斜率</SPAN><SPAN 
+lang=EN-US>b&gt;1</SPAN><SPAN style="FONT-FAMILY: 宋体">。</SPAN><SPAN 
+lang=EN-US>g<SUB>1old</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">和</SPAN><SPAN 
+lang=EN-US>g<SUB>2old</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">表示原图中要进行对比度扩展的范围，</SPAN><SPAN 
+lang=EN-US>g<SUB>1new</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">和</SPAN><SPAN 
+lang=EN-US>g<SUB>2new</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">表示对应的新值。用公式表示为</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SUB><IMG 
+height=75 src="第5章 直方图修正和彩色变换.files/image013.gif" width=203 
+v:shapes="_x0000_i1031"> </SUB>&nbsp;&nbsp; <SUB><IMG height=72 
+src="第5章 直方图修正和彩色变换.files/image015.gif" width=124 v:shapes="_x0000_i1032"> 
+</SUB></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">显然要得到对比度扩展后的灰度，我们需要知道</SPAN><SPAN 
+lang=EN-US>a,b,c,g<SUB>1old</SUB>,g<SUB>2old</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">五个参数。由于有新图的灰度级别也是</SPAN><SPAN lang=EN-US>255</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">这个约束，所以满足</SPAN><SPAN 
+lang=EN-US>ag<SUB>1old</SUB>+b(g<SUB>old</SUB>-g<SUB>1old</SUB>)+c(255-g<SUB>2old</SUB>)=255</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">这个方程。这样，我们只需给出四个参数，而另一个可以代入方程求得。我们假设</SPAN><SPAN 
+lang=EN-US>a=c</SPAN><SPAN style="FONT-FAMILY: 宋体">，这样，我们只要给出</SPAN><SPAN 
+lang=EN-US>b</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>g<SUB>1old</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">和</SPAN><SPAN 
+lang=EN-US>g<SUB>2old</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，就可以求出</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US>a=(255-b(g<SUB>2old</SUB>-g<SUB>1old</SUB>))/(255-(g<SUB>2old</SUB>-g<SUB>1old</SUB>))</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">要注意的是，给出的三个参数必须满：</SPAN><SPAN lang=EN-US>(1) 
+b*(g<SUB>2old</SUB>-g<SUB>1old</SUB>)&lt;=255</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">；</SPAN><SPAN lang=EN-US>(2) 
+(g<SUB>2old</SUB>-g<SUB>1old</SUB>)&lt;=255</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">下图为图</SPAN><SPAN 
+lang=EN-US>5.1</SPAN><SPAN style="FONT-FAMILY: 宋体">取</SPAN><SPAN 
+lang=EN-US>g<SUB>1old</SUB>=100</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>g<SUB>2old</SUB>=150 
+</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>b=3.0</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">进行对比度扩展的结果。可以看出亮的区域</SPAN><SPAN lang=EN-US>(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">雕塑</SPAN><SPAN lang=EN-US>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">变得更亮，暗的区域</SPAN><SPAN lang=EN-US>(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">手</SPAN><SPAN lang=EN-US>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">变得更暗。</SPAN></P>
+<P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=265 
+src="第5章 直方图修正和彩色变换.files/image017.jpg" width=332 v:shapes="_x0000_i1033"> 
+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>5.6&nbsp;&nbsp;&nbsp;&nbsp; <SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN><SPAN lang=EN-US>5.1</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">对比度扩展后的结果</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">下面的这段程序实现了对比度扩展。首先出现对话框，输入</SPAN><SPAN 
+lang=EN-US>b,g<SUB>1old</SUB>,g<SUB>2old</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的三个参数</SPAN><SPAN lang=EN-US>(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">在程序中分别是</SPAN><SPAN lang=EN-US>StretchRatio</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>SecondPoint</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>FirstPoint)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，然后对调色板做响应的处理，而实际的位图数据不用改动。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>BOOL ContrastStretch(HWND 
+hWnd)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt">DLGPROC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dlgInputBox = NULL;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DWORD&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OffBits,BufSize;</P>
+<P style="LINE-HEIGHT: 18pt">LPBITMAPINFOHEADER&nbsp;&nbsp;&nbsp; lpImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lpPtr;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HLOCAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPBITMAPINFOHEADER&nbsp;&nbsp;&nbsp; lpTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+lpTempPtr;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HDC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+hDc;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HFILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+hf;</P>
+<P 
+style="LINE-HEIGHT: 18pt">LOGPALETTE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *pPal;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+HPALETTE&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 
+hPrevPalette=NULL; </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HLOCAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; hPal;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+i;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>unsigned char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Gray;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; a,g1,g2,g;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if( NumColors!=256){ //<SPAN style="FONT-FAMILY: 宋体">必须是</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN style="FONT-FAMILY: 宋体">级灰度图</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MessageBox(hWnd,"Must be a 256 
+grayscale bitmap!","Error Message",</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>MB_OK|MB_ICONEXCLAMATION);</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+return FALSE;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">出现对话框，输入三个参数</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>dlgInputBox = (DLGPROC) MakeProcInstance ( (FARPROC)InputBox, ghInst 
+);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DialogBox (ghInst, "INPUTBOX", hWnd, dlgInputBox);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>FreeProcInstance ( (FARPROC) dlgInputBox );</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if( StretchRatio*(SecondPoint-FirstPoint) &gt; 255.0){ //<SPAN 
+style="FONT-FAMILY: 宋体">参数不合法</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>MessageBox(hWnd,"StretchRatio*(SecondPoint-FirstPoint) can not be 
+larger</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>than 255!",Error 
+Message",</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>MB_OK|MB_ICONEXCLAMATION);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>return FALSE;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; }</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if( (SecondPoint-FirstPoint) &gt;=255){ //<SPAN 
+style="FONT-FAMILY: 宋体">参数不合法</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MessageBox(hWnd,"The 
+area you selected can not be the whole scale!",</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>"Error 
+Message",MB_OK|MB_ICONEXCLAMATION);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>return FALSE;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">计算出第一和第三段的斜率</SPAN><SPAN lang=EN-US>a</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>a=(float)((255.0-StretchRatio*(SecondPoint-FirstPoint))/</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(255.0-(SecondPoint-FirstPoint))); 
+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">对比度扩展范围的边界点所对应的新的灰度</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>g1=a*FirstPoint;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>g2=StretchRatio*(SecondPoint-FirstPoint)+g1;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">新开的缓冲区的大小</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>OffBits=bf.bfOffBits- sizeof(BITMAPFILEHEADER);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>BufSize=OffBits+bi.biHeight*LineBytes;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if((hTempImgData=LocalAlloc(LHND,BufSize))==NULL)</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp; </SPAN>&nbsp;&nbsp;&nbsp; {</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MessageBox(hWnd,"Error 
+alloc memory!","Error Message",MB_OK|</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MB_ICONEXCLAMATION);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>return FALSE;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; </SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+lpImgData=(LPBITMAPINFOHEADER)GlobalLock(hImgData);&nbsp;&nbsp;&nbsp; </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempImgData=(LPBITMAPINFOHEADER)LocalLock(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">拷贝头信息和实际位图数据</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memcpy(lpTempImgData,lpImgData,BufSize);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>hDc=GetDC(hWnd);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//lpPtr<SPAN style="FONT-FAMILY: 宋体">指向原图数据缓冲区，</SPAN><SPAN 
+lang=EN-US>lpTempPtr</SPAN><SPAN style="FONT-FAMILY: 宋体">指向新图数据缓冲区</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpPtr=(char *)lpImgData+sizeof(BITMAPINFOHEADER);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempPtr=(char *)lpTempImgData+sizeof(BITMAPINFOHEADER);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">为新的逻辑调色板分配内存</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>hPal=LocalAlloc(LHND,sizeof(LOGPALETTE)+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>NumColors*sizeof(PALETTEENTRY));</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal =(LOGPALETTE *)LocalLock(hPal);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palNumEntries =(WORD) NumColors;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palVersion&nbsp;&nbsp;&nbsp; = 0x300;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for (i = 0; i &lt; 256; i++) {</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Gray=(unsigned char )*lpPtr;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpPtr+=4;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">进行对比度扩展</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if(Gray&lt;FirstPoint) g=(float)(a*Gray);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>else if (Gray&lt;SecondPoint) g=g1+StretchRatio*(Gray-FirstPoint);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>else g=g2+a*(Gray-SecondPoint);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+pPal-&gt;palPalEntry[i].peRed=(BYTE)g;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palPalEntry[i].peGreen=(BYTE)g;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palPalEntry[i].peBlue=(BYTE)g;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palPalEntry[i].peFlags=0;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)g;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)g;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)g;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=0;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if(hPalette!=NULL)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DeleteObject(hPalette);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">产生新的逻辑调色板</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>hPalette=CreatePalette(pPal);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalUnlock(hPal);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalFree(hPal);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if(hPalette){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>hPrevPalette=SelectPalette(hDc,hPalette,FALSE);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>RealizePalette(hDc);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+if(hBitmap!=NULL)</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp; DeleteObject(hBitmap);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN 
+style="FONT-FAMILY: 宋体">产生新的位图</SPAN><SPAN>&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>hBitmap=CreateDIBitmap(hDc,(LPBITMAPINFOHEADER)lpTempImgData,</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LONG)CBM_INIT,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LPSTR)lpTempImgData+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>sizeof(BITMAPINFOHEADER) 
++</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>NumColors*sizeof(RGBQUAD),</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LPBITMAPINFO)lpTempImgData, 
+DIB_RGB_COLORS);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>if(hPalette &amp;&amp; 
+hPrevPalette){</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>SelectPalette(hDc,hPrevPalette,FALSE);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>RealizePalette(hDc);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+hf=_lcreat("c:\\stretch.bmp",0);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lwrite(hf,(LPSTR)&amp;bf,sizeof(BITMAPFILEHEADER)); </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lwrite(hf,(LPSTR)lpTempImgData,BufSize);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lclose(hf);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">释放内存和资源</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;</SPAN>&nbsp;&nbsp;&nbsp;&nbsp; 
+ReleaseDC(hWnd,hDc);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalUnlock(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalFree(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>GlobalUnlock(hImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>return TRUE;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<H2><SPAN lang=EN-US>5.5</SPAN> <SPAN lang=EN-US></SPAN><A 
+name=_Toc486331886></A><A name=_Toc486332886></A><A name=_Toc486338995></A><A 
+name=_Toc454810860></A><A 
+name=_Toc454856634><SPAN><SPAN>削波</SPAN></SPAN></A></H2>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">削波</SPAN><SPAN 
+lang=EN-US>(cliping)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">可以看作是对比度扩展的一个特例，我们用图</SPAN><SPAN 
+lang=EN-US>5.7</SPAN><SPAN style="FONT-FAMILY: 宋体">说明削波的原理。</SPAN></P>
+<P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=212 
+src="第5章 直方图修正和彩色变换.files/image019.jpg" width=302 v:shapes="_x0000_i1034"> 
+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>5.7&nbsp;&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">削波的原理</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">不难看出，只要令对比度扩展中的</SPAN><SPAN lang=EN-US>a=c=0</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">就实现了削波。我们只要给出范围的两个端点，斜率</SPAN><SPAN 
+lang=EN-US>b</SPAN><SPAN style="FONT-FAMILY: 宋体">就可以用方程</SPAN><SPAN 
+lang=EN-US>b(g<SUB>2old</SUB>-g<SUB>1old</SUB>)=255</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">求出。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">图</SPAN><SPAN 
+lang=EN-US>5.8</SPAN><SPAN style="FONT-FAMILY: 宋体">为图</SPAN><SPAN 
+lang=EN-US>5.1</SPAN><SPAN style="FONT-FAMILY: 宋体">取</SPAN><SPAN 
+lang=EN-US>g<SUB>1old</SUB>=150</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>g<SUB>2old</SUB>=200 
+</SPAN><SPAN style="FONT-FAMILY: 宋体">进行削波的结果。把亮的区域</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN style="FONT-FAMILY: 宋体">雕塑</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN style="FONT-FAMILY: 宋体">提取了出来。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><IMG height=268 src="第5章 直方图修正和彩色变换.files/image021.jpg" width=336 
+v:shapes="_x0000_i1035"> </SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>5.8&nbsp;&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN><SPAN lang=EN-US>5.1</SPAN></B><B><SPAN 
+style="FONT-FAMILY: 宋体">削波处理后的结果</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">削波的程序和对比度扩展的程序很类似，就不再给出了。</SPAN></P>
+<H2><SPAN lang=EN-US>5.6</SPAN> <SPAN lang=EN-US></SPAN><A 
+name=_Toc486331887></A><A name=_Toc486332887></A><A name=_Toc486338996></A><A 
+name=_Toc454810861></A><A 
+name=_Toc454856635><SPAN><SPAN>阈值化</SPAN></SPAN></A></H2>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">阈值化</SPAN><SPAN 
+lang=EN-US>(thresholding)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">可以看作是削波的一个特例，我们用图</SPAN><SPAN lang=EN-US>5.9</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">说明阈值化的原理。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><IMG height=209 src="第5章 直方图修正和彩色变换.files/image023.jpg" width=299 
+v:shapes="_x0000_i1036"> </SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>5.9&nbsp;&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">阈值化的原理</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">不难看出，只要令削波中的</SPAN><SPAN 
+lang=EN-US>g<SUB>1old</SUB>=g<SUB>2old</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">就实现了阈值化。阈值就象个门槛，比它大就是白，比它小就是黑。经过阈值化处理后的图象变成了黑白二值图，所以说阈值化是灰度图转二值图的一种常用方法</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN style="FONT-FAMILY: 宋体">我们以前介绍过图案化和抖动的方法</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN style="FONT-FAMILY: 宋体">。进行阈值化只需给出阈值点</SPAN><SPAN 
+lang=EN-US>g<SUB>1old</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">即可。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">图</SPAN><SPAN 
+lang=EN-US>5.10</SPAN><SPAN style="FONT-FAMILY: 宋体">为图</SPAN><SPAN 
+lang=EN-US>5.1</SPAN><SPAN style="FONT-FAMILY: 宋体">阈值取</SPAN><SPAN 
+lang=EN-US>128</SPAN><SPAN style="FONT-FAMILY: 宋体">，阈值化处理后的结果，是一幅黑白图。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><IMG height=256 src="第5章 直方图修正和彩色变换.files/image025.jpg" width=320 
+v:shapes="_x0000_i1037"> </SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>5.10&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN><SPAN lang=EN-US>5.1</SPAN></B><B><SPAN 
+style="FONT-FAMILY: 宋体">阈值化处理后的结果</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">阈值化的程序和对比度扩展的程序很类似，就不再给出了。</SPAN></P>
+<H2><SPAN lang=EN-US>5.7</SPAN> <SPAN lang=EN-US></SPAN><A 
+name=_Toc486331888></A><A name=_Toc486332888></A><A name=_Toc486338997></A><A 
+name=_Toc454810862></A><A 
+name=_Toc454856636><SPAN><SPAN>灰度窗口变换</SPAN></SPAN></A></H2>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">灰度窗口变换</SPAN><SPAN 
+lang=EN-US>(slicing)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">是将某一区间的灰度级和其它部分</SPAN><SPAN lang=EN-US>(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">背景</SPAN><SPAN lang=EN-US>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">分开。我们用图</SPAN><SPAN lang=EN-US>5.11</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">和图</SPAN><SPAN lang=EN-US>5.12</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">说明灰度窗口变换的原理。其中</SPAN><SPAN 
+lang=EN-US>[g<SUB>1old</SUB>,g<SUB>2old</SUB>]</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">称为灰度窗口。</SPAN></P>
+<TABLE cellSpacing=0 cellPadding=0 width=591 border=0>
+  <TBODY>
+  <TR>
+    <TD class=Normal vAlign=top width=295>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=198 
+      src="第5章 直方图修正和彩色变换.files/image027.jpg" width=290 v:shapes="_x0000_i1038"> 
+      </SPAN></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN>5.11&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+      style="FONT-FAMILY: 宋体">清除背景的灰度窗口变换的原理</SPAN><SPAN 
+      lang=EN-US></SPAN></B></P></TD>
+    <TD class=Normal vAlign=top width=296>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=200 
+      src="第5章 直方图修正和彩色变换.files/image029.jpg" width=291 v:shapes="_x0000_i1039"> 
+      </SPAN></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN>5.12&nbsp;&nbsp; </B><B><SPAN 
+      style="FONT-FAMILY: 宋体">保留背景的灰度窗口变换的原理</SPAN><SPAN 
+      lang=EN-US></SPAN></B></P></TD></TR></TBODY></TABLE>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">灰度窗口变换有两种，一种是清除背景的，一种是保留背景的。前者把不在灰度窗口范围内的象素都赋值为</SPAN><SPAN 
+lang=EN-US>0</SPAN><SPAN style="FONT-FAMILY: 宋体">，在灰度窗口范围内的象素都赋值为</SPAN><SPAN 
+lang=EN-US>255</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，这也能实现灰度图的二值化；后者是把不在灰度窗口范围内的象素保留原灰度值，在灰度窗口范围内的象素都赋值为</SPAN><SPAN 
+lang=EN-US>255</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。灰度窗口变换可以检测出在某一灰度窗口范围内的所有象素，是图象灰度分析中的一个有力工具。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">下面有三幅图，图</SPAN><SPAN 
+lang=EN-US>5.13</SPAN><SPAN style="FONT-FAMILY: 宋体">为原图；图</SPAN><SPAN 
+lang=EN-US>5.14</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">是经过清除背景的灰度窗口变换处理后的图</SPAN><SPAN lang=EN-US>(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">灰度窗口取</SPAN><SPAN lang=EN-US>[200-255])</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，将夜景中大厦里的灯光提取了出来；图</SPAN><SPAN 
+lang=EN-US>5.15</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">是经过保留背景的灰度窗口变换处理后的图</SPAN><SPAN lang=EN-US>(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">灰度窗口取</SPAN><SPAN lang=EN-US>[200-255])</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，将夜景中大厦里的灯光提取了出来，同时保留了大厦的背景，可以看出它们的差别还是很明显的。</SPAN></P>
+<DIV align=center>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD class=Normal vAlign=top width=186>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=239 
+      src="第5章 直方图修正和彩色变换.files/image031.jpg" width=171 v:shapes="_x0000_i1040"> 
+      </SPAN></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN><SPAN lang=EN-US>5.13 </SPAN></B><B><SPAN 
+      style="FONT-FAMILY: 宋体">原图</SPAN><SPAN lang=EN-US></SPAN></B></P></TD>
+    <TD class=Normal vAlign=top width=186>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+      lang=EN-US><IMG height=239 src="第5章 直方图修正和彩色变换.files/image033.jpg" 
+      width=171 v:shapes="_x0000_i1041"> </SPAN></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN><SPAN lang=EN-US>5.14 </SPAN></B><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN><SPAN lang=EN-US>5.13</SPAN></B><B><SPAN 
+      style="FONT-FAMILY: 宋体">经过</SPAN><SPAN lang=EN-US></SPAN></B></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">清除背景的灰度窗</SPAN><SPAN lang=EN-US></SPAN></B></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">口变换处理后的图</SPAN><SPAN lang=EN-US></SPAN></B></P></TD>
+    <TD class=Normal vAlign=top width=186>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=239 
+      src="第5章 直方图修正和彩色变换.files/image035.jpg" width=171 v:shapes="_x0000_i1042"> 
+      </SPAN></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN>5.15&nbsp;&nbsp; </B><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN><SPAN lang=EN-US>5.13</SPAN></B><B><SPAN 
+      style="FONT-FAMILY: 宋体">经过</SPAN><SPAN lang=EN-US></SPAN></B></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">保留背景的灰度窗</SPAN><SPAN lang=EN-US></SPAN></B></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">口变换处理后的图</SPAN><SPAN 
+  lang=EN-US></SPAN></B></P></TD></TR></TBODY></TABLE></DIV>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">灰度窗口变换的程序和对比度扩展的程序很类似，就不再给出了。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">不久前在一本科学杂志上看到一篇文章，非常有趣，是介绍电影“阿甘正传”的特技制作的。其中有一项就用到了类似灰度窗口变换的思想。相信看过这部电影的读者都会对那个断腿的丹尼上校有深刻的印象。他的断腿是怎么拍出来的呢？其实方法很简单，先拍一幅没有演员出现的背景画面，然后拍一幅有演员出现，其它不变的画面。要注意的是，此时演员的腿用蓝布包裹。把前后两幅图输入计算机进行处理。第二幅图中凡是遇到蓝色的象素，就用第一幅图中对应位置的背景象素代替。这样，一位断腿的上校就逼真的出现在屏幕上了。这就是电影特技中经常用到的“蓝幕”技术。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">说点题外话。其实现代电影，特别是好莱坞电影，越来越离不开计算机及图象处理技术。最近引起轰动的大片“泰坦尼克号”中的很多特技镜头就是利用了庞大的</SPAN><SPAN 
+lang=EN-US>SGI</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">图形工作站机群没日没夜的计算产生的。图象处理技术和我们所喜爱的电影艺术紧密的结合了起来，更增加了我们学习它的兴趣。</SPAN></P>
+<H2><SPAN lang=EN-US>5.8</SPAN> <SPAN lang=EN-US></SPAN><A 
+name=_Toc486331889></A><A name=_Toc486332889></A><A name=_Toc486338998></A><A 
+name=_Toc454810863></A><A 
+name=_Toc454856637><SPAN><SPAN>灰度直方图统计</SPAN></SPAN></A></H2>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">有时我们需要知道一幅图中的灰度分布情况，这时就可以采用灰度直方图</SPAN><SPAN 
+lang=EN-US>(histogram)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">来表示，图中的横坐标表示灰度值，纵坐标表示该灰度值出现的次数</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN style="FONT-FAMILY: 宋体">频率</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN style="FONT-FAMILY: 宋体">。图</SPAN><SPAN 
+lang=EN-US>5.16</SPAN><SPAN style="FONT-FAMILY: 宋体">为图</SPAN><SPAN 
+lang=EN-US>5.13</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的灰度直方图，低灰度的象素占了绝大部分。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=341 
+src="第5章 直方图修正和彩色变换.files/image036.gif" width=536 v:shapes="_x0000_i1043"> 
+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>5.16&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN><SPAN lang=EN-US>5.13</SPAN></B><B><SPAN 
+style="FONT-FAMILY: 宋体">的灰度直方图</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">下面的程序显示一幅图的灰度直方图。有两段程序，第一段统计出每个灰度的象素个数，存放在数组</SPAN><SPAN 
+lang=EN-US>GrayTable[]</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">中，然后产生一个新的窗口，把统计结果显示出来。第二段程序就是该窗口的消息处理函数。要注意的是，由于各灰度出现的频率可能相差很大，所以如何将结果显示在有限的窗口范围内，是一个必须考虑的问题。我们这里的做法是，在所有出现的灰度中，统计出一个最大值</SPAN><SPAN 
+lang=EN-US>max</SPAN><SPAN style="FONT-FAMILY: 宋体">和一个最小值</SPAN><SPAN 
+lang=EN-US>min</SPAN><SPAN style="FONT-FAMILY: 宋体">，假设能显示的窗口最大坐标为</SPAN><SPAN 
+lang=EN-US>270</SPAN><SPAN style="FONT-FAMILY: 宋体">，最小坐标为</SPAN><SPAN 
+lang=EN-US>5</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，按成比例显示，这样，灰度出现的次数和显示坐标之间呈线形关系。设</SPAN><SPAN lang=EN-US> 
+a×grayhits+b=coordinate</SPAN><SPAN style="FONT-FAMILY: 宋体">，其中</SPAN><SPAN 
+lang=EN-US>grayhits</SPAN><SPAN style="FONT-FAMILY: 宋体">为灰度出现的次数，</SPAN><SPAN 
+lang=EN-US>coordinate</SPAN><SPAN style="FONT-FAMILY: 宋体">为显示坐标，</SPAN><SPAN 
+lang=EN-US>a</SPAN><SPAN style="FONT-FAMILY: 宋体">和</SPAN><SPAN 
+lang=EN-US>b</SPAN><SPAN style="FONT-FAMILY: 宋体">为两个常数。我们将</SPAN><SPAN 
+lang=EN-US>max</SPAN><SPAN style="FONT-FAMILY: 宋体">和</SPAN><SPAN 
+lang=EN-US>min</SPAN><SPAN style="FONT-FAMILY: 宋体">代入，应该满足</SPAN><SPAN 
+lang=EN-US>a×max+b=270</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>a×min+b=5</SPAN><SPAN style="FONT-FAMILY: 宋体">；由此可以解得</SPAN><SPAN 
+lang=EN-US>a=265/(max-min)</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>b=270.0-a× max </SPAN><SPAN style="FONT-FAMILY: 宋体">。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">还有一点，不要忘了在</SPAN><SPAN lang=EN-US>WinMain</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">函数中注册那个新产生窗口的窗口类。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>int GrayTable[256];</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>int MaxGrayNum;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>int MinGrayNum;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>BOOL Histogram(HWND 
+hWnd)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt">DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OffBits,BufSize;</P>
+<P style="LINE-HEIGHT: 18pt">LPBITMAPINFOHEADER&nbsp;&nbsp;&nbsp; lpImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+lpPtr;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x,y;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; grayindex;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HWND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hPopupWnd;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">计数器清零</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(grayindex=0;grayindex&lt;256;grayindex++)</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>GrayTable[grayindex]=0;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//OffBits<SPAN style="FONT-FAMILY: 宋体">为到实际位图数据的偏移值</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>OffBits=bf.bfOffBits-sizeof(BITMAPFILEHEADER);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//BufSize</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为缓冲区的大小</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>BufSize=OffBits+bi.biHeight*LineBytes;&nbsp;&nbsp; 
+lpImgData=(LPBITMAPINFOHEADER)GlobalLock(hImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(y=0;y&lt;bi.biHeight;y++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpPtr=(char *)lpImgData+(BufSize-LineBytes-y*LineBytes);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(x=0;x&lt;bi.biWidth;x++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>grayindex=(unsigned char)*(lpPtr++);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>GrayTable[grayindex]++; //<SPAN 
+style="FONT-FAMILY: 宋体">对应的颜色计数值加</SPAN><SPAN lang=EN-US>1</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>MaxGrayNum=0;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>MinGrayNum=65535;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(grayindex=0;grayindex&lt;256;grayindex++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>temp=GrayTable[grayindex];</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if(temp&gt;MaxGrayNum)</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>MaxGrayNum=temp; //<SPAN style="FONT-FAMILY: 宋体">找到更大的了</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if( (temp&lt;MinGrayNum) &amp;&amp; (temp&gt;0) )</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>MinGrayNum=temp; //<SPAN style="FONT-FAMILY: 宋体">找</SPAN> <SPAN 
+style="FONT-FAMILY: 宋体">到更小的了</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>GlobalUnlock(hImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">产生新的窗口显示结果</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>hPopupWnd = CreateWindow 
+("PopupWindowClass",</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>"Histogram Statistic 
+Window",</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>WS_OVERLAPPEDWINDOW,50,80,550,350,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hWnd,NULL,ghInst,NULL);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>if (hPopupWnd){</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>ShowWindow (hPopupWnd, SW_SHOW);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UpdateWindow 
+(hPopupWnd);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; }</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>return TRUE;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">下面是新窗口的消息处理函数。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>long FAR PASCAL PopupWndProc (HWND 
+hWnd,UINT message,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>WPARAM wParam,LPARAM 
+lParam)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt">HDC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+hdc;</P>
+<P 
+style="LINE-HEIGHT: 18pt">PAINTSTRUCT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ps;&nbsp;&nbsp; </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
+i;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xstart;&nbsp;&nbsp; </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>static LOGPEN&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+blp={PS_SOLID,1,1,RGB(0,0,255)}; //<SPAN style="FONT-FAMILY: 宋体">蓝色画笔</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HPEN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bhp; //<SPAN 
+style="FONT-FAMILY: 宋体">画笔句柄</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+a,b,temp;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+str[10];</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">计算上面所说的</SPAN><SPAN 
+lang=EN-US>a,b</SPAN><SPAN style="FONT-FAMILY: 宋体">的值</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>a=(float)(265.0 /( MaxGrayNum - MinGrayNum) );</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>b=(float) (270.0-a* MaxGrayNum);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>switch (message){</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; case WM_PAINT:</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp; hdc = BeginPaint(hWnd, &amp;ps);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bhp = 
+CreatePenIndirect(&amp;blp);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>SelectObject(hdc,bhp);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp; MoveToEx(hdc,2,270,NULL);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp; LineTo(hdc,518,270); //<SPAN 
+style="FONT-FAMILY: 宋体">先画一条水平线</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp; xstart=2;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp; for(i=0;i&lt;256;i++){</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+MoveToEx(hdc,xstart,270,NULL);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (GrayTable[i]!=0) </P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp=(float)(a*GrayTable[i]+b);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>else temp=0.0f;&nbsp; //<SPAN 
+style="FONT-FAMILY: 宋体">如果灰度出现的次数是零，则不画线</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+LineTo(hdc,xstart,270-(int)temp); //<SPAN 
+style="FONT-FAMILY: 宋体">画出该灰度的计数值</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (i%16 ==0){ //<SPAN 
+style="FONT-FAMILY: 宋体">画出标尺，每</SPAN><SPAN lang=EN-US>16</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">个一格</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MoveToEx(hdc,xstart,270,NULL);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LineTo(hdc,xstart,280);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _itoa(i,str,10);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+TextOut(hdc,xstart,285,str,strlen(str));</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xstart+=2;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+MoveToEx(hdc,xstart,270,NULL);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+LineTo(hdc,xstart,280);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>TextOut(hdc,xstart,285,"256",strlen("256"));</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp; EndPaint(hWnd,&amp;ps);&nbsp;&nbsp;&nbsp; </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp; DeleteObject(bhp);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp; break;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>default:</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>return DefWindowProc (hWnd, 
+message, wParam, lParam);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<H2><SPAN lang=EN-US>5.9</SPAN> <SPAN lang=EN-US></SPAN><A 
+name=_Toc486331890></A><A name=_Toc486332890></A><A name=_Toc486338999></A><A 
+name=_Toc454810864></A><A 
+name=_Toc454856638><SPAN><SPAN>灰度直方图均衡化</SPAN></SPAN></A></H2>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">在介绍灰度直方图均衡化</SPAN><SPAN lang=EN-US>(histogram 
+equalization)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">之前，先讲讲直方图修正。所谓直方图修正，就是通过一个灰度映射函数</SPAN><SPAN 
+lang=EN-US>G<SUB>new</SUB>=F(G<SUB>old</SUB>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，将原灰度直方图改造成你所希望的直方图。所以，直方图修正的关键就是灰度映射函数。我们刚才介绍的阈值化、削波、灰度窗口变换等等，都是灰度映射函数。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">直方图均衡化是一种最常用的直方图修正。它是把给定图象的直方图分布改造成均匀直方图分布。由信息学的理论来解释，具有最大熵</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN style="FONT-FAMILY: 宋体">信息量</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的图象为均衡化图象。直观地讲，直方图均衡化导致图象的对比度增加。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">由于直方图均衡化涉及到很多概率和数学的知识，具体的细节这里就不介绍了，只给出算法。通过下面的例子，就很容易明白了。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">有一幅图象，共有</SPAN><SPAN 
+lang=EN-US>16</SPAN><SPAN style="FONT-FAMILY: 宋体">级灰度，其直方图分布为</SPAN><SPAN 
+lang=EN-US>Pi, i=0,1,…,15</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，求经直方图均衡化后，量化级别为</SPAN><SPAN lang=EN-US>10</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">级的灰度图象的直方图分布</SPAN><SPAN lang=EN-US>Qi</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，其中</SPAN><SPAN lang=EN-US>Pi</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">和</SPAN><SPAN lang=EN-US>Qi</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为分布的概率，即灰度</SPAN><SPAN lang=EN-US>i</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">出现的次数与总的点数之比。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>Pi</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">：</SPAN><SPAN lang=EN-US> 
+0.03,0,0.06,0.10,0.20,0.11,0,0,0,0.03,0,0.06,0.10,0.20,0.11,0</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">步骤</SPAN><SPAN 
+lang=EN-US>1</SPAN><SPAN style="FONT-FAMILY: 宋体">：用一个数组</SPAN><SPAN 
+lang=EN-US>s</SPAN><SPAN style="FONT-FAMILY: 宋体">记录</SPAN><SPAN 
+lang=EN-US>Pi</SPAN><SPAN style="FONT-FAMILY: 宋体">，即</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>s[0]=0.03,s[1]=0,s[2]=0.06,…,s[14]=0.11,s[15]=0</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">步骤</SPAN><SPAN 
+lang=EN-US>2</SPAN><SPAN style="FONT-FAMILY: 宋体">：</SPAN><SPAN 
+lang=EN-US>i</SPAN><SPAN style="FONT-FAMILY: 宋体">从</SPAN><SPAN 
+lang=EN-US>1</SPAN><SPAN style="FONT-FAMILY: 宋体">开始，令</SPAN><SPAN 
+lang=EN-US>s[i]=s[i]+s[i-1]</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，得到的结果是</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>s</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">：</SPAN><SPAN lang=EN-US> 
+0.03,0.03,0.09,0.19,0.39,0.50,0.50,0.50,0.50,0.53,0.53,0.59,0.69,0.89,1.0,1.0</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">步骤</SPAN><SPAN 
+lang=EN-US>3</SPAN><SPAN style="FONT-FAMILY: 宋体">：用一个数组</SPAN><SPAN 
+lang=EN-US>L</SPAN><SPAN style="FONT-FAMILY: 宋体">记录新的调色板索引值，即令</SPAN><SPAN 
+lang=EN-US>L[i]=s[i]×(10-1)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，得到的结果是</SPAN><SPAN lang=EN-US>L</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">：</SPAN><SPAN 
+lang=EN-US>0,0,1,2,4,5,5,5,5,5,5,5,6,8,9,9</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">这样就找到了原来的调色板索引值和新的调色板索引值之间的对应关系，即</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>0</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">→</SPAN><SPAN 
+lang=EN-US>0,1→0,2→1,3→2,4→4,5→5,6→5,7→5,8→5,9→5,10→5,11→5,12→6,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>13→8,14→9,15→9</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">步骤</SPAN><SPAN 
+lang=EN-US>4</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">：将老的索引值对应的概率合并，作为对应的新的索引值的概率。例如，原来的索引值</SPAN><SPAN 
+lang=EN-US>0,1</SPAN><SPAN style="FONT-FAMILY: 宋体">都对应了新的索引值</SPAN><SPAN 
+lang=EN-US>0</SPAN><SPAN style="FONT-FAMILY: 宋体">，则灰度索引值为</SPAN><SPAN 
+lang=EN-US>0</SPAN><SPAN style="FONT-FAMILY: 宋体">的概率为</SPAN><SPAN 
+lang=EN-US>P<SUB>0</SUB>+P<SUB>1</SUB>=0.03</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">；新的索引值</SPAN><SPAN lang=EN-US>3</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">和</SPAN><SPAN lang=EN-US>7</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">找不到老的索引值与之对应，所以令</SPAN><SPAN 
+lang=EN-US>Q<SUB>3</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">和</SPAN><SPAN 
+lang=EN-US>Q<SUB>7</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">为</SPAN><SPAN 
+lang=EN-US>0</SPAN><SPAN style="FONT-FAMILY: 宋体">。最后得到的结果是</SPAN><SPAN 
+lang=EN-US>Qi</SPAN><SPAN style="FONT-FAMILY: 宋体">：</SPAN><SPAN 
+lang=EN-US>0.03,0.06,0.10,0,0.20,0.20,0.10,0,0.20,0.11</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">图</SPAN><SPAN 
+lang=EN-US>5.17</SPAN><SPAN style="FONT-FAMILY: 宋体">为</SPAN><SPAN 
+lang=EN-US>Pi</SPAN><SPAN style="FONT-FAMILY: 宋体">的分布，图</SPAN><SPAN 
+lang=EN-US>5.18</SPAN><SPAN style="FONT-FAMILY: 宋体">为</SPAN><SPAN 
+lang=EN-US>Qi</SPAN><SPAN style="FONT-FAMILY: 宋体">的分布，对照一下，不难发现图</SPAN><SPAN 
+lang=EN-US>5.18</SPAN><SPAN style="FONT-FAMILY: 宋体">的分布比图</SPAN><SPAN 
+lang=EN-US>5.17</SPAN><SPAN style="FONT-FAMILY: 宋体">要均匀一些。</SPAN></P>
+<TABLE cellSpacing=0 cellPadding=0 width=586 border=0>
+  <TBODY>
+  <TR>
+    <TD class=Normal vAlign=top width=363>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=247 
+      src="第5章 直方图修正和彩色变换.files/image038.jpg" width=349 v:shapes="_x0000_i1044"> 
+      </SPAN></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN>5.17&nbsp;&nbsp; Pi</B><B><SPAN 
+      style="FONT-FAMILY: 宋体">的分布</SPAN><SPAN lang=EN-US></SPAN></B></P></TD>
+    <TD class=Normal vAlign=top width=222>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=244 
+      src="第5章 直方图修正和彩色变换.files/image040.jpg" width=208 v:shapes="_x0000_i1045"> 
+      </SPAN></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN>5.18&nbsp;&nbsp; Qi</B><B><SPAN 
+      style="FONT-FAMILY: 宋体">的分布</SPAN><SPAN 
+  lang=EN-US></SPAN></B></P></TD></TR></TBODY></TABLE>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">要注意的是，均衡化处理后的图象只能是近似均匀分布。均衡化图象的动态范围扩大了，但其本质是扩大了量化间隔，而量化级别反而减少了，因此，原来灰度不同的象素经处理后可能变的相同，形成了一片的相同灰度的区域，各区域之间有明显的边界，从而出现了伪轮廓。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">图</SPAN><SPAN 
+lang=EN-US>5.19</SPAN><SPAN style="FONT-FAMILY: 宋体">为图</SPAN><SPAN 
+lang=EN-US>5.13</SPAN><SPAN style="FONT-FAMILY: 宋体">经直方图均衡化处理后，量化为</SPAN><SPAN 
+lang=EN-US>128</SPAN><SPAN style="FONT-FAMILY: 宋体">级灰度的结果；图</SPAN><SPAN 
+lang=EN-US>5.20</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为它的直方图分布。为什么天亮了起来呢？分析一下就明白了：因为原图中低灰度的点太多了，所以</SPAN><SPAN 
+lang=EN-US>s</SPAN><SPAN style="FONT-FAMILY: 宋体">数组前面的元素很大。经过</SPAN><SPAN 
+lang=EN-US>L[i]=s[i]×(128-1)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的处理后，原图中低灰度的点的灰度值提高了不少，所以那片暗区变亮了。同时可以看出，天空中出现了伪轮廓。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><IMG height=288 src="第5章 直方图修正和彩色变换.files/image041.gif" width=206 
+v:shapes="_x0000_i1046"> </SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>5.19&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN><SPAN lang=EN-US>5.13</SPAN></B><B><SPAN 
+style="FONT-FAMILY: 宋体">经直方图均衡化处理后的结果</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+lang=EN-US><IMG height=341 src="第5章 直方图修正和彩色变换.files/image042.gif" width=536 
+v:shapes="_x0000_i1047"> </SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>5.20&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN><SPAN lang=EN-US>5.19</SPAN></B><B><SPAN 
+style="FONT-FAMILY: 宋体">的灰度直方图</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">图</SPAN><SPAN 
+lang=EN-US>5.21</SPAN><SPAN style="FONT-FAMILY: 宋体">为图</SPAN><SPAN 
+lang=EN-US>5.1</SPAN><SPAN style="FONT-FAMILY: 宋体">直方图均衡化后的结果</SPAN><SPAN 
+lang=EN-US>(128</SPAN><SPAN style="FONT-FAMILY: 宋体">级灰度</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN style="FONT-FAMILY: 宋体">，暗的区域</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN style="FONT-FAMILY: 宋体">手</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN style="FONT-FAMILY: 宋体">变亮了，看起来更清楚一些。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><IMG height=320 src="第5章 直方图修正和彩色变换.files/image043.gif" width=400 
+v:shapes="_x0000_i1048"> </SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>5.21&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN><SPAN lang=EN-US>5.1</SPAN></B><B><SPAN 
+style="FONT-FAMILY: 宋体">直方图均衡化后的结果</SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">下面给出直方图均衡化的源程序：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>int EquaScale; //</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为新的灰度级别</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>BOOL HistogramEqua(HWND 
+hWnd)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DLGPROC&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+dlgInputBox = NULL;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+BufSize,OffBits;</P>
+<P style="LINE-HEIGHT: 18pt">LPBITMAPINFOHEADER&nbsp;&nbsp;&nbsp; lpImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lpPtr;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HLOCAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; hTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPBITMAPINFOHEADER&nbsp;&nbsp;&nbsp; lpTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPSTR&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+lpTempPtr;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HDC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp; hDc;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HFILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; hf;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LONG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; x,y;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+LOGPALETTE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; 
+*pPal;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+HPALETTE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; hPrevPalette; </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HLOCAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp; hPal;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>WORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp; i;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>int&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Gray;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp; GrayHits[256];</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+GrayIndex[256];</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; s[256];</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if( NumColors!=256){ //<SPAN style="FONT-FAMILY: 宋体">必须是</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN style="FONT-FAMILY: 宋体">级灰度图</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MessageBox(hWnd,"Must be a 256 
+grayscale bitmap!","Error Message",</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>MB_OK|MB_ICONEXCLAMATION);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>return FALSE;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">出现对话框，输入新的灰度级别</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>dlgInputBox = (DLGPROC) MakeProcInstance ( (FARPROC)InputBox, ghInst 
+);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DialogBox (ghInst, "INPUTBOX", hWnd, dlgInputBox);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>FreeProcInstance ( (FARPROC) dlgInputBox );</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if( EquaScale &gt;=255){ //<SPAN 
+style="FONT-FAMILY: 宋体">量化级别不能大于</SPAN><SPAN lang=EN-US>255</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MessageBox(hWnd,"The new scale can 
+not be larger than 255",</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>"Error 
+Message",MB_OK|MB_ICONEXCLAMATION);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>return FALSE;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; }</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//OffBits<SPAN style="FONT-FAMILY: 宋体">为到实际位图数据的偏移值</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>OffBits=bf.bfOffBits-sizeof(BITMAPFILEHEADER);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//BufSize</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为缓冲区的大小</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>BufSize=OffBits+bi.biHeight*LineBytes;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+if((hTempImgData=LocalAlloc(LHND,BufSize))==NULL)</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; {</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MessageBox(hWnd,"Error alloc 
+memory!","Error Message",MB_OK|</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MB_ICONEXCLAMATION);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>return FALSE;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//lpImgData</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">指向原图，</SPAN><SPAN lang=EN-US>//lpTempImgData</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">指向新开的缓冲区</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+lpImgData=(LPBITMAPINFOHEADER)GlobalLock(hImgData);&nbsp;&nbsp;&nbsp; </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempImgData=(LPBITMAPINFOHEADER)LocalLock(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">拷贝头信息</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memcpy(lpTempImgData,lpImgData,OffBits);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//ColorHits</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为记录颜色使用频率的数组，</SPAN><SPAN 
+lang=EN-US>ColorIndex</SPAN><SPAN style="FONT-FAMILY: 宋体">为记录颜色索引值的</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">数组</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">先清零</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memset(GrayHits,0,256*sizeof(DWORD));</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memset(GrayIndex,0,256*sizeof(WORD));</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(y=0;y&lt;bi.biHeight;y++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpPtr=(unsigned char *)lpImgData+(BufSize-LineBytes-y*LineBytes);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(x=0;x&lt;bi.biWidth;x++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Gray=(unsigned char )*(lpPtr++);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>GrayHits[Gray]++; //<SPAN style="FONT-FAMILY: 宋体">统计该颜色用到的次数</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(i=0;i&lt;256;i++)</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">次数除以总点数得到频率</SPAN><SPAN> </SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>s[i]=(float)GrayHits[i]/((float)bi.biWidth*(float)bi.biHeight); </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>for(i=1;i&lt;256;i++)</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>s[i]+=s[i-1];&nbsp; //<SPAN 
+style="FONT-FAMILY: 宋体">每一项都是前面所有项的累加</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(i=0;i&lt;256;i++)</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">根据新的量化级别，计算新的灰度索引值</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>GrayIndex[i]=(int)(s[i]*(EquaScale-1)); </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为新的调色板分配内存</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+hPal=LocalAlloc(LHND,sizeof(LOGPALETTE)+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>256*sizeof(PALETTEENTRY));</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>pPal =(LOGPALETTE 
+*)LocalLock(hPal);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">先将调色板内存全部清零</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memset(pPal,0,sizeof(LOGPALETTE) + 256* sizeof(PALETTEENTRY));</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+pPal-&gt;palNumEntries =(WORD) 256;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palVersion&nbsp;&nbsp;&nbsp; = 0x300;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempPtr=(char *)lpTempImgData+sizeof(BITMAPINFOHEADER);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for (i = 0; i &lt; EquaScale; i++) {</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Gray=(int)(i*255.0/(EquaScale-1));&nbsp; //<SPAN 
+style="FONT-FAMILY: 宋体">根据新的量化级别，计算灰度值</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+pPal-&gt;palPalEntry[i].peRed=(BYTE)Gray;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palPalEntry[i].peGreen=(BYTE)Gray;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palPalEntry[i].peBlue=(BYTE)Gray;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>pPal-&gt;palPalEntry[i].peFlags=(BYTE)0;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)Gray;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)Gray;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)Gray;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=0;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if(hPalette!=NULL)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DeleteObject(hPalette);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">产生新的逻辑调色板</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>hPalette=CreatePalette(pPal);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalUnlock(hPal);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalFree(hPal);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>hDc=GetDC(hWnd);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if(hPalette){</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp; 
+hPrevPalette=SelectPalette(hDc,hPalette,FALSE);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>RealizePalette(hDc);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(y=0;y&lt;bi.biHeight;y++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpPtr=(char *)lpImgData+(BufSize-LineBytes-y*LineBytes);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempPtr=(char *)lpTempImgData+(BufSize-LineBytes-y*LineBytes);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(x=0;x&lt;bi.biWidth;x++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Gray=(unsigned char )*(lpPtr++); //<SPAN 
+style="FONT-FAMILY: 宋体">原灰度索引值</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Gray=GrayIndex[Gray]; //<SPAN 
+style="FONT-FAMILY: 宋体">对应的新的灰度索引值</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)Gray;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+if(hBitmap!=NULL)</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp; DeleteObject(hBitmap);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">产生新的位图</SPAN><SPAN>&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>hBitmap=CreateDIBitmap(hDc,(LPBITMAPINFOHEADER)lpTempImgData,</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LONG)CBM_INIT,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LPSTR)lpTempImgData+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>sizeof(BITMAPINFOHEADER)+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>256*sizeof(RGBQUAD),</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>(LPBITMAPINFO)lpTempImgData,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DIB_RGB_COLORS);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>if(hPalette &amp;&amp; 
+hPrevPalette){</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>SelectPalette(hDc,hPrevPalette,FALSE);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>RealizePalette(hDc);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>hf=_lcreat("c:\\equa.bmp",0);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lwrite(hf,(LPSTR)&amp;bf,sizeof(BITMAPFILEHEADER)); </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lwrite(hf,(LPSTR)lpTempImgData,BufSize);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lclose(hf);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">释放内存和资源</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;</SPAN>&nbsp;&nbsp;&nbsp;&nbsp; 
+ReleaseDC(hWnd,hDc);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalUnlock(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalFree(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>GlobalUnlock(hImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>return TRUE;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN><SPAN lang=EN-US 
+style="FONT-SIZE: 9pt"></SPAN></P><SPAN lang=EN-US 
+style="FONT-SIZE: 10.5pt; FONT-FAMILY: 'Times New Roman'"><BR 
+style="PAGE-BREAK-BEFORE: always" clear=all></SPAN></DIV>
+<DIV 
+style="DISPLAY: block; FONT-SIZE: 10px; FONT-FAMILY: Verdana, Geneva, Arial">The 
+University of Southern California does not screen or control the content on this 
+website and thus does not guarantee the accuracy, integrity, or quality of such 
+content. All content on this website is provided by and is the sole 
+responsibility of the person from which such content originated, and such 
+content does not necessarily reflect the opinions of the University 
+administration or the Board of Trustees </DIV></BODY></HTML>

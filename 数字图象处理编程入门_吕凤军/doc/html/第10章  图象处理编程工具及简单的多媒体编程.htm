@@ -1,0 +1,2091 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0045)http://www-scf.usc.edu/~flv/ipbook/chap10.htm -->
+<HTML><HEAD><TITLE>前 言</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=GB2312"><LINK 
+href="./chap10.files/editdata.mso" rel=Edit-Time-Data>
+<STYLE>.Normal {
+	TEXT-JUSTIFY: inter-ideograph; FONT-SIZE: 12pt; TEXT-INDENT: 24.95pt; LINE-HEIGHT: 20pt; FONT-FAMILY: "Times New Roman"; TEXT-ALIGN: justify
+}
+.a {
+	FONT-SIZE: 12pt; TEXT-INDENT: 0pt; LINE-HEIGHT: 20pt; FONT-FAMILY: "Times New Roman"; TEXT-ALIGN: center
+}
+</STYLE>
+
+<META content="MSHTML 6.00.2800.1400" name=GENERATOR></HEAD>
+<BODY class=Normal lang=ZH-CN vLink=purple link=blue bgColor=#ffffff>
+<DIV style="LAYOUT-GRID:  16.3pt none">
+<H1><A name=_Toc486331912></A><A name=_Toc486332912></A><A 
+name=_Toc486339021></A><A name=_Toc454810886></A><A 
+name=_Toc454856660><SPAN><SPAN>第<SPAN 
+lang=EN-US>10</SPAN></SPAN></SPAN></A><SPAN><SPAN><SPAN 
+style="FONT-FAMILY: 黑体">章</SPAN><SPAN>&nbsp; 
+</SPAN></SPAN></SPAN><SPAN><SPAN><SPAN 
+style="FONT-FAMILY: 黑体">图象处理编程工具及简单的多媒体编程</SPAN></SPAN></SPAN></H1>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">在前九章，我们主要是介绍一些数字图象处理的基本原理和算法，很多细节和优化的算法都没有提，所以程序的通用性和效率并不理想。其实有很多优秀的图象处理编程工具，功能强大，速度很快。在实际的编程中，可以调用它们提供的功能来满足我们自己的需求，提高了编程效率和代码的正确性。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">在这一章里，将介绍图象处理编程工具</SPAN><SPAN 
+lang=EN-US>LeadTools(OCX)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。给出的例程中要用到</SPAN><SPAN lang=EN-US>Visual 
+C++(</SPAN><SPAN style="FONT-FAMILY: 宋体">以下简称</SPAN><SPAN 
+lang=EN-US>VC)</SPAN><SPAN style="FONT-FAMILY: 宋体">的</SPAN><SPAN 
+lang=EN-US>AppWizard</SPAN><SPAN style="FONT-FAMILY: 宋体">和</SPAN><SPAN 
+lang=EN-US>MFC</SPAN><SPAN style="FONT-FAMILY: 宋体">的一些特性，不熟悉</SPAN><SPAN 
+lang=EN-US>C++</SPAN><SPAN style="FONT-FAMILY: 宋体">的读者可以先看看相关的参考书。</SPAN></P>
+<H2><SPAN lang=EN-US>10.1</SPAN> <A name=_Toc486331913></A><A 
+name=_Toc486332913></A><A name=_Toc486339022></A><A name=_Toc454810887></A><A 
+name=_Toc454856661><SPAN><SPAN>LeadTools</SPAN></SPAN></A></H2>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>LeadTools(OCX)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">是</SPAN><SPAN lang=EN-US>Lead Technologies</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">公司出品的一款功能强大的图象处理编程工具，目前的最新版本是</SPAN><SPAN 
+lang=EN-US>Lead8.0(1997.7.25)</SPAN><SPAN style="FONT-FAMILY: 宋体">。</SPAN><SPAN 
+lang=EN-US>LeadTools</SPAN><SPAN style="FONT-FAMILY: 宋体">实质上是一个</SPAN><SPAN 
+lang=EN-US>OCX</SPAN><SPAN style="FONT-FAMILY: 宋体">控件。先来说说什么是</SPAN><SPAN 
+lang=EN-US>OCX</SPAN><SPAN style="FONT-FAMILY: 宋体">控件？</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">如果你用过</SPAN><SPAN 
+lang=EN-US>Visual Basic</SPAN><SPAN style="FONT-FAMILY: 宋体">或者</SPAN><SPAN 
+lang=EN-US>Delphi</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">一类的可视化编程工具，那么对控件这个概念一定不会陌生，就是那些工具条上的小按钮，如</SPAN><SPAN 
+lang=EN-US>EditBox</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>Grid</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>ImageBox</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>Timer</SPAN><SPAN style="FONT-FAMILY: 宋体">等等。每个控件都有自己的事件</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN style="FONT-FAMILY: 宋体">事件</SPAN><SPAN lang=EN-US>) 
+</SPAN><SPAN style="FONT-FAMILY: 宋体">、方法</SPAN><SPAN lang=EN-US>(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">方法</SPAN><SPAN lang=EN-US>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">和属性</SPAN><SPAN lang=EN-US>(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">属性</SPAN><SPAN lang=EN-US>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。使用了控件的编程非常容易。首先，在程序的设计阶段可以设置一些属性，如大小，位置，标题</SPAN><SPAN 
+lang=EN-US>(caption)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">等等；在程序运行阶段，可以更改这些属性，还可以针对不同的事件，调用不同的方法来实现对该控件的控制。控件就好象一块块的积木，程序要做的事只是将这些积木搭起来。控件的最大好处是可以重复使用，甚至可以在不同的编程语言之间使用，例如你可以在</SPAN><SPAN 
+lang=EN-US>VB</SPAN><SPAN style="FONT-FAMILY: 宋体">中嵌入用</SPAN><SPAN 
+lang=EN-US>VC</SPAN><SPAN style="FONT-FAMILY: 宋体">开发的控件。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">控件的本质是微软公司的对象链接和嵌入</SPAN><SPAN 
+lang=EN-US>(OLE)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">标准。由于它充分利用了面向对象的优点，使得程序效率得到了很大的提高，从而得到了广泛的应用。国外有很多公司就是专门制作各种各样控件的。控件的最早形式是以</SPAN><SPAN 
+lang=EN-US>.VBX</SPAN><SPAN style="FONT-FAMILY: 宋体">的格式出现的，后来变成了</SPAN><SPAN 
+lang=EN-US>.OCX</SPAN><SPAN style="FONT-FAMILY: 宋体">。由于</SPAN><SPAN 
+lang=EN-US>Internet</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的广泛流行，微软公司推出了</SPAN><SPAN lang=EN-US>ActiveX</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">技术，就是从</SPAN><SPAN lang=EN-US>OLE</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">发展起来的，加入了</SPAN><SPAN lang=EN-US>WWW</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">上的功能。所以目前最流行的是</SPAN><SPAN 
+lang=EN-US>ActiveX</SPAN><SPAN style="FONT-FAMILY: 宋体">控件。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">介绍完了</SPAN><SPAN 
+lang=EN-US>OCX</SPAN><SPAN style="FONT-FAMILY: 宋体">控件的概念，下面我们以</SPAN><SPAN 
+lang=EN-US>Lead Version5.1</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为例，来看看</SPAN><SPAN lang=EN-US>LeadTools</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">究竟有哪些功能？</SPAN><SPAN lang=EN-US>Lead 
+Version5.1</SPAN><SPAN style="FONT-FAMILY: 宋体">可以在正版</SPAN><SPAN 
+lang=EN-US>MicroSoft Visual C++4.1</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">安装光盘中</SPAN><SPAN 
+lang=EN-US>Msdev\samples\ocx\leadtools</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">和</SPAN><SPAN lang=EN-US>Msdev\redist\redist</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">下找到，主要是</SPAN><SPAN lang=EN-US>4</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">个文件，</SPAN><SPAN lang=EN-US> Lead51n.dll</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>Lead32.ocx</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>Lead.lic</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>Ltocx.hlp</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。如果你想了解</SPAN><SPAN lang=EN-US>LeadTools</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的最新信息，可以访问以下</SPAN><SPAN lang=EN-US>www</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">网址：</SPAN><SPAN lang=EN-US><A 
+href="http://www.leadtools.com/"><SPAN 
+style="COLOR: windowtext; TEXT-DECORATION: none; text-underline: none">http://www.leadtools.com/</SPAN></A></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>LeadTools</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">主要有以下几大功能：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(1)<SPAN 
+style="FONT: 7pt 'Times New Roman'"> </SPAN></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">对显示设备的全面支持：在显示时，你的程序中无需考虑是哪种显示模式，如</SPAN><SPAN 
+lang=EN-US>16</SPAN><SPAN style="FONT-FAMILY: 宋体">色还是真彩色。</SPAN><SPAN 
+lang=EN-US>LeadTools</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为你做了所有的事。当然你也可以通过设置参数获得对显示设备更多的控制。你还可以实现自己的调色板。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(2)<SPAN 
+style="FONT: 7pt 'Times New Roman'"> </SPAN></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">支持多种文件格式：表</SPAN><SPAN lang=EN-US>10.1</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">是</SPAN><SPAN lang=EN-US>LeadTools</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">所支持的常用文件格式，其中读表示用</SPAN><SPAN 
+lang=EN-US>LeadTools</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">能打开的文件格式，写表示</SPAN><SPAN 
+lang=EN-US>LeatTools</SPAN><SPAN style="FONT-FAMILY: 宋体">能存成的文件格式：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">表</SPAN>10.1&nbsp; LeadTools</B><B><SPAN 
+style="FONT-FAMILY: 宋体">支持的常用文件格式</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<TABLE cellSpacing=0 cellPadding=0 border=1>
+  <TBODY>
+  <TR>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">文件格式</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">读</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">(</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">位</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">/</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">象素</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)</SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">写</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">(</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">位</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">/</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">象素</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">JFIF</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">：一种常用的</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Jpeg</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">文件格式，</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">LeadTools</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">支持</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">YUV 4:4:4, 4:2:2, 4:1:1(</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">彩色</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)YUV 4:0:0(</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">灰度</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)</SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">8 
+      (</SPAN><SPAN style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">灰度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">)</SPAN></P>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">24(</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">彩色</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)</SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">8 
+      (</SPAN><SPAN style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">灰度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">)</SPAN></P>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">24(</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">彩色</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">JFIF</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">：另一种常用的</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Jpeg</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">文件格式，</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">LeadTools</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">支持</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">YUV 4:4:4, 4:2:2, 4:1:1(</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">彩色</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)YUV 4:0:0(</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">灰度</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)</SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">8 
+      (</SPAN><SPAN style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">灰度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">)</SPAN></P>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">24(</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">彩色</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)</SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">8 
+      (</SPAN><SPAN style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">灰度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">)</SPAN></P>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">24(</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">彩色</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">TIFF</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">：</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Tiff</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">文件有很多种，</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">LeadTools</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">支持常用的几种</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">1</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">4</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">8</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">16</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">24</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">32</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">，还包括另一种颜色表示方法</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">CMYK (LZW</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">压缩</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">) </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">和</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"> RLE (LZW</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">压缩</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)</SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">1, 
+      4, 8, 16, 24</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">MPT</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">：一种多页</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">(MultiPage)</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">的</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Tiff</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">文件格式，类似于动画</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">Gif</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">。</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">1</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">4</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">8</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">16</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">24</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">32</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">，还包括另一种颜色表示方法</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">CMYK (LZW</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">压缩</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">) </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">和</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"> RLE (LZW</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">压缩</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)</SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">1, 
+      4, 8, 16, 24</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">TIFF LZW</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">：采用</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">LZW</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">压缩的</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Tiff</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">格式，使用时要获得</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">Unisys</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">公司的认可。</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">1, 
+      4, 8, 16, 24, 32</SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">1, 
+      8, 16, 24</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">TIFF CCITT Group 3</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">：是一种用于二值黑白图</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">(</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">如传真</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">的</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Tiff</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">压缩格式。</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">1</SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">1</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">TIFF CCITT Group 4</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">：是一种用于二值黑白图</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">(</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">如传真</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">的</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Tiff</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">压缩格式。比</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Group 3</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">有更高的压缩比。</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">1</SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">1</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">TGA (TARGA)</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">：</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Truevision</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">公司的一种文件格式，</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">LeadTools</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">支持所有未压缩的，及用</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">RLE</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">算法压缩的</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">TGA</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">文件。</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">8, 
+      16, 24, 32</SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">8, 
+      16, 24, 32</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">GIF</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">：由</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">CompuServe</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">公司定义的一种文件格式，是</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">html</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">语言采用的一种文件格式。要注意的是，使用采用了</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">LZW</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">压缩的</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Gif</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">文件时，首先要获得</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">Unisys</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">公司的认可。</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">1, 
+      4, 8</SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">8</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Photoshop 3.0 (PSD)</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">：</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Adobe</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">公司</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">PhotoShop3.0</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">所采用的文件格式。</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">1, 
+      8, 24</SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">1, 
+      8, 24</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Windows Bitmap (BMP)</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">：由微软公司定义的文件格式。</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">1, 
+      4, 8, 24(</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">未压缩</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)</SPAN></P>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">1, 
+      4, 8(</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">采用</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">RLE</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">压缩</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)</SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">1, 
+      4, 8, 24</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Windows Metafile (WMF)</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">：一种矢量图文件格式。在</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">Word</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">中用到。</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">8, 
+      24</SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">8, 
+      24</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">PCX</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">：由</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Zsoft</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">公司制定的一种文件格式，采用了行程编码。</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">1, 
+      4, 8, 24</SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">1, 
+      4, 8, 24</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">SUN Raster (RAS)</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">：在</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Sun UNIX</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">平台上的一种文件格式。</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">1, 
+      4, 8, 24, 32</SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US style="FONT-SIZE: 10.5pt">1, 
+      4, 8, 24, 32</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">PCD</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">：柯达公司的</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">PhotoCD </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">文件格式。要注意的是要有</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">PCDLIB32.DLL</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">这个文件。</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">所有</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD>
+    <TD class=Normal vAlign=top width=189>
+      <P style="LINE-HEIGHT: 18pt"><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">不能写</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR></TBODY></TABLE>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">以上只是常用的文件格式，除此以外还有很多其它的文件格式，感兴趣的读者可以参考帮助。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(3)<SPAN 
+style="FONT: 7pt 'Times New Roman'"> </SPAN></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">图象处理：如二值化、平滑、加噪声、增加对比度、色调、饱和度、亮度、</SPAN><SPAN 
+lang=EN-US>Gamma</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">校正、中值滤波、半影调、抖动、橡皮筋、滚动、填充、反色、镜象、马赛克、浮雕、打印、扫描、拷贝、粘贴、裁剪、缩放、截屏、调色板、直方图、有关数据库的操作、还有制作幻灯的功能，如淡入、淡出、卷帘等等、真的很爽。表</SPAN><SPAN 
+lang=EN-US>10.2</SPAN><SPAN style="FONT-FAMILY: 宋体">是</SPAN><SPAN 
+lang=EN-US>Version5.1</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的所有属性、事件、和方法列表，看看有没有你所需要的功能。以字母顺序排列，其中标</SPAN><SPAN 
+lang=EN-US>[P]</SPAN><SPAN style="FONT-FAMILY: 宋体">的表示只有专业级</SPAN><SPAN 
+lang=EN-US>(Professional)</SPAN><SPAN style="FONT-FAMILY: 宋体">和特殊级</SPAN><SPAN 
+lang=EN-US>(Express)</SPAN><SPAN style="FONT-FAMILY: 宋体">用户才能使用。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">表</SPAN>10.2&nbsp; LeadTools</B><B><SPAN 
+style="FONT-FAMILY: 宋体">的事件、属性、方法</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<TABLE cellSpacing=0 cellPadding=0 border=1>
+  <TBODY>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">AboutBox </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：显示</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">LeadTools</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">的“关于”信息</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] AddNoise </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：增加随机噪声</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">AutoRepaint </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：该属性为真时，位图自动重画</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">AutoScroll </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：该属性为真时，当位图超出窗口范围时，自动出现滚动条</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">AutoSetRects </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：该属性为真时，自动调整窗口大小</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] Average </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：平滑</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">BackColor </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：该属性设置位图的背景色</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">BackErase </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：该属性为真时，擦除控件的背景</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[E] BinaryFilter </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：对黑色对象进行腐蚀或膨胀操作</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Bitmap </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：该属性为位图句柄</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">BitmapBits </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：该属性为每个象素所占的比特数</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">BitmapHeight </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：该属性为位图的高</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">BitmapPalette </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：该属性设置调色板中某一项的</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">RGB</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">值</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">BitmapWidth </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：该属性为位图的宽</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">BitmapXRes </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：该属性为位图的水平分辨率</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">BitmapYRes </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：该属性为位图的垂直分辨率</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[E] BitonalScaling </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：设置该属性，以增强二值图的显示效果</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">BorderStyle </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：该属性为</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">0</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">时，控件周围没有边框，为</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">1</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">时有边框</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] Capture </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：从某一设备上下文指定的矩形区域中获得位图</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">(</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">截屏</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Click </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">事件：当用户点击控件时，触发该事件</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] ColorMerge </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：融合调色板</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] ColorPlanes </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：该属性为灰度图的调色板数组</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">ColorRes </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：颜色数转换</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] ColorSeparate </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：按照调色板将位图分离成一个个的灰度图</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] Combine </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：将两幅图结合，例如另一幅图是一个边沿检测的滤波器</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Contrast </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：增加或减少位图的对比度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Copy </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：将位图拷贝至剪贴板</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">CreateBitmap </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：对位图初始化并分配内存，但不调入任何数据</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbAddNew </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：为当前记录集增加一个新的空记录</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbCanAppend </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：该属性为真时，表示可以在当前记录集中增加一个记录</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbCanRestart </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：该属性为真时，表示可以从数据库中重建记录集</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbCanScroll </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：该属性为真时，表示数据源支持</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">dbMove</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法，可以在记录集中滚</SPAN><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+      </SPAN><SPAN style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">动</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbCanUpdate </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：该属性为真时，表示可以在当前记录集中增加或者更新一个记录</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbClose </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：关闭当前记录集和数据库</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbCurrentRecord </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：记录集中当前记录号</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbDelete </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：删除当前记录</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbEdit </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：为更新当前记录做准备</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbEditMode </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指示当前记录的编辑模式，如只读，可编辑，可添加</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbIsBOF </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指示是否到了最前面的记录</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbIsDeleted </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指示当前记录是否已经被删除</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbIsEOF </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指示是否到了最后面的记录</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbIsOpen </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指示是否和一个数据库相连</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">DblClick </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">事件：当用户双击控件时，触发该事件</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbLoadBits </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指示从数据库中调入位图时，每个象素所占的比特数，为</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">0</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">时，和原来位图的颜色数保持一致</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbLockingMode </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：当对数据库中已有记录进行更新时，该属性用来指定记录锁定模式</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbMove </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：将当前记录移动到指定位置</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbMoveFirst </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：选定记录集中的第一个记录</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbMoveLast </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：选定记录集中的最后一个记录</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbMoveNext </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：选定记录集中的下一个记录</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbMovePrev </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：选定记录集中的前一个记录</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbOpen </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：在</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">ODBC</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">类型的数据库中打开一个记录集</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbRecordCount </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指示记录集中的记录数</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbRequery </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：从数据库中重建记录集</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] dbUpdate </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：更新数据库</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">(</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">当调用</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">dbAddNew</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">或者</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">dbEdit</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">后</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[E] Deskew </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：旋转位图使其变正，常用于扫描图象的自动纠斜</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[E] Despeckle </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：去除位图中的小斑点</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">DstClipHeight </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指定目标剪切矩形的高度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">DstClipLeft </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指定目标剪切矩形的左坐标</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">DstClipTop </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指定目标剪切矩形的上坐标</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">DstClipWidth </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指定目标剪切矩形的宽度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">DstHeight </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指定目标矩形的高度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">DstLeft </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指定目标矩形的左坐标</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">DstTop </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指定目标矩形的上坐标</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">DstWidth </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指定目标矩形的宽度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] Emboss </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：制作浮雕效果</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Enabled </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指定控件是否使能</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">EnableMethodErrors </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指示控件是否导致了系统错误</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] EnableProgressEvent </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指示控件是否产生一个进度状态的事件，用来指示已经完成的百分比</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] EnableTwainEvent </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：为真时，表示支持多页扫描，每扫一页产生一个</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">TwainPage</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">事件</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Fill </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：用指定颜色填充位图</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Flip </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：上下反转位图</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">ForceRepaint </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：重画位图</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">ForePalette </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：当为真时，将使用控件的调色板作为前景调色板</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] GammaCorrect </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Gamma</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">校正</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">GetBitmapDC </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：获得位图的设备上下文</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">GetClientDC </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：获得控件客户区的设备上下文</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] GetDDB </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：从控件位图中获得设备相关位图</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] GetDIB </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：从控件位图中获得设备无关位图</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">GetFileInfo </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：获得指定文件的信息</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] GetHistogram </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：获得颜色直方图</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">GetPalette </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：获得调色板</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] GetPicture </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：返回一个</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Picture</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">的对象，是位图的一个拷贝</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Grayscale </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：将彩色图转成</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">256</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">级灰度图</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Halftone </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：半影调效果</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] HistoContrast </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：使用直方图指定中间亮度，用以增加图象的对比度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] HistoEqualize </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：直方图均衡化</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] HistogramTable </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：得到指定强度级别的颜色出现的次数</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] Hue </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：改变图象色调</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">hWnd </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：得到控件的窗口句柄</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">InfoBits </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：得到指定图象文件每个象素所占的比特数</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">InfoCompress </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：得到指定图象文件所用的压缩方法</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">InfoFormat </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：得到指定图象文件的格式</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">InfoHeight </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：得到指定图象文件的高度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">InfoPage </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：对于多页图象文件，指示出该页的页号</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] InfoPCDRes </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：用来指示</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">PhotoCD</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">文件格式的分辨率</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">InfoSizeDisk </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：得到文件大小</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">InfoSizeMem </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：得到要调入该文件，其位图所占的内存大小</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">InfoWidth </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：得到指定图象文件的宽度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Intensity </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：改变图象的亮度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] IntensityDetect </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：用来检测指定范围内的颜色</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Invert </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：反色，制作底片效果</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">KeyDown </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">事件：当用户按下键盘时，触发该事件</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">KeyPress </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">事件：当用户按下并抬起键盘时，触发该事件</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">KeyUp </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">事件：当用户抬起键盘时，触发该事件</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Load </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：调入一个图象文件到位图中</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] LoadStamp </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：在</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">JFIF</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">或者</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">LEAD CMP</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">压缩文件中调入一幅</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">Thumbnail</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">图象</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] Median </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：中值滤波</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] Mosaic </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：马赛克效果</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">MouseDown </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">事件：当鼠标按钮按下时，触发该事件</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">MouseIcon </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：用户定制的鼠标光标形状</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">MouseMove </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">事件：当鼠标移动时，触发该事件</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">MousePointer </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：已有的鼠标光标形状</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">(</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">如沙漏，箭头等等</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">MouseUp </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">事件：当鼠标按钮抬起时，触发该事件</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Paint </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">事件：控件的某一部分需要重画时，触发该事件</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">PaintDither </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指定抖动方法，是顺序的还是误差传递的</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] PaintEffect </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指定显示效果，如卷帘，淡入，淡出</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">PaintPalette </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：当用只能显示</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">256</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">色或更低的设备显示高颜色数位图时，用来指定调色板的模式，是用固定的调色板，还是用最佳调色板</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] PaintWhileLoad </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：当为真时，调入图象的同时就在屏幕上显示，当为假时，全部调入后才在屏幕上显示</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Paste </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：将图象数据从剪切板粘贴到指定的位图</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] PCDRes </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指定</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">PCD</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">文件的分辨率</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] Posterize </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：增加海报效果，即将颜色数重新量化成较少的级别</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">PrintEnd </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：结束打印工作</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">PrintStart </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：开始打印工作</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] ProgressStatus </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">事件：进度事件，用来得到已经完成的百分比</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">ReleaseBitmapDC </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：释放位图设备上下文</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">ReleaseClientDC </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：释放客户区设备上下文</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] RemapIntensity </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：使用一个查找表来改变位图的颜色值</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] RemapTable </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">RemapIntensity</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法中用到的查找表</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Render </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：在任何设备上下文中打印或者显示图象</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Resize </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">事件：当控件第一次显示或者大小改变时触发该事件</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Reverse </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：水平反转位图</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Rotate </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：旋转位图</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">RubberBandHeight </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：橡皮筋的高度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">RubberBandLeft </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：橡皮筋的左坐标</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">RubberBandTop </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：橡皮筋的上坐标</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">RubberBandVisible </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：为真时，橡皮筋可见</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">RubberBandWidth </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：橡皮筋的宽度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] Saturation </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：改变图象的饱和度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Save </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：将图象存成文件</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] SaveWithStamp </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：将位图存成包括一幅</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">Thumbnail</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">图象的</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">JPEG</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">或者</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">LEAD CMP</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">文件</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">ScaleHeight </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：控件客户区高度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">ScaleLeft </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：控件客户区左坐标</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">ScaleMode </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：控件的丈量单位，如厘米，象素，英寸等等</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">ScaleTop </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：控件客户区上坐标</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">ScaleWidth </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：控件客户区宽度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Scroll </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">事件：当滚动时，触发该事件</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] SetDDB </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：将一设备相关位图拷贝，并将该拷贝指派到控件上</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] SetDIB </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：将一设备无关位图拷贝，并将该拷贝指派到控件上</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">SetDstClipRect </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：指定目标剪切矩形</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">SetDstRect </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：指定目标矩形</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] SetPicture </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：将一</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Picture</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">对象拷贝，并将该拷贝指派到控件上</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">SetRubberBandRect </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：指定橡皮筋矩形</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">SetSrcClipRect </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：指定源剪切矩形</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">SetSrcRect </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：指定源矩形</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] Sharpen </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：锐化</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] Shear </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：错切</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Size </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：放缩</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] SpatialFilter </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：用指定的滤波器处理，如</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">LAPLACE</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">SOBEL</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">EMBOSS</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">等等</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">SrcClipHeight </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指定源剪切矩形的高度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">SrcClipLeft </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指定源剪切矩形的左坐标</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">SrcClipTop </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指定源剪切矩形的上坐标</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">SrcClipWidth </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指定源剪切矩形的宽度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">SrcHeight </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指定源矩形的高度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">SrcLeft </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指定源矩形的左坐标</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">SrcTop </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指定源矩形的上坐标</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">SrcWidth </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指定源矩形的宽度</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] StretchIntensity </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：对比度扩展</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">Trim </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：在指定的矩形区域内剪切图象</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">TwainAcquire </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：扫描</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">(Twain</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">标准</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] TwainPage </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">事件：当进行多页扫描时，每扫完一页触发该事件</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt">(Twain</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">标准</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">TwainSelect </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：选择扫描仪</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">(Twain</SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">标准</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">)</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">[P] Underlay </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">方法：将两幅结合起来，使得一幅图做另一幅图的文理</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">UserPalette </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：指定调色板中的某一项颜色</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">VersionDate </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：版本日期</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">VersionLevel </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：版本级别</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">(EXPRESS </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">或者</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">PROFESSIONAL)</SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">VersionMajor </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：主版本号</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">VersionMinor </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：副版本号</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">VersionProduct </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：当前版本的全名</SPAN><SPAN 
+      lang=EN-US style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR>
+  <TR>
+    <TD class=Normal vAlign=top width=568>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt">VersionTime </SPAN><SPAN 
+      style="FONT-SIZE: 10.5pt; FONT-FAMILY: 宋体">属性：版本时间</SPAN><SPAN lang=EN-US 
+      style="FONT-SIZE: 10.5pt"></SPAN></P></TD></TR></TBODY></TABLE>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(4)<SPAN 
+style="FONT: 7pt 'Times New Roman'"> </SPAN></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">源代码例子：</SPAN><SPAN lang=EN-US>LeadTools</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的帮助做的特别好，这一点非常吸引人。每一个事件、方法、属性都有很详细的说明，后面都附有一个详细的例子。而且例子有很多种版本，如</SPAN><SPAN 
+lang=EN-US>VC</SPAN><SPAN style="FONT-FAMILY: 宋体">版、</SPAN><SPAN 
+lang=EN-US>VB</SPAN><SPAN style="FONT-FAMILY: 宋体">版、</SPAN><SPAN 
+lang=EN-US>Delphi</SPAN><SPAN style="FONT-FAMILY: 宋体">版、</SPAN><SPAN 
+lang=EN-US>Access</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">版，这样使用不同编程语言的程序员都能从中获得直接的帮助。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">好了，介绍了这么多</SPAN><SPAN 
+lang=EN-US>LeadTools</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的功能，下面我们给出一个最简单的利用</SPAN><SPAN 
+lang=EN-US>LeadTools</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">例子，其功能是显示任意一幅图</SPAN><SPAN lang=EN-US>(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">当然是</SPAN><SPAN lang=EN-US>Lead</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">能支持的文件格式</SPAN><SPAN lang=EN-US>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，图被缩放成和控件一样大小。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><B><SPAN lang=EN-US>[</SPAN></B><B><SPAN 
+style="FONT-FAMILY: 宋体">例子</SPAN><SPAN lang=EN-US>10.1] </SPAN></B><SPAN 
+style="FONT-FAMILY: 宋体">用</SPAN><SPAN lang=EN-US>Lead</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">显示一幅图</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">步骤</SPAN><SPAN 
+lang=EN-US>1</SPAN><SPAN style="FONT-FAMILY: 宋体">：打开</SPAN><SPAN 
+lang=EN-US>VC++5.0</SPAN><SPAN style="FONT-FAMILY: 宋体">，用</SPAN><SPAN 
+lang=EN-US>MFC AppWizard (exe)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">新建一个</SPAN><SPAN lang=EN-US>Project</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，起名为</SPAN><SPAN lang=EN-US>TestLead</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。要注意的是在</SPAN><SPAN lang=EN-US>Step1</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">中，选定</SPAN><SPAN lang=EN-US>"Dialog based"</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>Step2</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">中，选定</SPAN><SPAN lang=EN-US>"ActiveX 
+Controls"</SPAN><SPAN style="FONT-FAMILY: 宋体">，其它过程全部采用缺省值。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">步骤</SPAN><SPAN 
+lang=EN-US>2</SPAN><SPAN style="FONT-FAMILY: 宋体">：把</SPAN><SPAN 
+lang=EN-US>Lead</SPAN><SPAN style="FONT-FAMILY: 宋体">控件添加到工具条中，方法是：</SPAN><SPAN 
+lang=EN-US>(1)</SPAN><SPAN style="FONT-FAMILY: 宋体">打开</SPAN><SPAN 
+lang=EN-US>Project-&gt;Add To Project-&gt;Components and Controls</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">菜单</SPAN><SPAN lang=EN-US>(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">其它的</SPAN><SPAN lang=EN-US>VC</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">版本，如</SPAN><SPAN lang=EN-US>4.0</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">、</SPAN><SPAN lang=EN-US>4.1</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">、</SPAN><SPAN lang=EN-US>4.2</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，为</SPAN><SPAN 
+lang=EN-US>Insert-&gt;Component…</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">菜单</SPAN><SPAN lang=EN-US>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，出现对话框，选择“</SPAN><SPAN lang=EN-US>Registered ActiveX 
+Controls</SPAN><SPAN style="FONT-FAMILY: 宋体">”那个目录</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN style="FONT-FAMILY: 宋体">其它的</SPAN><SPAN 
+lang=EN-US>VC</SPAN><SPAN style="FONT-FAMILY: 宋体">版本为</SPAN><SPAN 
+lang=EN-US>”OLE Controls”</SPAN><SPAN style="FONT-FAMILY: 宋体">那一页</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN style="FONT-FAMILY: 宋体">；</SPAN><SPAN 
+lang=EN-US>(2)</SPAN><SPAN style="FONT-FAMILY: 宋体">选中</SPAN><SPAN 
+lang=EN-US>"Lead Std Control"</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">那一项，如图</SPAN><SPAN lang=EN-US>10.1</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">所示。然后按下</SPAN><SPAN lang=EN-US>Insert</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">菜单即可；</SPAN></P>
+<TABLE cellSpacing=0 cellPadding=0 width=579 border=0>
+  <TBODY>
+  <TR>
+    <TD class=Normal vAlign=top width=479>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=347 
+      src="第10章  图象处理编程工具及简单的多媒体编程.files/image002.jpg" width=463 border=0 
+      v:shapes="_x0000_i1143"> </SPAN></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN>10.1&nbsp; Lead</B><B><SPAN 
+      style="FONT-FAMILY: 宋体">控件</SPAN><SPAN lang=EN-US></SPAN></B></P></TD>
+    <TD class=Normal vAlign=bottom width=100>
+      <P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=288 
+      src="第10章  图象处理编程工具及简单的多媒体编程.files/image003.gif" width=55 border=0 
+      v:shapes="_x0000_i1144"> </SPAN></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN><SPAN lang=EN-US>10.2</SPAN></B></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">工具条</SPAN><SPAN 
+  lang=EN-US></SPAN></B></P></TD></TR></TBODY></TABLE>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(3)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">如果没有该项，找到</SPAN><SPAN lang=EN-US>lead32.ocx</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">文件所在的目录</SPAN><SPAN lang=EN-US>(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">一般为</SPAN><SPAN lang=EN-US>95</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的系统目录</SPAN><SPAN lang=EN-US>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，选择该文件，按下</SPAN><SPAN lang=EN-US>Insert</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">按钮即可</SPAN><SPAN lang=EN-US>(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">其它</SPAN><SPAN lang=EN-US>VC</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">版本的操作方法是：按下</SPAN><SPAN lang=EN-US>Customize</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">菜单，出现一个新的对话框，按下</SPAN><SPAN 
+lang=EN-US>Import</SPAN><SPAN style="FONT-FAMILY: 宋体">菜单，找到</SPAN><SPAN 
+lang=EN-US>lead32.ocx</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">文件所在的目录，选择该文件，按下</SPAN><SPAN 
+lang=EN-US>Import</SPAN><SPAN style="FONT-FAMILY: 宋体">按钮，再按下</SPAN><SPAN 
+lang=EN-US>OK</SPAN><SPAN style="FONT-FAMILY: 宋体">按钮，然后做</SPAN><SPAN 
+lang=EN-US>(2)</SPAN><SPAN style="FONT-FAMILY: 宋体">所做的工作即可</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN style="FONT-FAMILY: 宋体">。按下</SPAN><SPAN 
+lang=EN-US>Close</SPAN><SPAN style="FONT-FAMILY: 宋体">按钮，关闭</SPAN><SPAN 
+lang=EN-US>Component</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">对话框。插入该控件后，会出现一个对话框，提示你新增加了两个类：</SPAN><SPAN 
+lang=EN-US>Clead</SPAN><SPAN style="FONT-FAMILY: 宋体">和</SPAN><SPAN 
+lang=EN-US>Cpicture</SPAN><SPAN style="FONT-FAMILY: 宋体">，选择</SPAN><SPAN 
+lang=EN-US>Ok</SPAN><SPAN style="FONT-FAMILY: 宋体">。打开对话框资源，选择</SPAN><SPAN 
+lang=EN-US>ID</SPAN><SPAN style="FONT-FAMILY: 宋体">为</SPAN><SPAN 
+lang=EN-US>IDD_TESTLEAD_DIALOG</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的对话框，这时可以看到该控件已经添加到工具条中，如图</SPAN><SPAN 
+lang=EN-US>10.2</SPAN><SPAN style="FONT-FAMILY: 宋体">所示。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">步骤</SPAN><SPAN 
+lang=EN-US>3</SPAN><SPAN style="FONT-FAMILY: 宋体">：将</SPAN><SPAN 
+lang=EN-US>Lead</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">控件从工具条拖到对话框中，设置好合适的大小，右击该控件，选择</SPAN><SPAN 
+lang=EN-US>Property</SPAN><SPAN style="FONT-FAMILY: 宋体">菜单，设置其</SPAN><SPAN 
+lang=EN-US>ID</SPAN><SPAN style="FONT-FAMILY: 宋体">属性为</SPAN><SPAN 
+lang=EN-US>IDC_LEAD1</SPAN><SPAN style="FONT-FAMILY: 宋体">，删除“</SPAN><SPAN 
+lang=EN-US>TODO: Place form controls on this dialog</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">”的静态文本。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">步骤</SPAN><SPAN 
+lang=EN-US>4</SPAN><SPAN style="FONT-FAMILY: 宋体">：按</SPAN><SPAN 
+lang=EN-US>Ctrl+w</SPAN><SPAN style="FONT-FAMILY: 宋体">，出现</SPAN><SPAN 
+lang=EN-US>ClassWizard</SPAN><SPAN style="FONT-FAMILY: 宋体">对话框，选择</SPAN><SPAN 
+lang=EN-US>Member Variables</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">那一页，为该</SPAN><SPAN lang=EN-US>ID</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">添加一个变量</SPAN><SPAN lang=EN-US>m_Lead1</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>Category</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为</SPAN><SPAN lang=EN-US>Control</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>Variable Type</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为</SPAN><SPAN lang=EN-US>Clead</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">步骤</SPAN><SPAN 
+lang=EN-US>5</SPAN><SPAN style="FONT-FAMILY: 宋体">：编辑</SPAN><SPAN 
+lang=EN-US>TestLeadDlg.cpp</SPAN><SPAN style="FONT-FAMILY: 宋体">文件中的</SPAN><SPAN 
+lang=EN-US>OnInitDialog()</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">函数，在</SPAN><SPAN>&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>// 
+TODO: Add extra initialization here<SPAN 
+style="FONT-FAMILY: 宋体">后加入如下的代码：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>m_Lead1.Load(“c:\\test.jpg”,0,0);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>m_Lead1.SetAutoScroll(TRUE);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>m_Lead1.SetDstRect(0,0,m_Lead1.GetScaleWidth(), 
+m_Lead1.GetScaleHeight());</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>m_Lead1.SetDstClipRect(0,0,m_Lead1.GetScaleWidth(), 
+m_Lead1.GetScaleHeight());</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>m_Lead1.SetAutoRepaint(FALSE); 
+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>m_Lead1.ForceRepaint(); 
+</SPAN><SPAN lang=EN-US style="FONT-SIZE: 9pt"></SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">步骤</SPAN><SPAN 
+lang=EN-US>6</SPAN><SPAN style="FONT-FAMILY: 宋体">：编译运行，结果如图</SPAN><SPAN 
+lang=EN-US>10.3</SPAN><SPAN style="FONT-FAMILY: 宋体">所示。</SPAN></P>
+<P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=213 
+src="第10章  图象处理编程工具及简单的多媒体编程.files/image005.jpg" width=244 border=0 
+v:shapes="_x0000_i1145"> </SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>10.3&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">例</SPAN><SPAN lang=EN-US>10.1</SPAN></B><B><SPAN 
+style="FONT-FAMILY: 宋体">的运行结果</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">可以看到，使用了控件的编程是多么的简单。更复杂的应用，读者可以参考帮助来完成，要注意的是，使用了</SPAN><SPAN 
+lang=EN-US>LeadTools</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的应用程序一定要注意版权问题，另外，程序中如果用到了</SPAN><SPAN 
+lang=EN-US>LeatTools</SPAN><SPAN style="FONT-FAMILY: 宋体">的</SPAN><SPAN 
+lang=EN-US>OCX</SPAN><SPAN style="FONT-FAMILY: 宋体">，在制作安装程序</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN style="FONT-FAMILY: 宋体">如用</SPAN><SPAN 
+lang=EN-US>InstallShield)</SPAN><SPAN style="FONT-FAMILY: 宋体">时一定要将</SPAN><SPAN 
+lang=EN-US>OLE</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的信息进行注册，否则用户无法正常运行程序。</SPAN></P>
+<H2><SPAN lang=EN-US>10.2</SPAN> <A name=_Toc486331914></A><A 
+name=_Toc486332914></A><A name=_Toc486339023></A><A name=_Toc454810888></A><A 
+name=_Toc454856662><SPAN><SPAN>DirectDraw</SPAN></SPAN></A></H2>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">本节内容主要参考自微软公司的技术文档。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">相信游戏玩家对</SPAN><SPAN 
+lang=EN-US>DirectX</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">这个词并不陌生。最近有越来越多的游戏用到了</SPAN><SPAN 
+lang=EN-US>DirectX</SPAN><SPAN style="FONT-FAMILY: 宋体">。那么</SPAN><SPAN 
+lang=EN-US>DirectX</SPAN><SPAN style="FONT-FAMILY: 宋体">究竟是什么呢？</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">在</SPAN><SPAN 
+lang=EN-US>Windows3.x</SPAN><SPAN style="FONT-FAMILY: 宋体">的时代，由于</SPAN><SPAN 
+lang=EN-US>Microsoft</SPAN><SPAN style="FONT-FAMILY: 宋体">提供的</SPAN><SPAN 
+lang=EN-US>Windows API</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">不能对硬件直接操作，使得</SPAN><SPAN 
+lang=EN-US>Windows3.x</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">下的游戏不仅效果差，而且运行速度极慢。而</SPAN><SPAN 
+lang=EN-US>DOS4GW</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">有很多很好的性能，例如：可对硬件直接操作；访问超过</SPAN><SPAN 
+lang=EN-US>16</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">比特大小的内存区；可对保护模式编程等等，使得大部分游戏是在</SPAN><SPAN 
+lang=EN-US>DOS4GW</SPAN><SPAN style="FONT-FAMILY: 宋体">下利用如</SPAN><SPAN 
+lang=EN-US>WATCOMC</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">一类的开发工具编制的，如老版本的《仙剑奇侠传》。为了吸引游戏商到</SPAN><SPAN 
+lang=EN-US>Windows</SPAN><SPAN style="FONT-FAMILY: 宋体">平台上来，</SPAN><SPAN 
+lang=EN-US>Microsoft</SPAN><SPAN style="FONT-FAMILY: 宋体">专门开发了</SPAN><SPAN 
+lang=EN-US>Windows</SPAN><SPAN style="FONT-FAMILY: 宋体">的游戏接口</SPAN><SPAN 
+lang=EN-US>WinG</SPAN><SPAN style="FONT-FAMILY: 宋体">，然而效果并不理想。在推出</SPAN><SPAN 
+lang=EN-US>Windows95</SPAN><SPAN style="FONT-FAMILY: 宋体">之后，</SPAN><SPAN 
+lang=EN-US>Microsoft</SPAN><SPAN style="FONT-FAMILY: 宋体">又开发了该平台的</SPAN><SPAN 
+lang=EN-US>GAME SDK</SPAN><SPAN style="FONT-FAMILY: 宋体">，这就是</SPAN><SPAN 
+lang=EN-US>DirectX</SPAN><SPAN style="FONT-FAMILY: 宋体">。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DirectX</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">是非常成功的，很多优秀的游戏都又从</SPAN><SPAN lang=EN-US>DOS</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">平台移植到</SPAN><SPAN lang=EN-US>Windows95</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">平台，《仙剑奇侠传》出了</SPAN><SPAN lang=EN-US>Win95</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">版本，</SPAN><SPAN lang=EN-US>Red Alert, Diablo</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，以及最近十分流行的</SPAN><SPAN lang=EN-US>Age of 
+Empire</SPAN><SPAN style="FONT-FAMILY: 宋体">，都用到了</SPAN><SPAN 
+lang=EN-US>DirectX</SPAN><SPAN style="FONT-FAMILY: 宋体">。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DirectX</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">技术的最大特点是能直接对硬件抽象层</SPAN><SPAN 
+lang=EN-US>(HAL)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">操作，实现视频、声音的输出、网络相互通信，特别能对游戏杆直接编程。与传统的</SPAN><SPAN 
+lang=EN-US>GDI</SPAN><SPAN style="FONT-FAMILY: 宋体">和</SPAN><SPAN 
+lang=EN-US>MCI</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">相比，不仅大大加快了速度，而且大大地提高了游戏的质量，有人甚至已将</SPAN><SPAN 
+lang=EN-US>DirectX</SPAN><SPAN style="FONT-FAMILY: 宋体">称为</SPAN><SPAN 
+lang=EN-US>Windows95</SPAN><SPAN style="FONT-FAMILY: 宋体">的</SPAN><SPAN 
+lang=EN-US>GAME OS</SPAN><SPAN style="FONT-FAMILY: 宋体">。目前的最新版</SPAN><SPAN 
+lang=EN-US>DirectX5.0 SDK</SPAN><SPAN style="FONT-FAMILY: 宋体">包括</SPAN><SPAN 
+lang=EN-US>DirectDraw</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>DirectSound</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>DirectPlay</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>Direct3D</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>DirectInput</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>DirectSetup</SPAN><SPAN style="FONT-FAMILY: 宋体">六个部分。其中</SPAN><SPAN 
+lang=EN-US>DirectDraw</SPAN><SPAN style="FONT-FAMILY: 宋体">管理游戏的视频输出，</SPAN><SPAN 
+lang=EN-US>DirectSound</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">管理游戏的声音输出，</SPAN><SPAN lang=EN-US>DirectPlay</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">管理游戏的网络通信，</SPAN><SPAN lang=EN-US>Direct3D</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">管理游戏的三维图形，</SPAN><SPAN 
+lang=EN-US>DirectInput</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">管理游戏的游戏杆控制，</SPAN><SPAN 
+lang=EN-US>DirectSetup</SPAN><SPAN style="FONT-FAMILY: 宋体">管理游戏的安装。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">因为本书的题目是图象处理编程，我们这里只介绍</SPAN><SPAN 
+lang=EN-US>DirectDraw</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的大致原理。有的读者可能会说：“跑题了，图象处理编程和编游戏有什么关系？”其实</SPAN><SPAN 
+lang=EN-US>DirectDraw</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">并不只是用在游戏中，由于它的显示处理速度快，在很多和视频有关的软件中</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN style="FONT-FAMILY: 宋体">比如说</SPAN><SPAN 
+lang=EN-US>Mpeg</SPAN><SPAN style="FONT-FAMILY: 宋体">的解码器</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN style="FONT-FAMILY: 宋体">都可以用到。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DirectDraw</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">是为速度而设计的，它绕过与</SPAN><SPAN lang=EN-US>Windows</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的图形设备相连的多个层次，直接与硬件的底层打交道。这很适合游戏编程，因为它着重于快速产生平稳的图形。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">但</SPAN><SPAN 
+lang=EN-US>DirectDraw</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">最重要的一点在于它对不同的显示适配器具有一个共同的接口。你不必管你的程序它是否会工作。</SPAN><SPAN 
+lang=EN-US>DirectDraw</SPAN><SPAN style="FONT-FAMILY: 宋体">利用包含在硬件抽象层</SPAN><SPAN 
+lang=EN-US>(HAL)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">中的信息来决定显示适配器的功能。</SPAN><SPAN lang=EN-US>(HAL</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">是由显示适配器厂商提供的</SPAN><SPAN lang=EN-US>)HAL</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为不同的硬件厂商和使用</SPAN><SPAN 
+lang=EN-US>.DirectDraw</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的开发者提供了共同的接口。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">然而，</SPAN><SPAN 
+lang=EN-US>DirectDraw</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">并不只限于利用显示适配器的硬件功能。如果你的程序指定了某一种特定的显示适配器，例如</SPAN><SPAN 
+lang=EN-US>XXXX hardware blitter</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，但用户并没有该硬件，程序就会使用</SPAN><SPAN 
+lang=EN-US>DirectDraw</SPAN><SPAN style="FONT-FAMILY: 宋体">的硬件仿真层</SPAN><SPAN 
+lang=EN-US>(HEL)</SPAN><SPAN style="FONT-FAMILY: 宋体">。在这种情况下，</SPAN><SPAN 
+lang=EN-US>DirectDraw</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">利用内建的硬件仿真来仿真缺少的硬件。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">下图一说明了</SPAN><SPAN 
+lang=EN-US>DirectDraw</SPAN><SPAN style="FONT-FAMILY: 宋体">和其他</SPAN><SPAN 
+lang=EN-US>Windows</SPAN><SPAN style="FONT-FAMILY: 宋体">显示构件的联系。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><IMG height=259 src="第10章  图象处理编程工具及简单的多媒体编程.files/image007.jpg" 
+width=307 border=0 v:shapes="_x0000_i1146"> </SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>10.4&nbsp; DirectDraw</B><B><SPAN 
+style="FONT-FAMILY: 宋体">和其他</SPAN><SPAN lang=EN-US>Windows</SPAN></B><B><SPAN 
+style="FONT-FAMILY: 宋体">显示构件</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DirectDraw API</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">由</SPAN><SPAN lang=EN-US>DirectDraw</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">对象组成，它表示具体的显示适配器。另外，</SPAN><SPAN lang=EN-US>DirectDraw 
+API</SPAN><SPAN style="FONT-FAMILY: 宋体">还包括表示</SPAN><SPAN 
+lang=EN-US>surface</SPAN><SPAN style="FONT-FAMILY: 宋体">的</SPAN><SPAN 
+lang=EN-US>DirectDrawSurface</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">对象，表示</SPAN><SPAN lang=EN-US>surface</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">调色板的</SPAN><SPAN 
+lang=EN-US>DirectDrawPalette</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">对象和表示剪接列表的</SPAN><SPAN 
+lang=EN-US>DirectDrawClipper</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">对象。可以用</SPAN><SPAN lang=EN-US>DirectDraw</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">对象来创建</SPAN><SPAN 
+lang=EN-US>DirectDrawSurface</SPAN><SPAN style="FONT-FAMILY: 宋体">和</SPAN><SPAN 
+lang=EN-US>DirectDrawPalette</SPAN><SPAN style="FONT-FAMILY: 宋体">对象。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">本节只介绍到这里，目的主要是想说明由于游戏对显示速度的要求非常高，所以</SPAN><SPAN 
+lang=EN-US>DirectDraw</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">是为速度而设计的。如果要编写一个对速度要求很高</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN style="FONT-FAMILY: 宋体">如</SPAN><SPAN 
+lang=EN-US>Mpeg</SPAN><SPAN style="FONT-FAMILY: 宋体">的解码器</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN style="FONT-FAMILY: 宋体">的图象处理系统中，可以考虑使用</SPAN><SPAN 
+lang=EN-US>DirectDraw</SPAN><SPAN style="FONT-FAMILY: 宋体">。</SPAN></P>
+<H2><SPAN lang=EN-US>10.3</SPAN> <SPAN lang=EN-US></SPAN><A 
+name=_Toc486331915></A><A name=_Toc486332915></A><A name=_Toc486339024></A><A 
+name=_Toc454810889></A><A 
+name=_Toc454856663><SPAN><SPAN>简单的多媒体编程</SPAN></SPAN></A></H2>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">前面讲过的内容都是针对数字图象处理这一领域的，现在来谈一些题外的东西，比如说多媒体和</SPAN><SPAN 
+lang=EN-US>MPEG</SPAN><SPAN style="FONT-FAMILY: 宋体">。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">多媒体这几个字，近年来是非常流行的。它包含的东西也是非常多的，除了文本，静态图象，还包括音频，视频等媒体信息。有时候在程序中加入一小段多媒体的东西，能给你的软件增色不少。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">其实编制一个多媒体播放程序非常简单，关键代码不超过</SPAN><SPAN 
+lang=EN-US>10</SPAN><SPAN style="FONT-FAMILY: 宋体">行代码，你相信吗？其实质是</SPAN><SPAN 
+lang=EN-US>MCI</SPAN><SPAN style="FONT-FAMILY: 宋体">。</SPAN><SPAN 
+lang=EN-US>MCI</SPAN><SPAN style="FONT-FAMILY: 宋体">是</SPAN><SPAN 
+lang=EN-US>Media Control Interface(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">媒体控制接口</SPAN><SPAN lang=EN-US>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的缩写，它提供了一套与设备无关的命令消息和命令字来控制媒体的播放。</SPAN><SPAN 
+lang=EN-US>MCI</SPAN><SPAN style="FONT-FAMILY: 宋体">可以播放的文件类型有</SPAN><SPAN 
+lang=EN-US>AVI</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>WAV</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>MIDI</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>MPEG(</SPAN><SPAN style="FONT-FAMILY: 宋体">如果系统中已经安装了</SPAN><SPAN 
+lang=EN-US>MPEG</SPAN><SPAN style="FONT-FAMILY: 宋体">的驱动程序，如安装</SPAN><SPAN 
+lang=EN-US>XING</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>ACTIVEMOVIE</SPAN><SPAN style="FONT-FAMILY: 宋体">时带的</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>JPEG</SPAN><SPAN style="FONT-FAMILY: 宋体">等等。</SPAN><SPAN 
+lang=EN-US>MCI</SPAN><SPAN style="FONT-FAMILY: 宋体">窗口底部有一个播放条，上面有播放</SPAN><SPAN 
+lang=EN-US>/</SPAN><SPAN style="FONT-FAMILY: 宋体">暂停</SPAN><SPAN 
+lang=EN-US>(Play/Pause)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">按键、有显示播放进度的标尺，还有一个菜单，可调整窗口大小、声音大小，速度快慢等等，就和媒体播放器的界面一样。库</SPAN><SPAN 
+lang=EN-US>VFW32.LIB</SPAN><SPAN style="FONT-FAMILY: 宋体">中提供了</SPAN><SPAN 
+lang=EN-US>MCI</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的所有功能，编译后生成的是真正的可执行文件，无需附加动态库和控件，如</SPAN><SPAN 
+lang=EN-US>VBX</SPAN><SPAN style="FONT-FAMILY: 宋体">和</SPAN><SPAN 
+lang=EN-US>OCX</SPAN><SPAN style="FONT-FAMILY: 宋体">等。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">源代码如下，其中黑体部分为关键代码，可以采用如下的命令行编译：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>cl testmci.c user32.lib 
+vfw32.lib</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//testmci.c</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>#include 
+&lt;windows.h&gt;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><B><SPAN lang=EN-US>#include 
+&lt;vfw.h&gt;</SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>void SetClientRect(HWND hwnd, HWND 
+hwndMCI)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>RECT rect;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>GetWindowRect(hwndMCI, 
+&amp;rect);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>AdjustWindowRectEx(&amp;rect, 
+GetWindowLong(hwnd, GWL_STYLE), FALSE,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>GetWindowLong(hwnd, 
+GWL_EXSTYLE));</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MoveWindow(hwnd, rect.left, 
+rect.top, rect.right - rect.left,rect.bottom - rect.top, </SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>TRUE);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>LRESULT CALLBACK WndProc(HWND 
+hwnd, UINT uMsg,WPARAM wParam, </SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>LPARAM lParam)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; </SPAN>switch(uMsg)</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; </SPAN>{</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>case MCIWNDM_NOTIFYPOS:</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>case MCIWNDM_NOTIFYSIZE:</P>
+<P 
+style="LINE-HEIGHT: 18pt"><B><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>SetClientRect(hwnd, (HWND)wParam);</B></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>break;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>case WM_DESTROY:</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>PostQuitMessage(0);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>break;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>default:</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>return DefWindowProc(hwnd, uMsg, wParam, lParam);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; </SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; </SPAN>return 0;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>int WINAPI WinMain(HINSTANCE 
+hInstance, HINSTANCE hPrevInstance,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>LPSTR lpCmdLine,int 
+nCmdShow)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; </SPAN>MSG msg;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; </SPAN>HWND hwnd;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; </SPAN>WNDCLASS 
+wndClass;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; </SPAN>if (hPrevInstance 
+== NULL)</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; </SPAN>{</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memset(&amp;wndClass, 0, sizeof(wndClass));</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>wndClass.style = CS_HREDRAW | CS_VREDRAW;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>wndClass.lpfnWndProc = WndProc;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>wndClass.hInstance = hInstance;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>wndClass.hCursor = LoadCursor(NULL, IDC_ARROW);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>wndClass.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>wndClass.lpszClassName = "HELLO";</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if (!RegisterClass(&amp;wndClass)) return FALSE;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; </SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; </SPAN>hwnd = 
+CreateWindow("HELLO", "HELLO",</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>WS_OVERLAPPED|WS_CAPTION|WS_SYSMENU,</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>CW_USEDEFAULT, 0, CW_USEDEFAULT, 0,</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>NULL, NULL, hInstance, NULL);</P>
+<P style="LINE-HEIGHT: 18pt"><B><SPAN lang=EN-US>SetClientRect(hwnd, 
+MCIWndCreate(hwnd, hInstance,</SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><B><SPAN 
+lang=EN-US>WS_VISIBLE|WS_CHILD|</SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><B><SPAN lang=EN-US>MCIWNDF_SHOWALL|</SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><B><SPAN 
+lang=EN-US>MCIWNDF_NOTIFYSIZE|</SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><B><SPAN lang=EN-US>MCIWNDF_NOTIFYPOS, 
+“c:\\test.avi”));</SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>ShowWindow(hwnd, 
+nCmdShow);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>UpdateWindow(hwnd);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; </SPAN>while 
+(GetMessage(&amp;msg, NULL, 0, 0))</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DispatchMessage(&amp;msg);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; </SPAN>return 
+msg.wParam;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">运行时文件</SPAN><SPAN 
+lang=EN-US>C:\test.avi</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">必须准备好，当然，你可以改成其它的文件名。其运行结果如图</SPAN><SPAN 
+lang=EN-US>10.5</SPAN><SPAN style="FONT-FAMILY: 宋体">所示。</SPAN></P>
+<P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=171 
+src="第10章  图象处理编程工具及简单的多媒体编程.files/image008.gif" width=166 border=0 
+v:shapes="_x0000_i1142"> </SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>10.5&nbsp; TestMCI</B><B><SPAN 
+style="FONT-FAMILY: 宋体">的运行结果</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">该程序非常简单，所有的代码加在一起不超过</SPAN><SPAN 
+lang=EN-US>60</SPAN><SPAN style="FONT-FAMILY: 宋体">行，其关键部分只有一个</SPAN><SPAN 
+lang=EN-US>MCIWndCreate</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">函数，细节就不介绍了，有兴趣的读者可以参看</SPAN><SPAN 
+lang=EN-US>VC</SPAN><SPAN style="FONT-FAMILY: 宋体">的帮助。</SPAN></P>
+<H1 style="TEXT-JUSTIFY: inter-ideograph; TEXT-ALIGN: justify"><SPAN 
+lang=EN-US>&nbsp; </SPAN></H1></DIV>
+<DIV 
+style="DISPLAY: block; FONT-SIZE: 10px; FONT-FAMILY: Verdana, Geneva, Arial">The 
+University of Southern California does not screen or control the content on this 
+website and thus does not guarantee the accuracy, integrity, or quality of such 
+content. All content on this website is provided by and is the sole 
+responsibility of the person from which such content originated, and such 
+content does not necessarily reflect the opinions of the University 
+administration or the Board of Trustees </DIV></BODY></HTML>

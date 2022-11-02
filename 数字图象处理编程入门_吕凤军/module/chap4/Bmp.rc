@@ -1,0 +1,23 @@
+#include "bmp.h"
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+BMPMENU MENU DISCARDABLE 
+BEGIN
+    POPUP "File"
+    BEGIN
+        MENUITEM "Open",                        IDM_LOADBMP
+        MENUITEM "Exit",                        IDM_EXIT
+    END
+    POPUP "Halftone"
+    BEGIN
+        MENUITEM "Limb Pattern M3",             IDM_LIMBPATTERNM3
+        MENUITEM "Limb Pattern M4",             IDM_LIMBPATTERNM4
+        MENUITEM SEPARATOR
+        MENUITEM "Floyd Steinberg",             IDM_STEINBERG
+        MENUITEM SEPARATOR
+        MENUITEM "Bmp to Txt",                  IDM_BMP2TXT
+    END
+END

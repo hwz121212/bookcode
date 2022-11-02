@@ -1,0 +1,39 @@
+#include "bmp.h"
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+BMPMENU MENU DISCARDABLE 
+BEGIN
+    POPUP "File"
+    BEGIN
+        MENUITEM "Open",                        IDM_LOADBMP
+        MENUITEM "Exit",                        IDM_EXIT
+    END
+    POPUP "Morph"
+    BEGIN
+        POPUP "Dilation"
+        BEGIN
+            MENUITEM "Horizontal",                  IDM_HDILATION
+            MENUITEM "Vertical",                    IDM_VDILATION
+        END
+        POPUP "Erosion"
+        BEGIN
+            MENUITEM "Horizontal",                  IDM_HEROSION
+            MENUITEM "Vertical",                    IDM_VEROSION
+        END
+        POPUP "Open"
+        BEGIN
+            MENUITEM "Horizontal",                  IDM_HOPEN
+            MENUITEM "Vertical",                    IDM_VOPEN
+        END
+        POPUP "Close"
+        BEGIN
+            MENUITEM "Horizontal",                  IDM_HCLOSE
+            MENUITEM "Vertical",                    IDM_VCLOSE
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Thinning",                    IDM_THINNING
+    END
+END

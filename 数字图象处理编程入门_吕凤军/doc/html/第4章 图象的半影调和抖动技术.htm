@@ -1,0 +1,1018 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0045)http://www-scf.usc.edu/~flv/ipbook/chap04.htm -->
+<HTML><HEAD><TITLE>第4章 图象的半影调和抖动技术</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=GB2312"><LINK 
+href="./chap04.files/editdata.mso" rel=Edit-Time-Data><LINK 
+href="./chap04.files/oledata.mso" rel=OLE-Object-Data>
+<STYLE>.Normal {
+	TEXT-JUSTIFY: inter-ideograph; FONT-SIZE: 10.5pt; TEXT-INDENT: 0pt; LINE-HEIGHT: normal; FONT-FAMILY: "Times New Roman"; TEXT-ALIGN: justify
+}
+.a {
+	FONT-SIZE: 12pt; TEXT-INDENT: 0pt; LINE-HEIGHT: 20pt; FONT-FAMILY: "Times New Roman"; TEXT-ALIGN: center
+}
+</STYLE>
+
+<META content="MSHTML 6.00.2800.1400" name=GENERATOR></HEAD>
+<BODY class=Normal lang=ZH-CN vLink=purple link=blue bgColor=#ffffff>
+<DIV style="LAYOUT-GRID:  15.6pt none">
+<H1><A name=_Toc486331877></A><A name=_Toc486332877></A><A 
+name=_Toc486338986></A><A name=_Toc454810851></A><A 
+name=_Toc454856625><SPAN><SPAN>第<SPAN 
+lang=EN-US>4</SPAN></SPAN></SPAN></A><SPAN><SPAN><SPAN 
+style="FONT-FAMILY: 黑体">章</SPAN> </SPAN></SPAN><SPAN><SPAN><SPAN 
+style="FONT-FAMILY: 黑体">图象的半影调和抖动技术</SPAN></SPAN></SPAN></H1>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">在介绍本章内容之前，先提出一个问题？普通的黑白针式打印机能打出灰度图来吗？如果说能，从针式打印机的打印原理来分析，似乎是不可能的。因为针打是靠撞针击打色带在纸上形成黑点的，不可能打出灰色的点来；如果说不能，可是我们的确见过用针式打印机打印出来的灰色图象。到底是怎么回事呢？</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">你再仔细看看那些打印出来的所谓的灰色图象，最好用放大镜看。你会发现，原来这些灰色图象都是由一些黑点组成的，黑点多一些，图象就暗一些；黑点少一些，图案就亮一些。下面这几张图就很能说明这一点。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><IMG height=56 src="第4章 图象的半影调和抖动技术.files/image001.gif" width=259 
+v:shapes="_x0000_i1025"> </SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN><SPAN lang=EN-US>4.1 </SPAN></B><B><SPAN 
+style="FONT-FAMILY: 宋体">用黑白两种颜色打印出灰度效果</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">图</SPAN><SPAN 
+lang=EN-US>4.1</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">中最左边的是原图，是一幅真正的灰度图，另外三张图都是黑白二值图。容易看出，最左的那幅和原图最接近。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">由二值图象显示出灰度效果的方法，就是我们今天要讲的半影调</SPAN><SPAN 
+lang=EN-US>(halftone)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">技术，它的一个主要用途就是在只有二值输出的打印机上打印图象。我们介绍两种方法：图案法和抖动法。</SPAN></P>
+<H2><SPAN lang=EN-US>4.1</SPAN> <SPAN lang=EN-US></SPAN><A 
+name=_Toc486331878></A><A name=_Toc486332878></A><A name=_Toc486338987></A><A 
+name=_Toc454810852></A><A 
+name=_Toc454856626><SPAN><SPAN>图案法</SPAN></SPAN></A></H2>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">图案法</SPAN><SPAN 
+lang=EN-US>(patterning)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">是指灰度可以用一定比例的黑白点组成的区域表示，从而达到整体图象的灰度感。黑白点的位置选择称为图案化。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">在具体介绍图案法之前，先介绍一下分辨率的概念。计算机显示器，打印机，扫描仪等设备的一个重要指标就是分辨率，单位是</SPAN><SPAN 
+lang=EN-US>dpi(dot per inch)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，即每英寸点数，点数越多，分辨率就越高，图象就越清晰。让我们来计算一下，计算机显示器的分辨率有多高。设显示器为</SPAN><SPAN 
+lang=EN-US>15</SPAN><SPAN style="FONT-FAMILY: 宋体">英寸</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN style="FONT-FAMILY: 宋体">指对角线长度</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN style="FONT-FAMILY: 宋体">，最多显示</SPAN><SPAN 
+lang=EN-US>1280</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>1024</SPAN><SPAN style="FONT-FAMILY: 宋体">个点。因为宽高比为</SPAN><SPAN 
+lang=EN-US>4</SPAN><SPAN style="FONT-FAMILY: 宋体">：</SPAN><SPAN 
+lang=EN-US>3</SPAN><SPAN style="FONT-FAMILY: 宋体">，所以宽有</SPAN><SPAN 
+lang=EN-US>12</SPAN><SPAN style="FONT-FAMILY: 宋体">英寸，高有</SPAN><SPAN 
+lang=EN-US>9</SPAN><SPAN style="FONT-FAMILY: 宋体">英寸，则该显示器的水平分辨率为</SPAN><SPAN 
+lang=EN-US>106dpi</SPAN><SPAN style="FONT-FAMILY: 宋体">，垂直分辨率为</SPAN><SPAN 
+lang=EN-US>113.8dpi</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。一般的激光打印机的分辨率有</SPAN><SPAN lang=EN-US>300dpi</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">×</SPAN><SPAN lang=EN-US>300dpi</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>600dpi</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">×</SPAN><SPAN lang=EN-US>600dpi</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>720dpi</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">×</SPAN><SPAN lang=EN-US>720dpi</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。所以打出来的图象要比计算机显示出来的清晰的多。扫描仪的分辨率要高一些，数码相机的分辨率更高。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">言归正传，前面讲了，图案化使用图案来表示象素的灰度，那么我们来做一道计算题。假设有一幅</SPAN><SPAN 
+lang=EN-US>240</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>180</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>8bit</SPAN><SPAN style="FONT-FAMILY: 宋体">的灰度图，当用分辨率为</SPAN><SPAN 
+lang=EN-US>300dpi</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>300dpi</SPAN><SPAN style="FONT-FAMILY: 宋体">的激光打印机将其打印到</SPAN><SPAN 
+lang=EN-US>12.8</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>9.6</SPAN><SPAN style="FONT-FAMILY: 宋体">英寸的纸上时，每个象素的图案有多大？</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">这道题很简单，这张纸最多可以打</SPAN><SPAN lang=EN-US>(300</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">×</SPAN><SPAN lang=EN-US>12.8) </SPAN><SPAN 
+style="FONT-FAMILY: 宋体">×</SPAN><SPAN lang=EN-US>(300</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">×</SPAN><SPAN lang=EN-US>9.6)=3840</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">×</SPAN><SPAN lang=EN-US>2880</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">个点，所以每个象素可以用</SPAN><SPAN 
+lang=EN-US>(3840/240)</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>(2880/180)=16</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>16</SPAN><SPAN style="FONT-FAMILY: 宋体">个点大小的图案来表示，即一个象素</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN style="FONT-FAMILY: 宋体">个点。如果这</SPAN><SPAN 
+lang=EN-US>16</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>16</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的方块中一个黑点也没有，就可以表示灰度</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN style="FONT-FAMILY: 宋体">；有一个黑点，就表示灰度</SPAN><SPAN 
+lang=EN-US>255</SPAN><SPAN style="FONT-FAMILY: 宋体">；依次类推，当都是黑点时，表示灰度</SPAN><SPAN 
+lang=EN-US>0</SPAN><SPAN style="FONT-FAMILY: 宋体">。这样，</SPAN><SPAN 
+lang=EN-US>16</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>16</SPAN><SPAN style="FONT-FAMILY: 宋体">的方块可以表示</SPAN><SPAN 
+lang=EN-US>257</SPAN><SPAN style="FONT-FAMILY: 宋体">级灰度，比要求的</SPAN><SPAN 
+lang=EN-US>8bit</SPAN><SPAN style="FONT-FAMILY: 宋体">共</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">级灰度还多了一个。所以上面的那幅图的灰度级别完全能够打印出来。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">这里有一个图案构成的问题，即黑点打在哪里？比如说，只有一个黑点时，我们可以打在正中央，也可以打</SPAN><SPAN 
+lang=EN-US>16</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>16</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的左上角。图案可以是规则的，也可以是不规则的。一般情况下，有规则的图案比随即图案能够避免点的丛集，但有时会导致图象中有明显的线条。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">如图</SPAN><SPAN 
+lang=EN-US>4.1</SPAN><SPAN style="FONT-FAMILY: 宋体">中，</SPAN><SPAN 
+lang=EN-US>2</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>2</SPAN><SPAN style="FONT-FAMILY: 宋体">的图案可以表示</SPAN><SPAN 
+lang=EN-US>5</SPAN><SPAN style="FONT-FAMILY: 宋体">级灰度，当图象中有一片灰度为的</SPAN><SPAN 
+lang=EN-US>1</SPAN><SPAN style="FONT-FAMILY: 宋体">的区域时，如图</SPAN><SPAN 
+lang=EN-US>4.2</SPAN><SPAN style="FONT-FAMILY: 宋体">所示，有明显的水平和垂直线条。</SPAN></P>
+<DIV align=center>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD class=Normal vAlign=bottom width=276>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US><IMG height=89 src="第4章 图象的半影调和抖动技术.files/image002.gif" 
+      width=316 v:shapes="_x0000_i1027"> </SPAN></B></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN>4.2&nbsp;&nbsp;&nbsp;&nbsp; 2</B><B><SPAN 
+      style="FONT-FAMILY: 宋体">×</SPAN><SPAN lang=EN-US>2</SPAN></B><B><SPAN 
+      style="FONT-FAMILY: 宋体">的图案</SPAN><SPAN lang=EN-US></SPAN></B></P></TD>
+    <TD class=Normal vAlign=bottom width=276>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US><IMG height=98 src="第4章 图象的半影调和抖动技术.files/image003.gif" 
+      width=162 v:shapes="_x0000_i1028"> </SPAN></B></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN>4.3&nbsp;&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+      style="FONT-FAMILY: 宋体">规则图案导致线条</SPAN><SPAN 
+  lang=EN-US></SPAN></B></P></TD></TR></TBODY></TABLE></DIV>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">如果想存储</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN style="FONT-FAMILY: 宋体">级灰度的图案，就需要</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>16</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>16</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的二值点阵，占用的空间还是相当可观的。有一个更好的办法是：只存储一个整数矩阵，称为标准图案，其中的每个值从</SPAN><SPAN 
+lang=EN-US>0</SPAN><SPAN style="FONT-FAMILY: 宋体">到</SPAN><SPAN 
+lang=EN-US>255</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。图象的实际灰度和阵列中的每个值比较，当该值大于等于灰度时，对应点打一黑点。下面举一个</SPAN><SPAN 
+lang=EN-US>25</SPAN><SPAN style="FONT-FAMILY: 宋体">级灰度的例子加以说明。</SPAN></P>
+<P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=124 
+src="第4章 图象的半影调和抖动技术.files/image005.jpg" width=285 v:shapes="_x0000_i1029"> 
+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>4.4&nbsp;&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">标准图案举例</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">图</SPAN><SPAN 
+lang=EN-US>4.4</SPAN><SPAN style="FONT-FAMILY: 宋体">中，左边为标准图案，右边为灰度为</SPAN><SPAN 
+lang=EN-US>15</SPAN><SPAN style="FONT-FAMILY: 宋体">的图案，共有</SPAN><SPAN 
+lang=EN-US>10</SPAN><SPAN style="FONT-FAMILY: 宋体">个黑点，</SPAN><SPAN 
+lang=EN-US>15</SPAN><SPAN style="FONT-FAMILY: 宋体">个白点。其实道理很简单，灰度为</SPAN><SPAN 
+lang=EN-US>0</SPAN><SPAN style="FONT-FAMILY: 宋体">时全是黑点，灰度每增加</SPAN><SPAN 
+lang=EN-US>1</SPAN><SPAN style="FONT-FAMILY: 宋体">，减少一个黑点。要注意的是，</SPAN><SPAN 
+lang=EN-US>5</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>5</SPAN><SPAN style="FONT-FAMILY: 宋体">的图案可以表示</SPAN><SPAN 
+lang=EN-US>26</SPAN><SPAN style="FONT-FAMILY: 宋体">种灰度，当灰度是</SPAN><SPAN 
+lang=EN-US>25</SPAN><SPAN style="FONT-FAMILY: 宋体">才是全白点，而不是灰度为</SPAN><SPAN 
+lang=EN-US>24</SPAN><SPAN style="FONT-FAMILY: 宋体">时。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">下面介绍一种设计标准图案的算法，是由</SPAN><SPAN 
+lang=EN-US>Limb</SPAN><SPAN style="FONT-FAMILY: 宋体">在</SPAN><SPAN 
+lang=EN-US>1969</SPAN><SPAN style="FONT-FAMILY: 宋体">年提出的。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">先以一个</SPAN><SPAN 
+lang=EN-US>2</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>2</SPAN><SPAN style="FONT-FAMILY: 宋体">的矩阵开始：设</SPAN><SPAN 
+lang=EN-US>M<SUB>1</SUB>=<SUB> <IMG height=48 
+src="第4章 图象的半影调和抖动技术.files/image007.gif" width=49 v:shapes="_x0000_i1030"> 
+</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">，通过递归关系有</SPAN><SPAN 
+lang=EN-US>M<SUB>n+1</SUB>=<SUB> <IMG height=51 
+src="第4章 图象的半影调和抖动技术.files/image009.gif" width=181 v:shapes="_x0000_i1031"> 
+</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">，其中</SPAN><SPAN 
+lang=EN-US>M<SUB>n</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">和</SPAN><SPAN 
+lang=EN-US>U<SUB>n</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">均为</SPAN><SPAN 
+lang=EN-US>2<SUP>n</SUP></SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>2<SUP>n</SUP></SPAN><SPAN style="FONT-FAMILY: 宋体">的方阵，</SPAN><SPAN 
+lang=EN-US>U<SUB>n</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">的所有元素都是</SPAN><SPAN 
+lang=EN-US>1</SPAN><SPAN style="FONT-FAMILY: 宋体">。根据这个算法，可以得到</SPAN><SPAN 
+lang=EN-US>M<SUB>2</SUB>=<SUB> <IMG height=96 
+src="第4章 图象的半影调和抖动技术.files/image011.gif" width=120 v:shapes="_x0000_i1032"> 
+</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">，为</SPAN><SPAN 
+lang=EN-US>16</SPAN><SPAN style="FONT-FAMILY: 宋体">级灰度的标准图案。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>M<SUB>3</SUB>(8</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">×</SPAN><SPAN lang=EN-US>8</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">阵</SPAN><SPAN lang=EN-US>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">比较特殊，称为</SPAN><SPAN lang=EN-US>Bayer</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">抖动表。</SPAN><SPAN lang=EN-US>M<SUB>4</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">是一个</SPAN><SPAN lang=EN-US>16</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">×</SPAN><SPAN lang=EN-US>16</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的矩阵。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">根据上面的算法，如果利用</SPAN><SPAN 
+lang=EN-US>M<SUB>3</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">一个象素要用</SPAN><SPAN 
+lang=EN-US>8</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>8</SPAN><SPAN style="FONT-FAMILY: 宋体">的图案表示，则一幅</SPAN><SPAN 
+lang=EN-US>N</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>N</SPAN><SPAN style="FONT-FAMILY: 宋体">的图将变成</SPAN><SPAN 
+lang=EN-US>8N</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>8N</SPAN><SPAN style="FONT-FAMILY: 宋体">大小。如果利用</SPAN><SPAN 
+lang=EN-US>M<SUB>4</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，就更不得了，变成</SPAN><SPAN lang=EN-US>16N</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">×</SPAN><SPAN lang=EN-US>16N</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">了。能不能在保持原图大小的情况下利用图案化技术呢？一种很自然的想法是：如果用</SPAN><SPAN 
+lang=EN-US>M<SUB>2</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">阵，则将原图中每</SPAN><SPAN lang=EN-US>8</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">×</SPAN><SPAN lang=EN-US>8</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">个点中取一点，即重新采样，然后再应用图案化技术，就能够保持原图大小。实际上，这种方法并不可行。首先，你不知道这</SPAN><SPAN 
+lang=EN-US>8</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>8</SPAN><SPAN style="FONT-FAMILY: 宋体">个点中找哪一点比较合适，另外，</SPAN><SPAN 
+lang=EN-US>8</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>8</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的间隔实在太大了，生成的图象和原图肯定相差很大，就象图</SPAN><SPAN 
+lang=EN-US>4.1</SPAN><SPAN style="FONT-FAMILY: 宋体">最右边的那幅图一样。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">我们可以采用这样的做法：假设原图是</SPAN><SPAN lang=EN-US>256</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">级灰度，利用</SPAN><SPAN lang=EN-US>Bayer</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">抖动表，做如下处理</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US>if (g[y][x]&gt;&gt;2) &gt; bayer[y&amp;7][x&amp;7] then </SPAN><SPAN 
+style="FONT-FAMILY: 宋体">打一白点</SPAN><SPAN lang=EN-US> else </SPAN><SPAN 
+style="FONT-FAMILY: 宋体">打一黑点</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">其中，</SPAN><SPAN 
+lang=EN-US>x,y</SPAN><SPAN style="FONT-FAMILY: 宋体">代表原图的象素坐标，</SPAN><SPAN 
+lang=EN-US>g[y][x]</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">代表该点灰度。首先将灰度右移两位，变成</SPAN><SPAN 
+lang=EN-US>64</SPAN><SPAN style="FONT-FAMILY: 宋体">级，然后将</SPAN><SPAN 
+lang=EN-US>x</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>y</SPAN><SPAN style="FONT-FAMILY: 宋体">做模</SPAN><SPAN 
+lang=EN-US>8</SPAN><SPAN style="FONT-FAMILY: 宋体">运算，找到</SPAN><SPAN 
+lang=EN-US>Bayer</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">表中的对应点，两者做比较，根据上面给出的判据做处理。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">我们可以看到，模</SPAN><SPAN 
+lang=EN-US>8</SPAN><SPAN style="FONT-FAMILY: 宋体">运算使得原图分成了一个个</SPAN><SPAN 
+lang=EN-US>8</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>8</SPAN><SPAN style="FONT-FAMILY: 宋体">的小块，每个小块和</SPAN><SPAN 
+lang=EN-US>8</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>8</SPAN><SPAN style="FONT-FAMILY: 宋体">的</SPAN><SPAN 
+lang=EN-US>Bayer</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">表相对应。小块中的每个点都参与了比较，这样就避免了上面提到的选点和块划分过大的问题。模</SPAN><SPAN 
+lang=EN-US>8</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">运算实质上是引入了随机成分，这就是我们下面要讲到的抖动技术。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">图</SPAN><SPAN 
+lang=EN-US>4.5</SPAN><SPAN style="FONT-FAMILY: 宋体">就是利用了这个算法，使用</SPAN><SPAN 
+lang=EN-US>M<SUB>3</SUB>(Bayer</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">抖动表</SPAN><SPAN lang=EN-US>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">阵得到的；图</SPAN><SPAN lang=EN-US>6</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">是使用</SPAN><SPAN lang=EN-US>M<SUB>4</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">阵得到的，可见两者的差别并不是很大，所以一般用</SPAN><SPAN 
+lang=EN-US>Bayer</SPAN><SPAN style="FONT-FAMILY: 宋体">表就可以了。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><IMG height=259 src="第4章 图象的半影调和抖动技术.files/image012.gif" width=409 
+v:shapes="_x0000_i1033"> </SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>4.5&nbsp;&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">利用</SPAN><SPAN lang=EN-US>M3</SPAN></B><B><SPAN 
+style="FONT-FAMILY: 宋体">抖动生成的图</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+lang=EN-US><IMG height=259 src="第4章 图象的半影调和抖动技术.files/image013.gif" width=409 
+v:shapes="_x0000_i1034"> </SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>4.6&nbsp;&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">利用</SPAN><SPAN lang=EN-US>M4</SPAN></B><B><SPAN 
+style="FONT-FAMILY: 宋体">抖动生成的图</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">下面是算法的源程序，是针对</SPAN><SPAN lang=EN-US>Bayer</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">表的。因为它是个常用的表，我们不再利用</SPAN><SPAN 
+lang=EN-US>Limb</SPAN><SPAN style="FONT-FAMILY: 宋体">公式，而是直接给出。针对</SPAN><SPAN 
+lang=EN-US>M<SUB>4</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">阵的算法是类似的，不同的地方在于，要用</SPAN><SPAN 
+lang=EN-US>Limb</SPAN><SPAN style="FONT-FAMILY: 宋体">公式得到</SPAN><SPAN 
+lang=EN-US>M<SUB>4</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">阵，灰度也不用右移</SPAN><SPAN lang=EN-US>2</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">位。要注意的是，为了处理的方便，我们的结果图仍采用</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN style="FONT-FAMILY: 宋体">级灰度图，不过只用到了</SPAN><SPAN 
+lang=EN-US>0</SPAN><SPAN style="FONT-FAMILY: 宋体">和</SPAN><SPAN 
+lang=EN-US>255</SPAN><SPAN style="FONT-FAMILY: 宋体">两种灰度。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt">BYTE BayerPattern[8][8]={&nbsp; 
+0,32,8,40,2,34,10,42,</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>48,16,56,24,50,18,58,26,</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+12,44,4,36,14,46,6,38,</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+60,28,52,20,62,30,54,22,</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+3,35,11,43,1,33,9,41,</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+51,19,59,27,49,17,57,25,</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+15,47,7,39,13,45,5,37,</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+63,31,55,23,61,29,53,21};</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>BOOL LimbPatternM3(HWND 
+hWnd)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt">DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+OffBits,BufSize</P>
+<P style="LINE-HEIGHT: 18pt">LPBITMAPINFOHEADER&nbsp;&nbsp; lpImgData;</P>
+<P 
+style="LINE-HEIGHT: 18pt">LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lpPtr;</P>
+<P 
+style="LINE-HEIGHT: 18pt">HLOCAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt">LPBITMAPINFOHEADER&nbsp;&nbsp; lpTempImgData;</P>
+<P 
+style="LINE-HEIGHT: 18pt">LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lpTempPtr;</P>
+<P 
+style="LINE-HEIGHT: 18pt">HDC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hDc;</P>
+<P 
+style="LINE-HEIGHT: 18pt">HFILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hf;</P>
+<P 
+style="LINE-HEIGHT: 18pt">LONG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x,y;</P>
+<P style="LINE-HEIGHT: 18pt">unsigned 
+char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; num;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>OffBits=bf.bfOffBits-sizeof(BITMAPFILEHEADER);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>BufSize=OffBits+bi.biHeight*LineBytes;//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">要开的缓冲区大小</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>if((hTempImgData=LocalAlloc(LHND,BufSize))==NULL)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MessageBox(hWnd,"Error alloc 
+memory!","Error Message",MB_OK|</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MB_ICONEXCLAMATION);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; </SPAN>return FALSE;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt">lpImgData=(LPBITMAPINFOHEADER)GlobalLock(hImgData);&nbsp;&nbsp;&nbsp; 
+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>lpTempImgData=(LPBITMAPINFOHEADER)LocalLock(hTempImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">拷贝头信息和位图数据</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>memcpy(lpTempImgData,lpImgData,BufSize);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>for(y=0;y&lt;bi.biHeight;y++){</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//lpPtr<SPAN style="FONT-FAMILY: 宋体">为指向原图位图数据的指针</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpPtr=(char *)lpImgData+(BufSize-LineBytes-y*LineBytes);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//lpTempPtr<SPAN style="FONT-FAMILY: 宋体">为指向新图位图数据的指针</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempPtr=(char *)lpTempImgData+(BufSize-LineBytes-y*LineBytes);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(x=0;x&lt;bi.biWidth;x++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>num=(unsigned char)*lpPtr++;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if ( (num&gt;&gt;2) &gt; BayerPattern[y&amp;7][x&amp;7]) //<SPAN 
+style="FONT-FAMILY: 宋体">右移两位后做比较</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *(lpTempPtr++)=(unsigned char)255; 
+//<SPAN style="FONT-FAMILY: 宋体">打白点</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>else *(lpTempPtr++)=(unsigned char)0; //<SPAN 
+style="FONT-FAMILY: 宋体">打黑点</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>if(hBitmap!=NULL)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; 
+</SPAN>DeleteObject(hBitmap);</P>
+<P style="LINE-HEIGHT: 18pt">hDc=GetDC(hWnd);&nbsp;&nbsp;&nbsp; </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">形成新的位图</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>hBitmap=CreateDIBitmap(hDc,(LPBITMAPINFOHEADER)lpTempImgData,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LONG)CBM_INIT,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LPSTR)lpTempImgData+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>sizeof(BITMAPINFOHEADER)+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>NumColors*sizeof(RGBQUAD),</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>(LPBITMAPINFO)lpTempImgData,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DIB_RGB_COLORS);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>hf=_lcreat("c:\\limbm3.bmp",0);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>_lwrite(hf,(LPSTR)&amp;bf,sizeof(BITMAPFILEHEADER)); </SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>_lwrite(hf,(LPSTR)lpTempImgData,BufSize);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>_lclose(hf);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">释放内存和资源</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>ReleaseDC(hWnd,hDc);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>LocalUnlock(hTempImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>LocalFree(hTempImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>GlobalUnlock(hImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>return TRUE;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN><SPAN lang=EN-US 
+style="FONT-SIZE: 9pt"></SPAN></P>
+<H2><SPAN lang=EN-US>4.2</SPAN> <SPAN lang=EN-US></SPAN><A 
+name=_Toc486331879></A><A name=_Toc486332879></A><A name=_Toc486338988></A><A 
+name=_Toc454810853></A><A 
+name=_Toc454856627><SPAN><SPAN>抖动法</SPAN></SPAN></A></H2>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">让我们考虑更坏的情况：即使使用了图案化技术，仍然得不到要求的灰度级别。举例说明：假设有一幅</SPAN><SPAN 
+lang=EN-US>600</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>450</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>8bit</SPAN><SPAN style="FONT-FAMILY: 宋体">的灰度图，当用分辨率为</SPAN><SPAN 
+lang=EN-US>300dpi</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>300dpi</SPAN><SPAN style="FONT-FAMILY: 宋体">的激光打印机将其打印到</SPAN><SPAN 
+lang=EN-US>8</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>6</SPAN><SPAN style="FONT-FAMILY: 宋体">英寸的纸上时，每个象素可以用</SPAN><SPAN 
+lang=EN-US>(2400/600)</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>(1800/450)=4</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>4</SPAN><SPAN style="FONT-FAMILY: 宋体">个点大小的图案来表示，最多能表示</SPAN><SPAN 
+lang=EN-US>17</SPAN><SPAN style="FONT-FAMILY: 宋体">级灰度，无法满足</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN style="FONT-FAMILY: 宋体">级灰度的要求。可有两种解决方案：</SPAN><SPAN 
+lang=EN-US>(1)</SPAN><SPAN style="FONT-FAMILY: 宋体">减小图象尺寸，由</SPAN><SPAN 
+lang=EN-US>600</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>450</SPAN><SPAN style="FONT-FAMILY: 宋体">变为</SPAN><SPAN 
+lang=EN-US>150</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>113</SPAN><SPAN style="FONT-FAMILY: 宋体">；</SPAN><SPAN 
+lang=EN-US>(2)</SPAN><SPAN style="FONT-FAMILY: 宋体">降低图象灰度级，由</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN style="FONT-FAMILY: 宋体">级变成</SPAN><SPAN 
+lang=EN-US>16</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">级。这两种方案都不理想。这时，我们就可以采用“抖动法”</SPAN><SPAN 
+lang=EN-US>(dithering)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的技术来解决这个问题。其实刚才给出的算法就是一种抖动算法，称为规则抖动</SPAN><SPAN 
+lang=EN-US>(regular dithering)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。规则抖动的优点是算法简单；缺点是图案化有时很明显，这是因为取模运算虽然引入了随机成分，但还是有规律的。另外，点之间进行比较时，只要比标准图案上点的值大就打白点，这种做法并不理想，因为，如果当标准图案点的灰度值本身就很小，而图象中点的灰度只比它大一点儿时，图象中的点更接近黑色，而不是白色。一种更好的方法是将这个误差传播到邻近的象素。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">下面介绍的</SPAN><SPAN 
+lang=EN-US>Floyd-Steinberg</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">算法就采用了这种方案。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">假设灰度级别的范围从</SPAN><SPAN lang=EN-US>b(black)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">到</SPAN><SPAN lang=EN-US>w(white)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，中间值</SPAN><SPAN lang=EN-US>t</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为</SPAN><SPAN lang=EN-US>(b+w)/2</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，对应</SPAN><SPAN lang=EN-US>256</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">级灰度，</SPAN><SPAN 
+lang=EN-US>b=0,w=255,t=127.5</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。设原图中象素的灰度为</SPAN><SPAN lang=EN-US>g</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，误差值为</SPAN><SPAN lang=EN-US>e</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，则新图中对应象素的值用如下的方法得到：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>if g &gt; t then</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">打白点</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>e=g-w</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>else </SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">打黑点</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>e=g-b</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>3/8 </SPAN><SPAN 
+style="FONT-FAMILY: 宋体">×</SPAN><SPAN lang=EN-US> e </SPAN><SPAN 
+style="FONT-FAMILY: 宋体">加到右边的象素</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>3/8 </SPAN><SPAN 
+style="FONT-FAMILY: 宋体">×</SPAN><SPAN lang=EN-US> e </SPAN><SPAN 
+style="FONT-FAMILY: 宋体">加到下边的象素</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>1/4 </SPAN><SPAN 
+style="FONT-FAMILY: 宋体">×</SPAN><SPAN lang=EN-US> e </SPAN><SPAN 
+style="FONT-FAMILY: 宋体">加到右下方的象素</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">算法的意思很明白：以</SPAN><SPAN lang=EN-US>256</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">级灰度为例，假设一个点的灰度为</SPAN><SPAN lang=EN-US>130</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，在灰度图中应该是一个灰点。由于一般图象中灰度是连续变化的，相邻象素的灰度值很可能与本象素非常接近，所以该点及周围应该是一片灰色区域。在新图中，</SPAN><SPAN 
+lang=EN-US>130</SPAN><SPAN style="FONT-FAMILY: 宋体">大于</SPAN><SPAN 
+lang=EN-US>128</SPAN><SPAN style="FONT-FAMILY: 宋体">，所以打了白点，但</SPAN><SPAN 
+lang=EN-US>130</SPAN><SPAN style="FONT-FAMILY: 宋体">离真正的白点</SPAN><SPAN 
+lang=EN-US>255</SPAN><SPAN style="FONT-FAMILY: 宋体">还差的比较远，误差</SPAN><SPAN 
+lang=EN-US>e=130-255=-125</SPAN><SPAN style="FONT-FAMILY: 宋体">比较大。，将</SPAN><SPAN 
+lang=EN-US>3/8</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>(-125)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">加到相邻象素后，使得相邻象素的值接近</SPAN><SPAN lang=EN-US>0</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">而打黑点。下一次，</SPAN><SPAN lang=EN-US>e</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">又变成正的，使得相邻象素的相邻象素打白点，这样一白一黑一白，表现出来刚好就是灰色。如果不传递误差，就是一片白色了。再举个例子，如果一个点的灰度为</SPAN><SPAN 
+lang=EN-US>250</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，在灰度图中应该是一个白点，该点及周围应该是一片白色区域。在新图中，虽然</SPAN><SPAN 
+lang=EN-US>e=-5</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">也是负的，但其值很小，对相邻象素的影响不大，所以还是能够打出一片白色区域来。这样就验证了算法的正确性。其它的情况你可以自己推敲。图</SPAN><SPAN 
+lang=EN-US>4.7</SPAN><SPAN style="FONT-FAMILY: 宋体">是利用</SPAN><SPAN 
+lang=EN-US>Floyd-Steinberg</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">算法抖动生成的图。</SPAN></P>
+<P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=259 
+src="第4章 图象的半影调和抖动技术.files/image014.gif" width=409 v:shapes="_x0000_i1035"> 
+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>4.7&nbsp;&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">利用</SPAN><SPAN 
+lang=EN-US>Floyd-Steinberg</SPAN></B><B><SPAN 
+style="FONT-FAMILY: 宋体">算法抖动生成的图</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">下面我们给出</SPAN><SPAN 
+lang=EN-US>Floyd-Steinberg</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">算法的源代码。有一点要说明，我们原来介绍的程序都是先开一个</SPAN><SPAN 
+lang=EN-US>char</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">类型的缓冲区，用来存储新图数据，但在这个算法中，因为</SPAN><SPAN 
+lang=EN-US>e</SPAN><SPAN style="FONT-FAMILY: 宋体">有可能是负数，为了防止得到的值超出</SPAN><SPAN 
+lang=EN-US>char</SPAN><SPAN style="FONT-FAMILY: 宋体">能表示的范围，我们使用了一个</SPAN><SPAN 
+lang=EN-US>int</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">类型的缓冲区存储新值。另外，当按从左到右，从上到下的顺序处理象素时，处理过的象素以后不会再用到了，所以用这个</SPAN><SPAN 
+lang=EN-US>int</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">类型的缓冲区存储新值是可行的。全部象素处理完后，再将这些值拷贝到</SPAN><SPAN 
+lang=EN-US>char</SPAN><SPAN style="FONT-FAMILY: 宋体">类型的缓冲区去。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>BOOL Steinberg(HWND 
+hWnd)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt">DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+OffBits,BufSize,IntBufSize;</P>
+<P style="LINE-HEIGHT: 18pt">LPBITMAPINFOHEADER lpImgData;</P>
+<P 
+style="LINE-HEIGHT: 18pt">HLOCAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+hTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt">LPBITMAPINFOHEADER lpTempImgData;</P>
+<P 
+style="LINE-HEIGHT: 18pt">LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+lpPtr;</P>
+<P 
+style="LINE-HEIGHT: 18pt">LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+lpTempPtr;</P>
+<P 
+style="LINE-HEIGHT: 18pt">HDC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+hDc;</P>
+<P 
+style="LINE-HEIGHT: 18pt">HFILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hf;</P>
+<P 
+style="LINE-HEIGHT: 18pt">LONG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x,y;</P>
+<P style="LINE-HEIGHT: 18pt">unsigned 
+char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+num;</P>
+<P 
+style="LINE-HEIGHT: 18pt">float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e,f;</P>
+<P 
+style="LINE-HEIGHT: 18pt">HLOCAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+hIntBuf;</P>
+<P 
+style="LINE-HEIGHT: 18pt">int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+*lpIntBuf,*lpIntPtr;</P>
+<P 
+style="LINE-HEIGHT: 18pt">int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+tempnum;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//OffBits</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为</SPAN><SPAN lang=EN-US>BITMAPINFOHEADER</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">结构长度加调色板的大小</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>OffBits=bf.bfOffBits-sizeof(BITMAPFILEHEADER);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>BufSize=OffBits+bi.biHeight*LineBytes;//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">要开的缓冲区的大小</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>if((hTempImgData=LocalAlloc(LHND,BufSize))==NULL)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MessageBox(hWnd,"Error alloc 
+memory!","Error Message",MB_OK|</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MB_ICONEXCLAMATION);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>return FALSE;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>IntBufSize=(DWORD)bi.biHeight*LineBytes*sizeof(int); 
+if((hIntBuf=LocalAlloc(LHND,IntBufSize))==NULL) //int </SPAN><SPAN 
+style="FONT-FAMILY: 宋体">类型的缓冲区</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MessageBox(hWnd,"Error alloc 
+memory!","Error Message",MB_OK|</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MB_ICONEXCLAMATION);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>LocalFree(hTempImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>return FALSE;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>lpImgData=(LPBITMAPINFOHEADER)GlobalLock(hImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>lpTempImgData=(LPBITMAPINFOHEADER)LocalLock(hTempImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>lpIntBuf=(int 
+*)LocalLock(hIntBuf);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">拷贝头信息</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>memcpy(lpTempImgData,lpImgData,OffBits);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">将图象数据拷贝到</SPAN><SPAN lang=EN-US>int</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">类型的缓冲区中</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>for(y=0;y&lt;bi.biHeight;y++){</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>lpPtr=(char 
+*)lpImgData+(BufSize-LineBytes-y*LineBytes);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>lpIntPtr=(int 
+*)lpIntBuf+(bi.biHeight-1-y)*LineBytes;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>for(x=0;x&lt;bi.biWidth;x++)</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpIntPtr++)=(unsigned char)*(lpPtr++);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>for(y=0;y&lt;bi.biHeight;y++){</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>for(x=0;x&lt;bi.biWidth;x++){</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>lpIntPtr=(int 
+*)lpIntBuf+(bi.biHeight-1-y)*LineBytes+x;</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>num=(unsigned char)*lpIntPtr;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if ( num &gt; 128 ){ //128<SPAN style="FONT-FAMILY: 宋体">是中值</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*lpIntPtr=255; //<SPAN style="FONT-FAMILY: 宋体">打白点</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>e=(float)(num-255.0); //<SPAN style="FONT-FAMILY: 宋体">计算误差</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>else{</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*lpIntPtr=0; //<SPAN style="FONT-FAMILY: 宋体">打黑点</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>e=(float)num; //<SPAN style="FONT-FAMILY: 宋体">计算误差</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if(x&lt;bi.biWidth-1){ //<SPAN style="FONT-FAMILY: 宋体">注意判断边界</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>f=(float)*(lpIntPtr+1);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>f+=(float)( (3.0/8.0) * e);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *(lpIntPtr+1)=(int)f; //<SPAN 
+style="FONT-FAMILY: 宋体">向左传播</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if(y&lt;bi.biHeight-1){ //<SPAN style="FONT-FAMILY: 宋体">注意判断边界</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>f=(float)*(lpIntPtr-LineBytes);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>f+=(float)( (3.0/8.0) * e);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpIntPtr-LineBytes)=(int)f; //<SPAN 
+style="FONT-FAMILY: 宋体">向下传播</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>f=(float)*(lpIntPtr-LineBytes+1);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>f+=(float)( (1.0/4.0) * e);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpIntPtr-LineBytes+1)=(int)f; //<SPAN 
+style="FONT-FAMILY: 宋体">向右下传播</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">从</SPAN><SPAN lang=EN-US>int</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">类型的缓冲区拷贝到</SPAN><SPAN lang=EN-US>char</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">类型的缓冲区</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>for(y=0;y&lt;bi.biHeight;y++){</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>lpTempPtr=(char 
+*)lpTempImgData+(BufSize-LineBytes-y*LineBytes);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>lpIntPtr=(int 
+*)lpIntBuf+(bi.biHeight-1-y)*LineBytes;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>for(x=0;x&lt;bi.biWidth;x++){</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>tempnum=*(lpIntPtr++);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if(tempnum&gt;255) tempnum=255;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>else if (tempnum&lt;0) tempnum=0;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*(lpTempPtr++)=(unsigned char)tempnum;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>if(hBitmap!=NULL)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DeleteObject(hBitmap);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>hDc=GetDC(hWnd);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">产生新的位图</SPAN><SPAN lang=EN-US> </SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>hBitmap=CreateDIBitmap(hDc,(LPBITMAPINFOHEADER)lpTempImgData,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LONG)CBM_INIT,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LPSTR)lpTempImgData+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>sizeof(BITMAPINFOHEADER)+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>NumColors*sizeof(RGBQUAD),</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>(LPBITMAPINFO)lpTempImgData,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DIB_RGB_COLORS);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>hf=_lcreat("c:\\steinberg.bmp",0);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>_lwrite(hf,(LPSTR)&amp;bf,sizeof(BITMAPFILEHEADER)); </SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>_lwrite(hf,(LPSTR)lpTempImgData,BufSize);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>_lclose(hf);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">释放内存和资源</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>ReleaseDC(hWnd,hDc);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>GlobalUnlock(hImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>LocalUnlock(hTempImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>LocalFree(hTempImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>LocalUnlock(hIntBuf);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>LocalFree(hIntBuf);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>return TRUE;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">要注意的是，误差传播有时会引起流水效应，即误差不断向下，向右累加传播。解决的办法是：奇数行从左到右传播，偶数行从右到左传播。</SPAN></P>
+<H2><SPAN lang=EN-US>4.3</SPAN> <SPAN lang=EN-US></SPAN><A 
+name=_Toc486331880></A><A name=_Toc486332880></A><A name=_Toc486338989></A><A 
+name=_Toc454810854></A><A name=_Toc454856628><SPAN><SPAN>将<SPAN 
+lang=EN-US>bmp</SPAN></SPAN></SPAN></A><SPAN><SPAN><SPAN 
+style="FONT-FAMILY: 黑体">文件转换为</SPAN><SPAN 
+lang=EN-US>txt</SPAN></SPAN></SPAN><SPAN><SPAN><SPAN 
+style="FONT-FAMILY: 黑体">文件</SPAN></SPAN></SPAN></H2>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">在讲图案化技术时，我突然想到了一个非常有趣的应用，那就是</SPAN><SPAN 
+lang=EN-US>bmp2txt</SPAN><SPAN style="FONT-FAMILY: 宋体">。如果你喜欢上</SPAN><SPAN 
+lang=EN-US>BBS(</SPAN><SPAN style="FONT-FAMILY: 宋体">电子公告牌系统</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，你可能想做一个花哨的签名档。瞧，这是我好朋友</SPAN><SPAN 
+lang=EN-US>Casper</SPAN><SPAN style="FONT-FAMILY: 宋体">的签名档</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN style="FONT-FAMILY: 宋体">见图</SPAN><SPAN 
+lang=EN-US>4.8)</SPAN><SPAN style="FONT-FAMILY: 宋体">，胖乎乎的，是不是特别可爱？</SPAN></P>
+<P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=289 
+src="第4章 图象的半影调和抖动技术.files/image016.jpg" width=360 v:shapes="_x0000_i1036"> 
+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>4.8&nbsp;&nbsp;&nbsp;&nbsp; Casper</B><B><SPAN 
+style="FONT-FAMILY: 宋体">的签名档</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">你仔细观察一下，就会发现，这是一幅全部由字符组成的图，因为在</SPAN><SPAN 
+lang=EN-US>BBS</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">中只能出现文本的东西。那么，这幅图是怎么做出来的呢？难道是自己一个字符一个字符拼出来的。当然不是了，有一种叫</SPAN><SPAN 
+lang=EN-US>bmp2txt</SPAN><SPAN style="FONT-FAMILY: 宋体">的应用程序</SPAN><SPAN 
+lang=EN-US>(2</SPAN><SPAN style="FONT-FAMILY: 宋体">的发音和“</SPAN><SPAN 
+lang=EN-US>to</SPAN><SPAN style="FONT-FAMILY: 宋体">”一样，所以如此命名</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，能把位图文件转换成和图案很相似的字符文本。是不是觉得很神奇？其实原理很简单，用到了和图案化技术类似的思想：首先将位图分成同样大小的小块，求出每一块灰度的平均值，然后和每个字符的灰度做比较，找出最接近的那个字符，来代表这一小块图象。那么，怎么确定字符的灰度呢？做下面的实验就明白了。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">打开记事本</SPAN><SPAN 
+lang=EN-US>(notepad)</SPAN><SPAN style="FONT-FAMILY: 宋体">，输入字符“</SPAN><SPAN 
+lang=EN-US>1</SPAN><SPAN style="FONT-FAMILY: 宋体">”，选定该字符，使其反色。按</SPAN><SPAN 
+lang=EN-US>Alt+PrintScreen</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">键拷贝窗口屏幕。打开画笔</SPAN><SPAN 
+lang=EN-US>(paintbrush)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，粘贴；然后把图放到最大</SPAN><SPAN lang=EN-US>(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">×</SPAN><SPAN lang=EN-US>8)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，打开“查看”→“缩放”</SPAN> <SPAN 
+style="FONT-FAMILY: 宋体">→“显示网格”菜单，如图</SPAN><SPAN lang=EN-US>4.9</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">所示：</SPAN></P>
+<P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=226 
+src="第4章 图象的半影调和抖动技术.files/image018.jpg" width=231 v:shapes="_x0000_i1037"> 
+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>4.9&nbsp;&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">字符“</SPAN><SPAN lang=EN-US>1</SPAN></B><B><SPAN 
+style="FONT-FAMILY: 宋体">”的灰度</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">数数字符“</SPAN><SPAN 
+lang=EN-US>1</SPAN><SPAN style="FONT-FAMILY: 宋体">”用了几个点？是</SPAN><SPAN 
+lang=EN-US>22</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">个。我想你已经明白了，字符的灰度和它所占的黑色点数有关，点越少，灰度值越大，空格字符的灰度最大，为全白，因为它一个黑点也没有；而字符“</SPAN><SPAN 
+lang=EN-US>W</SPAN><SPAN style="FONT-FAMILY: 宋体">”的灰度值就比较低了。每个字符的面积是</SPAN><SPAN 
+lang=EN-US>8</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>16(</SPAN><SPAN style="FONT-FAMILY: 宋体">宽×高</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，所以一个字符的灰度值可以用如下的公式计算</SPAN><SPAN 
+lang=EN-US>(1-</SPAN><SPAN style="FONT-FAMILY: 宋体">所占的黑点数</SPAN><SPAN 
+lang=EN-US>/(8</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>16))</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>255</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。下面是可显示的字符，及对应的灰度，共有</SPAN><SPAN 
+lang=EN-US>95</SPAN><SPAN style="FONT-FAMILY: 宋体">个。这可是我辛辛苦苦整理出来的呦！</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>static char ch[95]={</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>' ',</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>'`','1','2','3','4','5','6','7','8','9','0','-','=','\\',</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>'q','w','e','r','t','y','u','i','o','p','[',']',</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>'a','s','d','f','g','h','j','k','l',';','\'',</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>'z','x','c','v','b','n','m',',','.','/',</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>'~','!','@','#','$','%','^','&amp;','*','(',')','_','+','|',</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>'Q','W','E','R','T','Y','U','I','O','P','{','}',</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>'A','S','D','F','G','H','J','K','L',':','"',</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>'Z','X','C','V','B','N','M','&lt;','&gt;','?'</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };</P>
+<P style="LINE-HEIGHT: 18pt">static int&nbsp; gr[95]= {</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;0,</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;7,22,28,31,31,27,32,22,38,32,40, 6,12,20,38,32,26,20,24,40,</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;29,24,28,38,32,32,26,22,34,24,44,33,32,32,24,16, 6,22,26,22,</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;26,34,29,35,10, 6,20,14,22,47,42,34,40,10,35,21,22,22,16,14,</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;26,40,39,29,38,22,28,36,22,36,30,22,22,36,26,36,25,34,38,24,</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;36,22,12,12,26,30,30,34,39,42,41,18,18,22</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;};</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">下面的这段程序实现了</SPAN><SPAN lang=EN-US>bmp2txt</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的功能，结果存到文件</SPAN><SPAN 
+lang=EN-US>bmp2txt.txt</SPAN><SPAN style="FONT-FAMILY: 宋体">中。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>BOOL Bmp2Txt(HWND hWnd)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt">DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OffBits,BufSize;</P>
+<P style="LINE-HEIGHT: 18pt">LPBITMAPINFOHEADER&nbsp;&nbsp; lpImgData;</P>
+<P 
+style="LINE-HEIGHT: 18pt">LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lpPtr;</P>
+<P 
+style="LINE-HEIGHT: 18pt">HFILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+hf;</P>
+<P 
+style="LINE-HEIGHT: 18pt">int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; &nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+i, j, k,h,tint,grayindex;</P>
+<P 
+style="LINE-HEIGHT: 18pt">char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tchar;</P>
+<P style="LINE-HEIGHT: 18pt">int&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TransHeight, TransWidth;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">先用起泡排序，将灰度值按从小到大排列，同时调整对应的字符位置</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>for(i=0;i&lt;94;i++)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>for(j=i+1;j&lt;95;j++){</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>if(gr[i]&gt;gr[j]){</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>tchar=ch[i],tint=gr[i];</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>ch[i]=ch[j],gr[i]=gr[j];</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>ch[j]=tchar,gr[j]=tint;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//OffBits</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为</SPAN><SPAN lang=EN-US>BITMAPINFOHEADER</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">结构长度加调色板的大小</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>OffBits=bf.bfOffBits-sizeof(BITMAPFILEHEADER);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>BufSize=OffBits+bi.biHeight*LineBytes;//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">要开的缓冲区的大小</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>lpImgData=(LPBITMAPINFOHEADER)GlobalLock(hImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>TransWidth = bi.biWidth/8; 
+//</SPAN><SPAN style="FONT-FAMILY: 宋体">每行字符的个数</SPAN></P>
+<P style="LINE-HEIGHT: 18pt">TransHeight = bi.biHeight/16;&nbsp; //<SPAN 
+style="FONT-FAMILY: 宋体">共有多少行字符</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>hf=_lcreat("c:\\bmp2txt.txt",0);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt">for(i=0;i&lt;TransHeight;i++){ </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(j=0;j&lt;TransWidth;j++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>grayindex=0;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(k=0;k&lt;16;k++)</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(h=0;h&lt;8;h++){ //<SPAN style="FONT-FAMILY: 宋体">求出</SPAN><SPAN 
+lang=EN-US>8*16</SPAN><SPAN style="FONT-FAMILY: 宋体">小块中各象素灰度之和</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpPtr=(char*)lpImgData+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>BufSize-LineBytes-(i*16+k)*LineBytes+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>j*8+h;</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>grayindex+=(unsigned char)*lpPtr;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>grayindex/=16*8; //<SPAN style="FONT-FAMILY: 宋体">除以整个面积</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>grayindex=gr[94]*grayindex/255;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>k=0;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>while(gr[k+1]&lt;grayindex)</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>k++;&nbsp; //<SPAN style="FONT-FAMILY: 宋体">寻找灰度最接近的字符</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lwrite(hf,(char *)&amp;ch[k],sizeof(char));&nbsp;&nbsp; //<SPAN 
+style="FONT-FAMILY: 宋体">将该字符写入文件中</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>tchar=(char)13;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lwrite(hf,(char *)&amp;tchar,sizeof(char)); </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>tchar=(char)10;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lwrite(hf,(char *)&amp;tchar,sizeof(char));&nbsp; //<SPAN 
+style="FONT-FAMILY: 宋体">每行加一个回车换行符</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>_lclose(hf);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>GlobalUnlock(hImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>return TRUE;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">上面的程序中，只考虑了</SPAN><SPAN lang=EN-US>8</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">×</SPAN><SPAN lang=EN-US>16</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">小块的平均灰度，而没有考虑小块内部象素的灰度分布。更精确的方法是将图象</SPAN><SPAN 
+lang=EN-US>8</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>16</SPAN><SPAN style="FONT-FAMILY: 宋体">小块和字符</SPAN><SPAN 
+lang=EN-US>8</SPAN><SPAN style="FONT-FAMILY: 宋体">×</SPAN><SPAN 
+lang=EN-US>16</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">小块每两个对应点之间相减，做平方误差计算，找出有最小平方误差的那个字符，来代表这一小块图象。显然，计算量要比刚才的大得多。这里我们就不给出程序了，有兴趣的读者可以自己实现。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">其实利用图案化技术，还可以实现更有趣的应用，如图</SPAN><SPAN 
+lang=EN-US>4.10</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，你仔细看看，贝多芬的头像是由许多个音乐符号组成的！</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><IMG height=383 src="第4章 图象的半影调和抖动技术.files/image020.gif" width=383 
+v:shapes="_x0000_i1026"> </SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>4.10&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">贝多芬的头像</SPAN><SPAN lang=EN-US></SPAN></B></P></DIV>
+<DIV 
+style="DISPLAY: block; FONT-SIZE: 10px; FONT-FAMILY: Verdana, Geneva, Arial">The 
+University of Southern California does not screen or control the content on this 
+website and thus does not guarantee the accuracy, integrity, or quality of such 
+content. All content on this website is provided by and is the sole 
+responsibility of the person from which such content originated, and such 
+content does not necessarily reflect the opinions of the University 
+administration or the Board of Trustees </DIV></BODY></HTML>

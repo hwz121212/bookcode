@@ -1,0 +1,1714 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0045)http://www-scf.usc.edu/~flv/ipbook/chap02.htm -->
+<HTML><HEAD><TITLE>第2章 图象的几何变换</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=GB2312"><LINK 
+href="./chap02.files/editdata.mso" rel=Edit-Time-Data><LINK 
+href="./chap02.files/oledata.mso" rel=OLE-Object-Data>
+<STYLE>.Normal {
+	TEXT-JUSTIFY: inter-ideograph; FONT-SIZE: 10.5pt; TEXT-INDENT: 0pt; LINE-HEIGHT: normal; FONT-FAMILY: "Times New Roman"; TEXT-ALIGN: justify
+}
+.a {
+	FONT-SIZE: 12pt; TEXT-INDENT: 0pt; LINE-HEIGHT: 20pt; FONT-FAMILY: "Times New Roman"; TEXT-ALIGN: center
+}
+</STYLE>
+
+<META content="MSHTML 6.00.2800.1400" name=GENERATOR></HEAD>
+<BODY class=Normal lang=ZH-CN vLink=purple link=blue bgColor=#ffffff>
+<DIV style="LAYOUT-GRID:  15.6pt none">
+<H1><A name=_Toc486331867></A><A name=_Toc486332867></A><A 
+name=_Toc486338976></A><A name=_Toc454810841></A><A 
+name=_Toc454856615><SPAN><SPAN>第<SPAN 
+lang=EN-US>2</SPAN></SPAN></SPAN></A><SPAN><SPAN><SPAN 
+style="FONT-FAMILY: 黑体">章</SPAN> </SPAN></SPAN><SPAN><SPAN><SPAN 
+style="FONT-FAMILY: 黑体">图象的几何变换</SPAN></SPAN></SPAN></H1>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">这一章我们将介绍图象的几何变换，包括图象的平移、旋转、镜象变换、转置、放缩等。如果你熟悉矩阵运算，你将发现，实现这些变换是非常容易的。</SPAN></P>
+<H2><SPAN lang=EN-US>2.1</SPAN> <SPAN lang=EN-US></SPAN><A 
+name=_Toc486331868></A><A name=_Toc486332868></A><A name=_Toc486338977></A><A 
+name=_Toc454810842></A><A 
+name=_Toc454856616><SPAN><SPAN>平移</SPAN></SPAN></A></H2>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">平移</SPAN><SPAN 
+lang=EN-US>(translation)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">变换大概是几何变换中最简单的一种了。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">如图</SPAN><SPAN 
+lang=EN-US>2.1</SPAN><SPAN style="FONT-FAMILY: 宋体">所示，初始坐标为</SPAN><SPAN 
+lang=EN-US>(x<SUB>0</SUB>,y<SUB>0</SUB>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的点经过平移</SPAN><SPAN 
+lang=EN-US>(t<SUB>x</SUB>,t<SUB>y</SUB>)(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">以向右，向下为正方向</SPAN><SPAN lang=EN-US>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">后，坐标变为</SPAN><SPAN 
+lang=EN-US>(x<SUB>1</SUB>,y<SUB>1</SUB>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。这两点之间的关系是</SPAN><SPAN 
+lang=EN-US>x<SUB>1</SUB>=x<SUB>0</SUB>+t<SUB>x </SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>y<SUB>1</SUB>=y<SUB>0</SUB>+t<SUB>y</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。</SPAN></P>
+<P class=a><SPAN lang=EN-US><IMG height=203 src="第2章 图象的几何变换.files/image002.jpg" 
+width=195 v:shapes="_x0000_i1025"> </SPAN></P>
+<P style="TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>2.1&nbsp;&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">平移的示意图</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">以矩阵的形式表示为</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><SUB><IMG height=77 src="第2章 图象的几何变换.files/image004.gif" width=244 
+v:shapes="_x0000_i1067"> </SUB></SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: right" 
+align=right><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>(2.1)</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">我们更关心的是它的逆变换：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><SUB><IMG height=77 src="第2章 图象的几何变换.files/image006.gif" width=268 
+v:shapes="_x0000_i1038"> </SUB></SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: right" align=right><SPAN 
+lang=EN-US>(2.2)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">这是因为：我们想知道的是平移后的图象中每个象素的颜色。例如我们想知道，新图中左上角点的</SPAN><SPAN 
+lang=EN-US>RGB</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">值是多少？很显然，该点是原图的某点经过平移后得到的，这两点的颜色肯定是一样的，所以只要知道了原图那点的</SPAN><SPAN 
+lang=EN-US>RGB</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">值即可。那么到底新图中的左上角点对应原图中的哪一点呢？将左上角点的坐标</SPAN><SPAN 
+lang=EN-US>(0,0)</SPAN><SPAN style="FONT-FAMILY: 宋体">入公式</SPAN><SPAN 
+lang=EN-US>(2.2)</SPAN><SPAN style="FONT-FAMILY: 宋体">，得到</SPAN><SPAN 
+lang=EN-US>x<SUB>0=</SUB>-t<SUB>x </SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>y<SUB>0</SUB>=-t<SUB>y</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">；所以新图中的</SPAN><SPAN lang=EN-US>(0,0)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">点的颜色和原图中</SPAN><SPAN lang=EN-US>(-t<SUB>x</SUB> , 
+-t<SUB>y</SUB>)</SPAN><SPAN style="FONT-FAMILY: 宋体">的一样。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">这样就存在一个问题：如果新图中有一点</SPAN><SPAN 
+lang=EN-US>(x<SUB>1</SUB>,y<SUB>1</SUB>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，按照公式</SPAN><SPAN lang=EN-US>(2.2)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">得到的</SPAN><SPAN 
+lang=EN-US>(x<SUB>0</SUB>,y<SUB>0</SUB>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">不在原图中该怎么办？通常的做法是，把该点的</SPAN><SPAN 
+lang=EN-US>RGB</SPAN><SPAN style="FONT-FAMILY: 宋体">值统一设成</SPAN><SPAN 
+lang=EN-US>(0,0,0)</SPAN><SPAN style="FONT-FAMILY: 宋体">或者</SPAN><SPAN 
+lang=EN-US>(255,255,255)</SPAN><SPAN style="FONT-FAMILY: 宋体">。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">另一个问题是：平移后的图象是否要放大？一种做法是不放大，移出的部分被截断。例如，图</SPAN><SPAN 
+lang=EN-US>2.2</SPAN><SPAN style="FONT-FAMILY: 宋体">为原图，图</SPAN><SPAN 
+lang=EN-US>2.3</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为移动后的图。这种处理，文件大小不会改变。</SPAN></P>
+<P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=193 
+src="第2章 图象的几何变换.files/image008.gif" width=306 v:shapes="_x0000_i1068"> 
+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>2.2&nbsp;&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">移动前的图</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+lang=EN-US><IMG height=195 src="第2章 图象的几何变换.files/image010.gif" width=308 
+v:shapes="_x0000_i1069"> </SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>2.3&nbsp;&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">移动后的图</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">还有一种做法是：将图象放大，使得能够显示下所有部分，如图</SPAN><SPAN 
+lang=EN-US>2.4</SPAN><SPAN style="FONT-FAMILY: 宋体">所示。</SPAN></P>
+<P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=244 
+src="第2章 图象的几何变换.files/image012.gif" width=362 v:shapes="_x0000_i1070"> 
+</SPAN></P>
+<P class=a style="LINE-HEIGHT: 18pt"><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>2.4&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">移动后图象被放大</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">这种处理，文件大小要改变。设原图的宽和高分别是</SPAN><SPAN 
+lang=EN-US>w<SUB>1</SUB>,h<SUB>1</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">则新图的宽和高变为</SPAN><SPAN 
+lang=EN-US>w<SUB>1</SUB>+|t<SUB>x</SUB>|</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">和</SPAN><SPAN 
+lang=EN-US>h<SUB>1</SUB>+|t<SUB>y</SUB>|</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，加绝对值符号是因为</SPAN><SPAN lang=EN-US>t<SUB>x</SUB>, 
+t<SUB>y</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">有可能为负</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN style="FONT-FAMILY: 宋体">即向左，向上移动</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN style="FONT-FAMILY: 宋体">。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">下面的函数</SPAN><SPAN 
+lang=EN-US>Translation</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">采用的是第一种做法，即移出的部分被截断。在给出源代码之前，先说明一个问题。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">如果你用过</SPAN><SPAN 
+lang=EN-US>Photoshop,Corel PhotoPaint</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">等图象处理软件，可能听说过“灰度图”</SPAN><SPAN 
+lang=EN-US>(grayscale)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">这个词。灰度图是指只含亮度信息，不含色彩信息的图象，就象我们平时看到的黑白照片：亮度由暗到明，变化是连续的。因此，要表示灰度图，就需要把亮度值进行量化。通常划分成</SPAN><SPAN 
+lang=EN-US>0</SPAN><SPAN style="FONT-FAMILY: 宋体">到</SPAN><SPAN 
+lang=EN-US>255</SPAN><SPAN style="FONT-FAMILY: 宋体">共</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN style="FONT-FAMILY: 宋体">个级别，其中</SPAN><SPAN 
+lang=EN-US>0</SPAN><SPAN style="FONT-FAMILY: 宋体">最暗</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN style="FONT-FAMILY: 宋体">全黑</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>255</SPAN><SPAN style="FONT-FAMILY: 宋体">最亮</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN style="FONT-FAMILY: 宋体">全白</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN style="FONT-FAMILY: 宋体">。</SPAN><SPAN 
+lang=EN-US>.bmp</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">格式的文件中，并没有灰度图这个概念，但是，我们可以很容易在</SPAN><SPAN 
+lang=EN-US>.bmp</SPAN><SPAN style="FONT-FAMILY: 宋体">文件中表示灰度图。方法是用</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">色的调色板，只不过这个调色板有点特殊，每一项的</SPAN><SPAN 
+lang=EN-US>RGB</SPAN><SPAN style="FONT-FAMILY: 宋体">值都是相同的。也就是说</SPAN><SPAN 
+lang=EN-US>RGB</SPAN><SPAN style="FONT-FAMILY: 宋体">值从</SPAN><SPAN 
+lang=EN-US>(0</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>0</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>0)</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>(1</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>1</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>1)</SPAN><SPAN style="FONT-FAMILY: 宋体">一直到</SPAN><SPAN 
+lang=EN-US>(255</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>255</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>255)</SPAN><SPAN style="FONT-FAMILY: 宋体">。</SPAN><SPAN 
+lang=EN-US>(0</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>0</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>0)</SPAN><SPAN style="FONT-FAMILY: 宋体">是全黑色，</SPAN><SPAN 
+lang=EN-US>(255</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>255</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>255)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">是全白色，中间的是灰色。这样，灰度图就可以用</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">色图来表示了。为什么会这样呢？难道是一种巧合？其实并不是。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">在表示颜色的方法中，除了</SPAN><SPAN lang=EN-US>RGB</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">外，还有一种叫</SPAN><SPAN lang=EN-US>YUV</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的表示方法，应用也很多。电视信号中用的就是一种类似于</SPAN><SPAN 
+lang=EN-US>YUV</SPAN><SPAN style="FONT-FAMILY: 宋体">的颜色表示方法。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">在这种表示方法中，</SPAN><SPAN 
+lang=EN-US>Y</SPAN><SPAN style="FONT-FAMILY: 宋体">分量的物理含义就是亮度，</SPAN><SPAN 
+lang=EN-US>U</SPAN><SPAN style="FONT-FAMILY: 宋体">和</SPAN><SPAN 
+lang=EN-US>V</SPAN><SPAN style="FONT-FAMILY: 宋体">分量代表了色差信号</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">你不必了解什么是色差，只要知道有这么一个概念就可以了</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。使用这种表示方法有很多好处，最主要的有两点：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(1)<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">因为</SPAN><SPAN lang=EN-US>Y</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">代表了亮度，所以</SPAN><SPAN lang=EN-US>Y</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">分量包含了灰度图的所有信息，只用</SPAN><SPAN lang=EN-US>Y</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">分量就能完全能够表示出一幅灰度图来。当同时考虑</SPAN><SPAN 
+lang=EN-US>U</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>V</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">分量时，就能够表示出彩色信息来。这样，用同一种表示方法可以很方便的在灰度和彩色图之间切换，而</SPAN><SPAN 
+lang=EN-US>RGB</SPAN><SPAN style="FONT-FAMILY: 宋体">表示方法就做不到这一点了。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(2)<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">人眼对于亮度信号非常敏感，而对色差信号的敏感程度相对较弱。也就是说，图象的主要信息包含在</SPAN><SPAN 
+lang=EN-US>Y</SPAN><SPAN style="FONT-FAMILY: 宋体">分量中。这就提示我们：如果在对</SPAN><SPAN 
+lang=EN-US>YUV</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">信号进行量化时，可以“偏心”一点，让</SPAN><SPAN lang=EN-US>Y</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的量化级别多一些</SPAN><SPAN lang=EN-US>(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">谁让它重要呢？</SPAN><SPAN lang=EN-US>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">而让</SPAN><SPAN lang=EN-US>UV</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的量化级别少一些，就可以实现图象信息的压缩。这一点将在第</SPAN><SPAN 
+lang=EN-US>9</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">章介绍图象压缩时仔细研究，这里就不深入讨论了。而</SPAN><SPAN 
+lang=EN-US>RGB</SPAN><SPAN style="FONT-FAMILY: 宋体">的表示方法就做不到这一点，因为</SPAN><SPAN 
+lang=EN-US>RGB</SPAN><SPAN style="FONT-FAMILY: 宋体">三个分量同等重要，缺了谁也不行。</SPAN><SPAN 
+lang=EN-US>YUV</SPAN><SPAN style="FONT-FAMILY: 宋体">和</SPAN><SPAN 
+lang=EN-US>RGB</SPAN><SPAN style="FONT-FAMILY: 宋体">之间有着如下的对应关系</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><SUB><IMG height=77 src="第2章 图象的几何变换.files/image014.gif" width=352 
+v:shapes="_x0000_i1071"> </SUB></SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: right" align=right><SPAN 
+lang=EN-US>(2.3)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><SUB><IMG height=75 src="第2章 图象的几何变换.files/image016.gif" width=324 
+v:shapes="_x0000_i1072"> </SUB></SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: right" align=right><SPAN 
+lang=EN-US>(2.4)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">当</SPAN><SPAN 
+lang=EN-US>RGB</SPAN><SPAN style="FONT-FAMILY: 宋体">三个分量的大小一样时，假设都是</SPAN><SPAN 
+lang=EN-US>a</SPAN><SPAN style="FONT-FAMILY: 宋体">，代入公式</SPAN><SPAN 
+lang=EN-US>(2.3)</SPAN><SPAN style="FONT-FAMILY: 宋体">，得到</SPAN><SPAN 
+lang=EN-US>Y=a</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>U=0</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>V=0 
+</SPAN><SPAN style="FONT-FAMILY: 宋体">。你现在该明白我前面所说不是巧合的原因了吧。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">使用灰度图有一个好处，那就是方便。首先</SPAN><SPAN 
+lang=EN-US>RGB</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的值都一样；其次，图象数据即调色板索引值，也就是实际的</SPAN><SPAN 
+lang=EN-US>RGB</SPAN><SPAN style="FONT-FAMILY: 宋体">值，也就是亮度值；另外，因为是</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">色调色板，所以图象数据中一个字节代表一个象素，很整齐。如果是</SPAN><SPAN 
+lang=EN-US>2</SPAN><SPAN style="FONT-FAMILY: 宋体">色图或</SPAN><SPAN 
+lang=EN-US>16</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">色图，还要拼凑字节，很麻烦。如果是彩色的</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">色图，由于图象处理后有可能会产生不属于这</SPAN><SPAN 
+lang=EN-US>256</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">种颜色的新颜色，就更麻烦了；这一点，今后你就会有深刻体会的。所以，做图象处理时，一般采用灰度图。为了将重点放在算法本身上，</SPAN><B><SPAN 
+style="FONT-FAMILY: 黑体">今后给出的程序如不做特殊说明，都是针对<SPAN 
+lang=EN-US>256级灰度图的。</SPAN></SPAN></B><SPAN 
+style="FONT-FAMILY: 宋体">其它颜色的情况，你可以自己想一想，把算法补全。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">如果想得到一幅灰度图，可以使用</SPAN><SPAN lang=EN-US>Sea</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">或者</SPAN><SPAN lang=EN-US>PhotoShop</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">等软件提供的颜色转换功能将彩色图转换成灰度图。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">好了，言归正传，下面给出</SPAN><SPAN 
+lang=EN-US>Translation</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的源代码。算法的思想是先将所有区域填成白色，然后找平移后显示区域的左上角点</SPAN><SPAN 
+lang=EN-US>(x<SUB>0</SUB>,y<SUB>0</SUB>) </SPAN><SPAN 
+style="FONT-FAMILY: 宋体">和右下角点</SPAN><SPAN 
+lang=EN-US>(x<SUB>1</SUB>,y<SUB>1</SUB>) </SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，分几种情况进行处理。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">先看</SPAN><SPAN 
+lang=EN-US>x</SPAN><SPAN style="FONT-FAMILY: 宋体">方向</SPAN><SPAN 
+lang=EN-US>(width</SPAN><SPAN style="FONT-FAMILY: 宋体">指图象的宽度</SPAN><SPAN 
+lang=EN-US>)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(1)<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN 
+lang=EN-US>t<SUB>x</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">≤</SPAN><SPAN 
+lang=EN-US>-width</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">：很显然，图象完全移出了屏幕，不用做任何处理；</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(2)<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN 
+lang=EN-US>-width&lt;tx</SPAN><SPAN style="FONT-FAMILY: 宋体">≤</SPAN><SPAN 
+lang=EN-US>0</SPAN><SPAN style="FONT-FAMILY: 宋体">：如图</SPAN><SPAN 
+lang=EN-US>2.5</SPAN><SPAN style="FONT-FAMILY: 宋体">所示。容易看出，图象区域的</SPAN><SPAN 
+lang=EN-US>x</SPAN><SPAN style="FONT-FAMILY: 宋体">范围从</SPAN><SPAN 
+lang=EN-US>0</SPAN><SPAN style="FONT-FAMILY: 宋体">到</SPAN><SPAN 
+lang=EN-US>width-|tx|,</SPAN><SPAN style="FONT-FAMILY: 宋体">对应原图的范围从</SPAN><SPAN 
+lang=EN-US>|tx|</SPAN><SPAN style="FONT-FAMILY: 宋体">到</SPAN><SPAN 
+lang=EN-US>width</SPAN><SPAN style="FONT-FAMILY: 宋体">；</SPAN></P>
+<P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=364 
+src="第2章 图象的几何变换.files/image018.jpg" width=397 v:shapes="_x0000_i1026"> 
+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>2.5&nbsp;&nbsp;&nbsp;&nbsp; tx</B><B><SPAN 
+style="FONT-FAMILY: 宋体">≤</SPAN><SPAN lang=EN-US>0</SPAN></B><B><SPAN 
+style="FONT-FAMILY: 宋体">，</SPAN><SPAN lang=EN-US>ty</SPAN></B><B><SPAN 
+style="FONT-FAMILY: 宋体">≤</SPAN><SPAN lang=EN-US>0</SPAN></B><B><SPAN 
+style="FONT-FAMILY: 宋体">的情况</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(3)<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN 
+lang=EN-US>0&lt; t<SUB>x</SUB> &lt;width</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">：如图</SPAN><SPAN lang=EN-US>2.6</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">所示。容易看出，图象区域的</SPAN><SPAN lang=EN-US>x</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">范围从</SPAN><SPAN lang=EN-US>t<SUB>x</SUB> </SPAN><SPAN 
+style="FONT-FAMILY: 宋体">到</SPAN><SPAN lang=EN-US>width</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，对应原图的范围从</SPAN><SPAN lang=EN-US>0</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">到</SPAN><SPAN lang=EN-US>width - t<SUB>x 
+</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">；</SPAN></P>
+<P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=342 
+src="第2章 图象的几何变换.files/image020.jpg" width=417 v:shapes="_x0000_i1039"> 
+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>2.6&nbsp;&nbsp;&nbsp;&nbsp; 0&lt; 
+tx&lt;width</B><B><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>0&lt;ty&lt;height</SPAN></B><B><SPAN 
+style="FONT-FAMILY: 宋体">的情况</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(4)<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN 
+lang=EN-US>t<SUB>x</SUB> </SPAN><SPAN style="FONT-FAMILY: 宋体">≥</SPAN><SPAN 
+lang=EN-US>width</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">：很显然，图象完全移出了屏幕，不用做任何处理。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>y</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">方向是对应的</SPAN><SPAN lang=EN-US>(height</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">表示图象的高度</SPAN><SPAN lang=EN-US>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(1)<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN 
+lang=EN-US>t<SUB>y</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">≤</SPAN><SPAN 
+lang=EN-US>-height</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，图象完全移出了屏幕，不用做任何处理；</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(2)<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN 
+lang=EN-US>-height&lt;t<SUB>y</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">≤</SPAN><SPAN lang=EN-US>0</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，图象区域的</SPAN><SPAN lang=EN-US>y</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">范围从</SPAN><SPAN lang=EN-US>0</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">到</SPAN><SPAN 
+lang=EN-US>height-|t<SUB>y</SUB>|,</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">对应原图的范围从</SPAN><SPAN 
+lang=EN-US>|t<SUB>y</SUB>|</SPAN><SPAN style="FONT-FAMILY: 宋体">到</SPAN><SPAN 
+lang=EN-US>height</SPAN><SPAN style="FONT-FAMILY: 宋体">；</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(3)<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN 
+lang=EN-US>0&lt;t<SUB>y</SUB>&lt;height </SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，图象区域的</SPAN><SPAN lang=EN-US>y</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">范围从</SPAN><SPAN lang=EN-US>t<SUB>y</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">到</SPAN><SPAN lang=EN-US>height,</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">对应原图的范围从</SPAN><SPAN lang=EN-US>0</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">到</SPAN><SPAN 
+lang=EN-US>height-t<SUB>y</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">；</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(4)<SPAN 
+style="FONT: 7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN 
+lang=EN-US>t<SUB>y</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">≥</SPAN><SPAN 
+lang=EN-US>height</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，图象完全移出了屏幕，不用做任何处理。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">这种做法利用了位图存储的连续性，即同一行的象素在内存中是相邻的。利用</SPAN><SPAN 
+lang=EN-US>memcpy</SPAN><SPAN style="FONT-FAMILY: 宋体">函数，从</SPAN><SPAN 
+lang=EN-US>(x<SUB>0</SUB>,y<SUB>0</SUB>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">点开始，一次可以拷贝一整行</SPAN><SPAN lang=EN-US>(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">宽度为</SPAN><SPAN lang=EN-US>x<SUB>1</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">－</SPAN><SPAN lang=EN-US>x<SUB>0</SUB>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，然后将内存指针移到</SPAN><SPAN 
+lang=EN-US>(x<SUB>0</SUB>,y<SUB>0</SUB>+1)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">处，拷贝下一行。这样拷贝</SPAN><SPAN 
+lang=EN-US>(y<SUB>1</SUB>-y<SUB>0</SUB>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">行就完成了全部操作，避免了一个一个象素的计算，提高了效率。</SPAN><SPAN 
+lang=EN-US>Translation</SPAN><SPAN style="FONT-FAMILY: 宋体">的源代码如下：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt">int&nbsp;&nbsp;&nbsp; xOffset=0,yOffset=0;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>BOOL Translation(HWND 
+hWnd)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt">DLGPROC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dlgInputBox = NULL;</P>
+<P 
+style="LINE-HEIGHT: 18pt">DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OffBits,BufSize;</P>
+<P style="LINE-HEIGHT: 18pt">LPBITMAPINFOHEADER&nbsp;&nbsp; lpImgData;</P>
+<P 
+style="LINE-HEIGHT: 18pt">LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+lpPtr;</P>
+<P 
+style="LINE-HEIGHT: 18pt">HLOCAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt">LPBITMAPINFOHEADER&nbsp;&nbsp; lpTempImgData;</P>
+<P 
+style="LINE-HEIGHT: 18pt">LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+lpTempPtr;</P>
+<P 
+style="LINE-HEIGHT: 18pt">int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+SrcX0,SrcY0,SrcX1,SrcY1;</P>
+<P 
+style="LINE-HEIGHT: 18pt">int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+DstX0,DstY0,DstX1,DstY1;</P>
+<P 
+style="LINE-HEIGHT: 18pt">int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+RectWidth,RectHeight;</P>
+<P 
+style="LINE-HEIGHT: 18pt">BOOL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+xVisible,yVisible;</P>
+<P 
+style="LINE-HEIGHT: 18pt">HDC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hDc;</P>
+<P 
+style="LINE-HEIGHT: 18pt">HFILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+hf;</P>
+<P 
+style="LINE-HEIGHT: 18pt">int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+i;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">出现对话框，输入</SPAN><SPAN lang=EN-US>x</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">偏移量</SPAN><SPAN lang=EN-US>xOffset</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，和</SPAN><SPAN lang=EN-US>y</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">偏移量</SPAN><SPAN lang=EN-US>yOffset</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>dlgInputBox = (DLGPROC) 
+MakeProcInstance ( (FARPROC)InputBox,ghInst );</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DialogBox (ghInst, "INPUTBOX", 
+hWnd, dlgInputBox);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>FreeProcInstance ( (FARPROC) 
+dlgInputBox );</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//OffBits</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为</SPAN><SPAN lang=EN-US>BITMAPINFOHEADER</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">结构长度加调色板的大小</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>OffBits=bf.bfOffBits-sizeof(BITMAPFILEHEADER); </SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>BufSize=OffBits+bi.biHeight*LineBytes;//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">要开的缓冲区的大小</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为新产生的位图分配缓冲区内存</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>if((hTempImgData=LocalAlloc(LHND,BufSize))==NULL)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MessageBox(hWnd,"Error alloc 
+memory!","Error Message",MB_OK|</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MB_ICONEXCLAMATION);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>return FALSE; //</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">失败，返回</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//lpImgData</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为指向原来位图数据的指针</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>lpImgData=(LPBITMAPINFOHEADER)GlobalLock(hImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//lpTempImgData</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为指向新产生位图数据的指针</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>lpTempImgData=(LPBITMAPINFOHEADER)LocalLock(hTempImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>lpPtr=(char 
+*)lpImgData;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>lpTempPtr=(char 
+*)lpTempImgData;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">将新的缓冲区中的每个字节都填成</SPAN><SPAN lang=EN-US>255</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，这样以后未处理的象素就是白色</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>memset(lpTempPtr,(BYTE)255,BufSize);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">两幅图之间的头信息，包括调色板都是相同的，所以直接拷贝头和调色板</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>memcpy(lpTempPtr,lpPtr,OffBits);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//xVisible</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为</SPAN><SPAN lang=EN-US>FALSE</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">时，表示</SPAN><SPAN lang=EN-US>x</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">方向已经移出了可显示的范围</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>xVisible=TRUE; </SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>if( xOffset&lt;= -bi.biWidth 
+)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>xVisible=FALSE; </SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>else if( 
+xOffset&lt;=0){</SPAN></P>
+<P style="LINE-HEIGHT: 18pt">DstX0=0;&nbsp; //<SPAN 
+style="FONT-FAMILY: 宋体">表示移动后，有图区域的左上角点的</SPAN><SPAN lang=EN-US>x</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">坐标</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DstX1=bi.biWidth+xOffset; 
+//</SPAN><SPAN style="FONT-FAMILY: 宋体">表示移动后，有图区域的右下角点的</SPAN><SPAN 
+lang=EN-US>x</SPAN><SPAN style="FONT-FAMILY: 宋体">坐标</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>else if ( 
+xOffset&lt;bi.biWidth){</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DstX0=xOffset;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DstX1=bi.biWidth;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>else</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>xVisible=FALSE;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>SrcX0=DstX0-xOffset; 
+//</SPAN><SPAN style="FONT-FAMILY: 宋体">对应</SPAN><SPAN 
+lang=EN-US>DstX0</SPAN><SPAN style="FONT-FAMILY: 宋体">在原图中的</SPAN><SPAN 
+lang=EN-US>x</SPAN><SPAN style="FONT-FAMILY: 宋体">坐标</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>SrcX1=DstX1-xOffset; 
+//</SPAN><SPAN style="FONT-FAMILY: 宋体">对应</SPAN><SPAN 
+lang=EN-US>DstX1</SPAN><SPAN style="FONT-FAMILY: 宋体">在原图中的</SPAN><SPAN 
+lang=EN-US>x</SPAN><SPAN style="FONT-FAMILY: 宋体">坐标</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>RectWidth=DstX1-DstX0; 
+//</SPAN><SPAN style="FONT-FAMILY: 宋体">有图区域的宽度</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//yVisible</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为</SPAN><SPAN lang=EN-US>FALSE</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">时，表示</SPAN><SPAN lang=EN-US>y</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">方向已经移出了可显示的范围</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>yVisible=TRUE; </SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>if( yOffset&lt;= -bi.biHeight 
+)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>yVisible=FALSE;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>else if( 
+yOffset&lt;=0){</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DstY0=0; //</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">表示移动后，有图区域的左上角点的</SPAN><SPAN lang=EN-US>y</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">坐标</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DstY1=bi.biHeight+yOffset; 
+//</SPAN><SPAN style="FONT-FAMILY: 宋体">表示移动后，有图区域的右下角点的</SPAN><SPAN 
+lang=EN-US>y</SPAN><SPAN style="FONT-FAMILY: 宋体">坐标</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>else if ( 
+yOffset&lt;bi.biHeight){</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DstY0=yOffset;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DstY1=bi.biHeight;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>else</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>yVisible=FALSE;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>SrcY0=DstY0-yOffset; 
+//</SPAN><SPAN style="FONT-FAMILY: 宋体">对应</SPAN><SPAN 
+lang=EN-US>DstY0</SPAN><SPAN style="FONT-FAMILY: 宋体">在原图中的</SPAN><SPAN 
+lang=EN-US>y</SPAN><SPAN style="FONT-FAMILY: 宋体">坐标</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>SrcY1=DstY1-yOffset; 
+//</SPAN><SPAN style="FONT-FAMILY: 宋体">对应</SPAN><SPAN 
+lang=EN-US>DstY1</SPAN><SPAN style="FONT-FAMILY: 宋体">在原图中的</SPAN><SPAN 
+lang=EN-US>y</SPAN><SPAN style="FONT-FAMILY: 宋体">坐标</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>RectHeight=DstY1-DstY0; 
+//</SPAN><SPAN style="FONT-FAMILY: 宋体">有图区域的高度</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>if( xVisible &amp;&amp; yVisible){ 
+//x,y</SPAN><SPAN style="FONT-FAMILY: 宋体">方向都没有完全移出可显示的范围</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>for(i=0;i&lt;RectHeight;i++){ 
+//</SPAN><SPAN style="FONT-FAMILY: 宋体">拷贝每一行</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//lpPtr</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">指向要拷贝的那一行的最左边的象素对应在原图中的位</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">置。特别要<B>注意的是</B>，由于</SPAN><SPAN 
+lang=EN-US>.bmp</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">是上下颠倒的，<B>偏移是</B></SPAN><B><SPAN 
+lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>//(BufSize-LineBytes-(i+SrcY0)*LineBytes)+SrcX0</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，<B>而不是</B></SPAN><B><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>//(i+SrcY0)*LineBytes)+SrcX0</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，你试着举个例子就明白了。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>lpPtr=(char*)lpImgData+(BufSize-LineBytes-</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>(i+SrcY0)*LineBytes)+SrcX0;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//lpTempPtr</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">指向要拷贝的那一行的最左边的象素对应在新图中</SPAN><SPAN 
+lang=EN-US>//</SPAN><SPAN style="FONT-FAMILY: 宋体">的位置。同样要注意上面</SPAN><SPAN 
+lang=EN-US>//</SPAN><SPAN style="FONT-FAMILY: 宋体">的问题。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>lpTempPtr=(char*)lpTempImgData+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>(BufSize-LineBytes-(i+DstY0)*LineBytes)+DstX0;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">拷贝一行</SPAN><SPAN lang=EN-US>(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">宽度为</SPAN><SPAN lang=EN-US>RectWidth)</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memcpy(lpTempPtr,lpPtr,RectWidth);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>hDc=GetDC(hWnd);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>if(hBitmap!=NULL)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DeleteObject(hBitmap); 
+//</SPAN><SPAN style="FONT-FAMILY: 宋体">释放原来的位图句柄</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">产生新的位图</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>hBitmap=CreateDIBitmap(hDc,(LPBITMAPINFOHEADER)lpTempImgData,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LONG)CBM_INIT,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LPSTR)lpTempImgData+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>sizeof(BITMAPINFOHEADER) 
++</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>NumColors*sizeof(RGBQUAD),</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LPBITMAPINFO)lpTempImgData, 
+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DIB_RGB_COLORS);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">将平移后的图象存成文件</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>hf=_lcreat("c:\\translation.bmp",0);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>_lwrite(hf,(LPSTR)&amp;bf,sizeof(BITMAPFILEHEADER)); </SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>_lwrite(hf,(LPSTR)lpTempImgData,BufSize);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>_lclose(hf);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">释放资源和内存</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>ReleaseDC(hWnd,hDc);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>LocalUnlock(hTempImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>LocalFree(hTempImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>GlobalUnlock(hImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>return TRUE;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN><SPAN lang=EN-US 
+style="FONT-SIZE: 9pt"></SPAN></P>
+<H2><SPAN lang=EN-US>2.2</SPAN> <SPAN lang=EN-US></SPAN><A 
+name=_Toc486331869></A><A name=_Toc486332869></A><A name=_Toc486338978></A><A 
+name=_Toc454810843></A><A 
+name=_Toc454856617><SPAN><SPAN>旋转</SPAN></SPAN></A></H2>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">旋转</SPAN><SPAN 
+lang=EN-US>(rotation)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">有一个绕着什么转的问题，通常的做法是以图象的中心为圆心旋转，举个例子，图</SPAN><SPAN 
+lang=EN-US>2.7</SPAN><SPAN style="FONT-FAMILY: 宋体">旋转</SPAN><SPAN 
+lang=EN-US>30</SPAN><SPAN style="FONT-FAMILY: 宋体">度</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN style="FONT-FAMILY: 宋体">顺时针方向</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN style="FONT-FAMILY: 宋体">后如图</SPAN><SPAN 
+lang=EN-US>2.8</SPAN><SPAN style="FONT-FAMILY: 宋体">所示：</SPAN></P>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD class=Normal vAlign=bottom width=276>
+      <P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=86 
+      src="第2章 图象的几何变换.files/image022.jpg" width=145 v:shapes="_x0000_i1027"> 
+      </SPAN></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN>2.7&nbsp;&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+      style="FONT-FAMILY: 宋体">旋转前的图</SPAN><SPAN lang=EN-US></SPAN></B></P></TD>
+    <TD class=Normal vAlign=bottom width=276>
+      <P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=147 
+      src="第2章 图象的几何变换.files/image023.gif" width=169 v:shapes="_x0000_i1028"> 
+      </SPAN></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN>2.8&nbsp;&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+      style="FONT-FAMILY: 宋体">旋转后的图</SPAN><SPAN 
+  lang=EN-US></SPAN></B></P></TD></TR></TBODY></TABLE>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">可以看出，旋转后图象变大了。另一种做法是不让图象变大，转出的部分被裁剪掉。如图</SPAN><SPAN 
+lang=EN-US>2.9</SPAN><SPAN style="FONT-FAMILY: 宋体">所示。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">我们采用第一种做法，首先给出变换矩阵。在我们熟悉的坐标系中，将一个点顺时针旋转</SPAN><SPAN 
+lang=EN-US>a</SPAN><SPAN style="FONT-FAMILY: 宋体">角后的坐标变换公式，如图</SPAN><SPAN 
+lang=EN-US>2.10</SPAN><SPAN style="FONT-FAMILY: 宋体">所示，</SPAN><SPAN 
+lang=EN-US>r</SPAN><SPAN style="FONT-FAMILY: 宋体">为该点到原点的距离，在旋转过程中，</SPAN><SPAN 
+lang=EN-US>r</SPAN><SPAN style="FONT-FAMILY: 宋体">保持不变；</SPAN><SPAN 
+lang=EN-US>b</SPAN><SPAN style="FONT-FAMILY: 宋体">为</SPAN><SPAN 
+lang=EN-US>r</SPAN><SPAN style="FONT-FAMILY: 宋体">与</SPAN><SPAN 
+lang=EN-US>x</SPAN><SPAN style="FONT-FAMILY: 宋体">轴之间的夹角。</SPAN></P>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD class=Normal vAlign=bottom width=276>
+      <P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=106 
+      src="第2章 图象的几何变换.files/image025.jpg" width=138 v:shapes="_x0000_i1029"> 
+      </SPAN></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN><SPAN lang=EN-US>2.9 </SPAN></B><B><SPAN 
+      style="FONT-FAMILY: 宋体">旋转后保持原图大小，</SPAN><SPAN lang=EN-US></SPAN></B></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">转出的部分被裁掉</SPAN></B></P></TD>
+    <TD class=Normal vAlign=bottom width=276>
+      <P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=208 
+      src="第2章 图象的几何变换.files/image027.jpg" width=235 v:shapes="_x0000_i1030"> 
+      </SPAN></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN>2.10&nbsp;&nbsp; </B><B><SPAN 
+      style="FONT-FAMILY: 宋体">旋转示意图</SPAN><SPAN 
+  lang=EN-US></SPAN></B></P></TD></TR></TBODY></TABLE>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">旋转前：</SPAN><SPAN 
+lang=EN-US>x<SUB>0</SUB>=rcosb</SPAN><SPAN style="FONT-FAMILY: 宋体">；</SPAN><SPAN 
+lang=EN-US>y<SUB>0</SUB>=rsinb</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">旋转</SPAN><SPAN 
+lang=EN-US>a</SPAN><SPAN style="FONT-FAMILY: 宋体">角度后：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>x<SUB>1</SUB>=rcos(b-a)=rcosbcosa+rsinbsina=x<SUB>0</SUB>cosa+y<SUB>0</SUB>sina</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">；</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>y<SUB>1</SUB>=rsin(b-a)=rsinbcosa-rcosbsina=-x<SUB>0</SUB>sina+y<SUB>0</SUB>cosa</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">；</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">以矩阵的形式表示：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><SUB><IMG height=75 src="第2章 图象的几何变换.files/image029.gif" width=292 
+v:shapes="_x0000_i1031"> </SUB></SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: right" align=right><SPAN 
+lang=EN-US>(2.5)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">上面的公式中，坐标系</SPAN><SPAN lang=EN-US>xoy</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">是以图象的中心为原点，向右为</SPAN><SPAN lang=EN-US>x</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">轴正方向，向上为</SPAN><SPAN lang=EN-US>y</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">轴正方向。它和以图象左上角点为原点</SPAN><SPAN lang=EN-US>o’</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，向右为</SPAN><SPAN lang=EN-US>x’</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">轴正方向，向下为</SPAN><SPAN lang=EN-US>y’</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">轴正方向的坐标系</SPAN><SPAN lang=EN-US>x’o’y’</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">之间的转换关系如何呢？如图</SPAN><SPAN lang=EN-US>2.11</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">所示。</SPAN></P>
+<P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=160 
+src="第2章 图象的几何变换.files/image031.jpg" width=207 v:shapes="_x0000_i1032"> 
+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>2.11&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">两种坐标系间的转换关系</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">设图象的宽为</SPAN><SPAN 
+lang=EN-US>w</SPAN><SPAN style="FONT-FAMILY: 宋体">，高为</SPAN><SPAN 
+lang=EN-US>h</SPAN><SPAN style="FONT-FAMILY: 宋体">，容易得到：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><SUB><IMG height=75 src="第2章 图象的几何变换.files/image033.gif" width=296 
+v:shapes="_x0000_i1033"> </SUB></SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: right" align=right><SPAN 
+lang=EN-US>(2.6)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">逆变换为：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><SUB><IMG height=75 src="第2章 图象的几何变换.files/image035.gif" width=284 
+v:shapes="_x0000_i1034"> </SUB></SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: right" align=right><SPAN 
+lang=EN-US>(2.7)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">有了上面的公式，我们可以把变换分成三步：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>1.</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">将坐标系</SPAN><SPAN lang=EN-US>o’</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">变成</SPAN><SPAN lang=EN-US>o</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">；</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>2.</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">将该点顺时针旋转</SPAN><SPAN lang=EN-US>a</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">角；</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>3.</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">将坐标系</SPAN><SPAN lang=EN-US>o</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">变回</SPAN><SPAN lang=EN-US>o’</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，这样，我们就得到了变换矩阵，是上面三个矩阵的级联。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><SUB><IMG height=125 src="第2章 图象的几何变换.files/image037.gif" width=529 
+v:shapes="_x0000_i1040"> </SUB></SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: right" align=right><SPAN 
+lang=EN-US>(2.8)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">要注意的是，因为新图变大，所以上面公式中出现了</SPAN><SPAN 
+lang=EN-US>w<SUB>old</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>h<SUB>old</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>w<SUB>new</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>h<SUB>new</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，它们分别表示原图</SPAN><SPAN lang=EN-US>(old)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">和新图</SPAN><SPAN lang=EN-US>(new)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的宽、高。我们从图</SPAN><SPAN lang=EN-US>2.8</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">中容易看出：</SPAN><SPAN 
+lang=EN-US>w<SUB>new</SUB>=max(|x<SUB>4</SUB>-x<SUB>1</SUB>|,|x<SUB>3</SUB>-x<SUB>2</SUB>|) 
+</SPAN><SPAN style="FONT-FAMILY: 宋体">；</SPAN><SPAN 
+lang=EN-US>h<SUB>new</SUB>=max(|y<SUB>4</SUB>-y<SUB>1</SUB>|,|y<SUB>3</SUB>-y<SUB>2</SUB>|)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(2.8)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的逆变换为</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><SUB><IMG height=125 src="第2章 图象的几何变换.files/image039.gif" width=526 
+v:shapes="_x0000_i1035"> </SUB></SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: right" align=right><SPAN 
+lang=EN-US>(2.9)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">这样，对于新图中的每一点，我们就可以根据公式</SPAN><SPAN 
+lang=EN-US>(2.9)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">求出对应原图中的点，得到它的灰度。如果超出原图范围，则填成白色。要注意的是，由于有浮点运算，计算出来点的坐标可能不是整数，采用取整处理，即找最接近的点，这样会带来一些误差</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN style="FONT-FAMILY: 宋体">图象可能会出现锯齿</SPAN><SPAN 
+lang=EN-US>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。更精确的方法是采用插值，将在图象缩放时介绍。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">源程序如下：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>#define PI 3.1415926535</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>#define RADIAN(angle) 
+((angle)*PI/180.0) //</SPAN><SPAN style="FONT-FAMILY: 宋体">角度到弧度转化的宏</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>BOOL Rotation(HWND 
+hWnd)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P style="LINE-HEIGHT: 18pt">DLGPROC&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+dlgInputBox = NULL;</P>
+<P style="LINE-HEIGHT: 18pt">DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+OffBits,SrcBufSize,DstBufSize,DstLineBytes;</P>
+<P style="LINE-HEIGHT: 18pt">LPBITMAPINFOHEADER&nbsp;&nbsp; lpImgData;</P>
+<P 
+style="LINE-HEIGHT: 18pt">LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+lpPtr;</P>
+<P style="LINE-HEIGHT: 18pt">HLOCAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+hTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt">LPBITMAPINFOHEADER&nbsp;&nbsp; lpTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt">LPSTR&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+lpTempPtr;</P>
+<P 
+style="LINE-HEIGHT: 18pt">float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SrcX1,SrcY1,SrcX2,SrcY2;</P>
+<P 
+style="LINE-HEIGHT: 18pt">float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+SrcX3,SrcY3,SrcX4,SrcY4;</P>
+<P 
+style="LINE-HEIGHT: 18pt">float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+DstX1,DstY1,DstX2,DstY2;</P>
+<P 
+style="LINE-HEIGHT: 18pt">float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+DstX3,DstY3,DstX4,DstY4;</P>
+<P 
+style="LINE-HEIGHT: 18pt">DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Wold,Hold,Wnew,Hnew;</P>
+<P 
+style="LINE-HEIGHT: 18pt">HDC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hDc;</P>
+<P 
+style="LINE-HEIGHT: 18pt">HFILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+hf;</P>
+<P 
+style="LINE-HEIGHT: 18pt">DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x0,y0,x1,y1;</P>
+<P 
+style="LINE-HEIGHT: 18pt">float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cosa,sina; //cos(a),sin(a);</P>
+<P 
+style="LINE-HEIGHT: 18pt">float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; num1,num2;</P>
+<P style="LINE-HEIGHT: 18pt">BITMAPFILEHEADER 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DstBf;</P>
+<P 
+style="LINE-HEIGHT: 18pt">BITMAPINFOHEADER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DstBi;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">出现对话框，输入旋转角度</SPAN><SPAN lang=EN-US>(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">顺时针方向</SPAN><SPAN lang=EN-US>)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>dlgInputBox = (DLGPROC) 
+MakeProcInstance ( (FARPROC)InputBox,ghInst );</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DialogBox (ghInst, "INPUTBOX", 
+hWnd, dlgInputBox);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>FreeProcInstance ( (FARPROC) 
+dlgInputBox );</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">角度到弧度的转化</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>RotateAngle=(float)RADIAN(RotateAngle);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>cosa=(float)cos((double)RotateAngle);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>sina=(float)sin((double)RotateAngle);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">原图的宽度和高度</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>Wold=bi.biWidth;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>Hold=bi.biHeight;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">原图的四个角的坐标</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>SrcX1=(float)(-0.5*Wold);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>SrcY1=(float)(0.5*Hold);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>SrcX2=(float)(0.5*Wold);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>SrcY2=(float)(0.5*Hold);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>SrcX3=(float)(-0.5*Wold);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>SrcY3=(float)(-0.5*Hold);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>SrcX4=(float)(0.5*Wold);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>SrcY4=(float)(-0.5*Hold);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">新图四个角的坐标</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>DstX1=cosa*SrcX1+sina*SrcY1;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>DstY1=-sina*SrcX1+cosa*SrcY1;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>DstX2=cosa*SrcX2+sina*SrcY2;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>DstY2=-sina*SrcX2+cosa*SrcY2;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>DstX3=cosa*SrcX3+sina*SrcY3;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>DstY3=-sina*SrcX3+cosa*SrcY3;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>DstX4=cosa*SrcX4+sina*SrcY4;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>DstY4=-sina*SrcX4+cosa*SrcY4;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">计算新图的宽度，高度</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>Wnew = 
+(DWORD)(max(fabs(DstX4-DstX1), fabs(DstX3-DstX2))+0.5);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>Hnew = 
+(DWORD)(max(fabs(DstY4-DstY1), fabs(DstY3-DstY2))+0.5);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">计算矩阵</SPAN><SPAN lang=EN-US>(2.9)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">中的两个常数，这样不用以后每次都计算了</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>num1=(float)( 
+-0.5*Wnew*cosa-0.5*Hnew*sina+0.5*Wold);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>num2=(float)(0.5*Wnew*sina-0.5*Hnew*cosa+0.5*Hold);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//OffBits</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为</SPAN><SPAN lang=EN-US>BITMAPINFOHEADER</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">结构长度加调色板的大小</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>OffBits=bf.bfOffBits-sizeof(BITMAPFILEHEADER);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>SrcBufSize=OffBits+bi.biHeight*LineBytes;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">显示时，采用新图的宽度和高度，</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>ImgWidth=Wnew;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>ImgHeight=Hnew;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">新图每行占用的字节</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>DstLineBytes=(DWORD)WIDTHBYTES(Wnew*bi.biBitCount);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>DstBufSize=(DWORD)(sizeof(BITMAPINFOHEADER)+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>NumColors*sizeof(RGBQUAD)+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(DWORD)DstLineBytes*Hnew); 
+//</SPAN><SPAN style="FONT-FAMILY: 宋体">要开的缓冲区的大小</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为新产生的位图分配缓冲区内存</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>if((hTempImgData=LocalAlloc(LHND,DstBufSize))==NULL)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MessageBox(hWnd,"Error alloc 
+memory!","Error Message",</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>MB_OK|MB_ICONEXCLAMATION);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>return FALSE; //</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">失败，返回</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><A name=OLE_LINK2></A><SPAN 
+lang=EN-US>//lpImgData</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为指向原来位图数据的指针</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>lpImgData=(LPBITMAPINFOHEADER)GlobalLock(hImgData); </SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//lpTempImgData</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为指向新产生位图数据的指针</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>lpTempImgData=(LPBITMAPINFOHEADER)LocalLock(hTempImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>lpPtr=(char 
+*)lpImgData;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>lpTempPtr=(char 
+*)lpTempImgData;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">将新的缓冲区中的每个字节都填成</SPAN><SPAN lang=EN-US>255</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，这样以后未处理的象素就是白色</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>memset(lpTempPtr,(BYTE)255,DstBufSize);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">拷贝头和调色板信息</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>memcpy(lpTempPtr,lpPtr,OffBits);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">得到新的</SPAN><SPAN lang=EN-US>BITMAPFILEDER</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">和</SPAN><SPAN lang=EN-US>BITMAPINFOHERDER</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>memcpy((char *)&amp;DstBf,(char 
+*)&amp;bf,sizeof(BITMAPFILEHEADER));</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>memcpy((char *)&amp;DstBi,(char 
+*)&amp;bi,sizeof(BITMAPINFOHEADER));</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">做一些必要的改变，</SPAN><B><SPAN 
+style="FONT-FAMILY: 黑体">这一点特别要注意</SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>DstBf.bfSize=DstBufSize+sizeof(BITMAPFILEHEADER);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DstBi.biWidth=Wnew;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DstBi.biHeight=Hnew;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">用新的</SPAN><SPAN lang=EN-US>BITMAPINFOHERDER</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">覆盖原来的那个</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>memcpy(lpTempPtr,(char 
+*)&amp;DstBi,sizeof(BITMAPINFOHEADER));</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>for(y1=0;y1&lt;Hnew;y1++)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(x1=0;x1&lt;Wnew;x1++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//x0,y0<SPAN style="FONT-FAMILY: 宋体">为对应的原图上的坐标</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>x0= (DWORD)(x1*cosa+y1*sina+num1);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>y0= (DWORD)(-1.0f*x1*sina+y1*cosa+num2);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if( (x0&gt;=0) &amp;&amp; (x0&lt;Wold) &amp;&amp; (y0&gt;=0) &amp;&amp; 
+(y0&lt;Hold))&nbsp;&nbsp; </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">在原图范围内</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>{</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpPtr=(char*)lpImgData+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>(SrcBufSize-LineBytes-y0*LineBytes)+x0;</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempPtr=(char*)lpTempImgData+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>(DstBufSize-DstLineBytes-y1*DstLineBytes)+x1;</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*lpTempPtr=*lpPtr; //<SPAN style="FONT-FAMILY: 宋体">进行象素的复制</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>hDc=GetDC(hWnd);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>if(hBitmap!=NULL)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DeleteObject(hBitmap); 
+//</SPAN><SPAN style="FONT-FAMILY: 宋体">释放原来的位图句柄</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>hBitmap=CreateDIBitmap(hDc,(LPBITMAPINFOHEADER)lpTempImgData,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LONG)CBM_INIT,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LPSTR)lpTempImgData+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>sizeof(BITMAPINFOHEADER) 
++</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>NumColors*sizeof(RGBQUAD),</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LPBITMAPINFO)lpTempImgData, 
+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>DIB_RGB_COLORS);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">将旋转后的图象存成文件</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>hf=_lcreat("c:\\rotation.bmp",0);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>_lwrite(hf,(LPSTR)&amp;DstBf,sizeof(BITMAPFILEHEADER)); </SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>_lwrite(hf,(LPSTR)lpTempImgData,DstBufSize);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>_lclose(hf);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">释放资源和内存</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>ReleaseDC(hWnd,hDc);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>LocalUnlock(hTempImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>LocalFree(hTempImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>GlobalUnlock(hImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>return TRUE;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">程序运行时的画面如图</SPAN><SPAN lang=EN-US>2.12</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">所示</SPAN></P>
+<P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=355 
+src="第2章 图象的几何变换.files/image041.jpg" width=368 v:shapes="_x0000_i1036"> 
+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>2.12&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">旋转</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<H2><SPAN lang=EN-US>2.3</SPAN> <SPAN lang=EN-US></SPAN><A 
+name=_Toc486331870></A><A name=_Toc486332870></A><A name=_Toc486338979></A><A 
+name=_Toc454810844></A><A 
+name=_Toc454856618><SPAN><SPAN>镜象</SPAN></SPAN></A></H2>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">镜象</SPAN><SPAN 
+lang=EN-US>(mirror)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">分水平镜象和垂直镜象两种。图</SPAN><SPAN lang=EN-US>2.2</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">的水平镜象和垂直镜象分别如图</SPAN><SPAN lang=EN-US>2.13</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">和图</SPAN><SPAN lang=EN-US>2.14</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">所示</SPAN></P>
+<P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=202 
+src="第2章 图象的几何变换.files/image042.gif" width=319 v:shapes="_x0000_i1037"> 
+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>2.13&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN><SPAN lang=EN-US>2.2</SPAN></B><B><SPAN 
+style="FONT-FAMILY: 宋体">的水平镜象</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+lang=EN-US><IMG height=192 src="第2章 图象的几何变换.files/image043.gif" width=303 
+v:shapes="_x0000_i1041"> </SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>2.14&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN><SPAN lang=EN-US>2.2</SPAN></B><B><SPAN 
+style="FONT-FAMILY: 宋体">的垂直镜象</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">镜象的变换矩阵很简单。设原图宽为</SPAN><SPAN lang=EN-US>w</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，高为</SPAN><SPAN lang=EN-US>h</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，变换后，图的宽和高不变。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">水平镜象的变化矩阵为：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><SUB><IMG height=75 src="第2章 图象的几何变换.files/image045.gif" width=244 
+v:shapes="_x0000_i1042"> </SUB></SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: right" align=right><SPAN 
+lang=EN-US>(2.10)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">垂直镜象的变化矩阵为：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><SUB><IMG height=75 src="第2章 图象的几何变换.files/image047.gif" width=244 
+v:shapes="_x0000_i1043"> </SUB></SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: right" align=right><SPAN 
+lang=EN-US>(2.11)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">镜象变换的源代码如下，因为和平移的那段程序很类似，程序中的注释就简单一些。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>BOOL Mirror(HWND hWnd,BOOL 
+XDirection) </SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//Xdirection</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为</SPAN><SPAN lang=EN-US>TRUE</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">时表示水平镜象，为</SPAN><SPAN lang=EN-US>FALSE</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">时表示垂直镜象变换</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OffBits,BufSize;</P>
+<P style="LINE-HEIGHT: 18pt">LPBITMAPINFOHEADER&nbsp;&nbsp;&nbsp; lpImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+lpPtr;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HLOCAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPBITMAPINFOHEADER&nbsp;&nbsp;&nbsp; lpTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+lpTempPtr;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HDC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hDc;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HFILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+hf;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LONG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+x0,y0,x1,y1;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>OffBits=bf.bfOffBits-sizeof(BITMAPFILEHEADER);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>BufSize=OffBits+bi.biHeight*LineBytes;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>if((hTempImgData=LocalAlloc(LHND,BufSize))==NULL)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MessageBox(hWnd,"Error alloc 
+memory!","Error Message",MB_OK|</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MB_ICONEXCLAMATION);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>return FALSE;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>lpImgData=(LPBITMAPINFOHEADER)GlobalLock(hImgData); 
+lpTempImgData=(LPBITMAPINFOHEADER)LocalLock(hTempImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>lpPtr=(char 
+*)lpImgData;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>lpTempPtr=(char 
+*)lpTempImgData;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>memset(lpTempPtr,(BYTE)255,BufSize);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>memcpy(lpTempPtr,lpPtr,OffBits);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if( XDirection){ //<SPAN style="FONT-FAMILY: 宋体">水平镜象</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(y1=0;y1&lt;bi.biHeight;y1++)</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(x1=0;x1&lt;bi.biWidth;x1++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>x0=bi.biWidth-1-x1; //<SPAN style="FONT-FAMILY: 宋体">因为</SPAN><SPAN 
+lang=EN-US>x</SPAN><SPAN style="FONT-FAMILY: 宋体">坐标是从</SPAN><SPAN 
+lang=EN-US>0</SPAN><SPAN style="FONT-FAMILY: 宋体">到</SPAN><SPAN 
+lang=EN-US>bi.biWidth-1</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>y0=y1;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpPtr=(char *)lpImgData+(BufSize-LineBytes-y0*LineBytes)+x0;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempPtr=(char *)lpTempImgData+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>(BufSize-LineBytes-y1*LineBytes)+x1;</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*lpTempPtr=*lpPtr;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>else{ //<SPAN style="FONT-FAMILY: 宋体">垂直镜象</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(y1=0;y1&lt;bi.biHeight;y1++)</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(x1=0;x1&lt;bi.biWidth;x1++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>x0=x1;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>y0=bi.biHeight-1-y1;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpPtr=(char *)lpImgData+(BufSize-LineBytes-y0*LineBytes)+x0;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempPtr=(char *)lpTempImgData+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>(BufSize-LineBytes-y1*LineBytes)+x1;</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*lpTempPtr=*lpPtr;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>hDc=GetDC(hWnd);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>if(hBitmap!=NULL)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp; DeleteObject(hBitmap);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>hBitmap=CreateDIBitmap(hDc,(LPBITMAPINFOHEADER)lpTempImgData,</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LONG)CBM_INIT,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LPSTR)lpTempImgData+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>sizeof(BITMAPINFOHEADER)+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>NumColors*sizeof(RGBQUAD),</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LPBITMAPINFO)lpTempImgData, 
+DIB_RGB_COLORS);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>if( XDirection)</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>hf=_lcreat("c:\\mirrorx.bmp",0);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>else</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>hf=_lcreat("c:\\mirrory.bmp",0);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lwrite(hf,(LPSTR)&amp;bf,sizeof(BITMAPFILEHEADER)); </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lwrite(hf,(LPSTR)lpTempImgData,BufSize);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lclose(hf);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;</SPAN>&nbsp;&nbsp;&nbsp;&nbsp; 
+ReleaseDC(hWnd,hDc);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalUnlock(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalFree(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>GlobalUnlock(hImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>return TRUE;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN><SPAN lang=EN-US 
+style="FONT-SIZE: 9pt"></SPAN></P>
+<H2><SPAN lang=EN-US>2.4</SPAN> <SPAN lang=EN-US></SPAN><A 
+name=_Toc486331871></A><A name=_Toc486332871></A><A name=_Toc486338980></A><A 
+name=_Toc454810845></A><A 
+name=_Toc454856619><SPAN><SPAN>转置</SPAN></SPAN></A></H2>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">转置</SPAN><SPAN 
+lang=EN-US>(transpose)</SPAN><SPAN style="FONT-FAMILY: 宋体">是指将</SPAN><SPAN 
+lang=EN-US>x</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>y</SPAN><SPAN style="FONT-FAMILY: 宋体">坐标对换，图</SPAN><SPAN 
+lang=EN-US>2.2</SPAN><SPAN style="FONT-FAMILY: 宋体">的转置如图</SPAN><SPAN 
+lang=EN-US>2.15</SPAN><SPAN style="FONT-FAMILY: 宋体">所示。</SPAN></P>
+<P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=312 
+src="第2章 图象的几何变换.files/image048.gif" width=198 v:shapes="_x0000_i1073"> 
+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN>2.15&nbsp;&nbsp; </B><B><SPAN 
+style="FONT-FAMILY: 宋体">图</SPAN><SPAN lang=EN-US>2.2</SPAN></B><B><SPAN 
+style="FONT-FAMILY: 宋体">的转置</SPAN><SPAN lang=EN-US></SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+style="FONT-FAMILY: 宋体">要注意的是，转置和旋转</SPAN><SPAN 
+lang=EN-US>90<SUP>0</SUP></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">是有区别的，不信你可以试试：怎么旋转，图</SPAN><SPAN 
+lang=EN-US>2.2</SPAN><SPAN style="FONT-FAMILY: 宋体">也转不出图</SPAN><SPAN 
+lang=EN-US>2.15</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">来。另外，转置后图的宽高对换了。转置的变换矩阵很简单：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><SUB><IMG height=75 src="第2章 图象的几何变换.files/image050.gif" width=235 
+v:shapes="_x0000_i1074"> </SUB></SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: right" align=right><SPAN 
+lang=EN-US>(2.12)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">镜象变换的源代码如下，因为和旋转的那段程序很类似，程序中的注释就简单一些：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>BOOL Transpose(HWND 
+hWnd)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt">DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+OffBits,SrcBufSize,DstBufSize,DstLineBytes;</P>
+<P style="LINE-HEIGHT: 18pt">LPBITMAPINFOHEADER&nbsp;&nbsp;&nbsp; lpImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+lpPtr;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HLOCAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPBITMAPINFOHEADER&nbsp;&nbsp;&nbsp; lpTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+lpTempPtr;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Wnew,Hnew;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HDC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hDc;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HFILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+hf;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x0,y0,x1,y1;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>BITMAPFILEHEADER&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DstBf;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>BITMAPINFOHEADER &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DstBi;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">新图的宽度和高度</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Wnew = (DWORD)bi.biHeight;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>Hnew = 
+(DWORD)bi.biWidth;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>OffBits=bf.bfOffBits-sizeof(BITMAPFILEHEADER);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>SrcBufSize=OffBits+bi.biHeight*LineBytes;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">显示时，采用新图的宽度和高度，</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>ImgWidth=Wnew;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>ImgHeight=Hnew;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstLineBytes=(DWORD)WIDTHBYTES(Wnew*bi.biBitCount);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstBufSize=(DWORD)(sizeof(BITMAPINFOHEADER)+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>NumColors*sizeof(RGBQUAD)+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>(DWORD)DstLineBytes*Hnew);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>if((hTempImgData=LocalAlloc(LHND,DstBufSize))==NULL)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; </SPAN>{</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MessageBox(hWnd,"Error alloc 
+memory!","Error Message",MB_OK|</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MB_ICONEXCLAMATION);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>return FALSE;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt">lpImgData=(LPBITMAPINFOHEADER)GlobalLock(hImgData);&nbsp;&nbsp;&nbsp; 
+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>lpTempImgData=(LPBITMAPINFOHEADER)LocalLock(hTempImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>lpPtr=(char 
+*)lpImgData;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempPtr=(char *)lpTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memset(lpTempPtr,(BYTE)255,DstBufSize);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memcpy(lpTempPtr,lpPtr,OffBits);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">头信息中做一些必要的改变，</SPAN><B><SPAN 
+style="FONT-FAMILY: 黑体">这一点非常重要</SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memcpy((char *)&amp;DstBf,(char *)&amp;bf,sizeof(BITMAPFILEHEADER));</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memcpy((char *)&amp;DstBi,(char *)&amp;bi,sizeof(BITMAPINFOHEADER));</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstBf.bfSize=DstBufSize+sizeof(BITMAPFILEHEADER);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstBi.biWidth=Wnew;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstBi.biHeight=Hnew;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memcpy(lpTempPtr,(char *)&amp;DstBi,sizeof(BITMAPINFOHEADER));</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(y1=0;y1&lt;Hnew;y1++)</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(x1=0;x1&lt;Wnew;x1++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>x0= y1;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>y0= x1;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpPtr=(char *)lpImgData+(SrcBufSize-LineBytes-y0*LineBytes)+x0;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempPtr=(char *)lpTempImgData+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>(DstBufSize-DstLineBytes-y1*DstLineBytes)+x1;</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*lpTempPtr=*lpPtr;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>hDc=GetDC(hWnd);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+if(hBitmap!=NULL)</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp; DeleteObject(hBitmap);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>hBitmap=CreateDIBitmap(hDc,(LPBITMAPINFOHEADER)lpTempImgData, 
+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LONG)CBM_INIT,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LPSTR)lpTempImgData+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>sizeof(BITMAPINFOHEADER)+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>NumColors*sizeof(RGBQUAD),</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LPBITMAPINFO)lpTempImgData, 
+DIB_RGB_COLORS);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>hf=_lcreat("c:\\transpose.bmp",0);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lwrite(hf,(LPSTR)&amp;DstBf,sizeof(BITMAPFILEHEADER)); </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lwrite(hf,(LPSTR)lpTempImgData,DstBufSize);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lclose(hf);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;</SPAN>&nbsp;&nbsp;&nbsp;&nbsp; 
+ReleaseDC(hWnd,hDc);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalUnlock(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalFree(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>GlobalUnlock(hImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>return TRUE;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN><SPAN lang=EN-US 
+style="FONT-SIZE: 9pt"></SPAN></P>
+<H2><SPAN lang=EN-US>2.5</SPAN> <SPAN lang=EN-US></SPAN><A 
+name=_Toc486331872></A><A name=_Toc486332872></A><A name=_Toc486338981></A><A 
+name=_Toc454810846></A><A 
+name=_Toc454856620><SPAN><SPAN>缩放</SPAN></SPAN></A></H2>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">假设放大因子为</SPAN><SPAN 
+lang=EN-US>ratio</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>(</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为了避免新图过大或过小，我们在程序中限制</SPAN><SPAN 
+lang=EN-US>0.25</SPAN><SPAN style="FONT-FAMILY: 宋体">≤</SPAN><SPAN 
+lang=EN-US>ratio</SPAN><SPAN style="FONT-FAMILY: 宋体">≤</SPAN><SPAN 
+lang=EN-US>4)</SPAN><SPAN style="FONT-FAMILY: 宋体">，缩放</SPAN><SPAN 
+lang=EN-US>(zoom)</SPAN><SPAN style="FONT-FAMILY: 宋体">的变换矩阵很简单：</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US><SUB><IMG height=75 src="第2章 图象的几何变换.files/image052.gif" width=311 
+v:shapes="_x0000_i1044"> </SUB></SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: right" align=right><SPAN 
+lang=EN-US>(2.13)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">缩放变换的源代码如下，因为和转置的那段程序很类似，程序中的注释就简单一些。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt">float&nbsp; ZoomRatio=0.25f; //<SPAN 
+style="FONT-FAMILY: 宋体">缩放比例，初始化为</SPAN><SPAN lang=EN-US>0.25</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>BOOL Zoom(HWND hWnd)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt">DLGPROC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dlgInputBox = NULL;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+OffBits,SrcBufSize,DstBufSize,DstLineBytes;</P>
+<P style="LINE-HEIGHT: 18pt">LPBITMAPINFOHEADER&nbsp;&nbsp;&nbsp; lpImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+lpPtr;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HLOCAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPBITMAPINFOHEADER&nbsp;&nbsp;&nbsp; lpTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LPSTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+lpTempPtr;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Wold,Hold,Wnew,Hnew;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HDC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hDc;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>HFILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+hf;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DWORD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+x0,y0,x1,y1;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+num1;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>BITMAPFILEHEADER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+DstBf;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>BITMAPINFOHEADER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DstBi;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>//</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">出现对话框，输入缩放比例</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>dlgInputBox = (DLGPROC) MakeProcInstance ( (FARPROC)InputBox, ghInst 
+);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DialogBox (ghInst, "INPUTBOX", hWnd, dlgInputBox);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>FreeProcInstance ( (FARPROC) dlgInputBox );</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>num1=(float)(1.0/ZoomRatio);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">原图宽度和高度</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Wold=bi.biWidth;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Hold=bi.biHeight;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">新图宽度和高度</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>Wnew = (DWORD)(Wold*ZoomRatio+0.5);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; Hnew = 
+(DWORD)(Hold*ZoomRatio+0.5);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>OffBits=bf.bfOffBits-sizeof(BITMAPFILEHEADER);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>SrcBufSize=OffBits+bi.biHeight*LineBytes;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>ImgWidth=Wnew;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>ImgHeight=Hnew;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstLineBytes=(DWORD)WIDTHBYTES(Wnew*bi.biBitCount);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstBufSize=(DWORD)(sizeof(BITMAPINFOHEADER)+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>NumColors*sizeof(RGBQUAD)+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>(DWORD)DstLineBytes*Hnew);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>if((hTempImgData=LocalAlloc(LHND,DstBufSize))==NULL)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>{</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MessageBox(hWnd,"Error 
+alloc memory!","Error Message",MB_OK|</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>MB_ICONEXCLAMATION);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>return FALSE;</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>lpImgData=(LPBITMAPINFOHEADER)GlobalLock(hImgData);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempImgData=(LPBITMAPINFOHEADER)LocalLock(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpPtr=(char *)lpImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempPtr=(char *)lpTempImgData;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memset(lpTempPtr,(BYTE)255,DstBufSize);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memcpy(lpTempPtr,lpPtr,OffBits);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>//<SPAN style="FONT-FAMILY: 宋体">头信息中做一些必要的改变，</SPAN><B><SPAN 
+style="FONT-FAMILY: 黑体">这一点非常重要</SPAN></B></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memcpy((char *)&amp;DstBf,(char *)&amp;bf,sizeof(BITMAPFILEHEADER));</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>memcpy((char *)&amp;DstBi,(char *)&amp;bi,sizeof(BITMAPINFOHEADER));</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstBf.bfSize=DstBufSize+sizeof(BITMAPFILEHEADER);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstBi.biWidth=Wnew;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DstBi.biHeight=Hnew;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>memcpy(lpTempPtr,(char 
+*)&amp;DstBi,sizeof(BITMAPINFOHEADER));</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(y1=0;y1&lt;Hnew;y1++)</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>for(x1=0;x1&lt;Wnew;x1++){</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>x0= (DWORD)(x1*num1);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>y0= (DWORD)(y1*num1);</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>if( (x0&gt;=0) &amp;&amp; (x0&lt;Wold) &amp;&amp; (y0&gt;=0) &amp;&amp; 
+(y0&lt;Hold))</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>{</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpPtr=(char*)lpImgData+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>(SrcBufSize-LineBytes-y0*LineBytes)+x0;</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>lpTempPtr=(char *)lpTempImgData+</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>(DstBufSize-DstLineBytes-y1*DstLineBytes)+x1;</SPAN></P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>*lpTempPtr=*lpPtr;</P>
+<P 
+style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>}</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>hDc=GetDC(hWnd);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp; </SPAN>&nbsp; 
+if(hBitmap!=NULL)</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>DeleteObject(hBitmap);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>hBitmap=CreateDIBitmap(hDc,(LPBITMAPINFOHEADER)lpTempImgData,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LONG)CBM_INIT,</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LPSTR)lpTempImgData+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>sizeof(BITMAPINFOHEADER)+</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>NumColors*sizeof(RGBQUAD),</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>(LPBITMAPINFO)lpTempImgData, 
+DIB_RGB_COLORS);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+lang=EN-US>hf=_lcreat("c:\\zoom.bmp",0);</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lwrite(hf,(LPSTR)&amp;DstBf,sizeof(BITMAPFILEHEADER)); </P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lwrite(hf,(LPSTR)lpTempImgData,DstBufSize);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>_lclose(hf);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;</SPAN>&nbsp;&nbsp;&nbsp;&nbsp; 
+ReleaseDC(hWnd,hDc);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalUnlock(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>LocalFree(hTempImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>GlobalUnlock(hImgData);</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN>return TRUE;</P>
+<P style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US>}</SPAN><SPAN lang=EN-US 
+style="FONT-SIZE: 9pt"></SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">由于放大图象时产生了新的象素，以及浮点数的操作，得到的坐标可能并不是整数，这一点我们在介绍旋转时就提到了。我们采用的做法是找与之最临近的点。实际上，更精确的做法是采用插值</SPAN><SPAN 
+lang=EN-US>(interpolation)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，即利用邻域的象素来估计新的象素值。其实我们前面的做法也是一种插值，称为最邻近插值</SPAN><SPAN 
+lang=EN-US>(Nearest Neighbour Interpolation)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。下面先介绍线形插值</SPAN><SPAN lang=EN-US>(Linear 
+Interpolation)</SPAN><SPAN style="FONT-FAMILY: 宋体">。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">线形插值使用原图中两个值来构造所求坐标处的值。举一个一维的例子。如图</SPAN><SPAN 
+lang=EN-US>2.16</SPAN><SPAN style="FONT-FAMILY: 宋体">所示，如果已经知道了两点</SPAN><SPAN 
+lang=EN-US>x<SUB>0</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>x<SUB>2</SUB></SPAN><SPAN style="FONT-FAMILY: 宋体">处的函数值</SPAN><SPAN 
+lang=EN-US>f(x<SUB>0</SUB>)</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>f(x<SUB>2</SUB>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，现在要求</SPAN><SPAN lang=EN-US>x<SUB>1</SUB></SPAN><SPAN 
+style="FONT-FAMILY: 宋体">处的函数值</SPAN><SPAN 
+lang=EN-US>f(x<SUB>1</SUB>)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">。我们假设函数是线形的，利用几何知识可以知道</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><SPAN 
+lang=EN-US>f(x<SUB>1</SUB>)=(f(x<SUB>2</SUB>)-f(x<SUB>0</SUB>))(x<SUB>1</SUB>-x<SUB>0</SUB>)/(x<SUB>2</SUB>-x<SUB>0</SUB>)+f(x<SUB>0</SUB>)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: right" align=right><SPAN 
+lang=EN-US>(2.13)</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">在图象处理中需要将线形插值扩展到二维的情况，即采用双线形插值</SPAN><SPAN 
+lang=EN-US>(Bilinear Intrepolation)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，图</SPAN><SPAN lang=EN-US>2.17</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">为双线形插值的示意图。</SPAN></P>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD class=Normal vAlign=bottom width=276>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      lang=EN-US><IMG height=199 src="第2章 图象的几何变换.files/image054.jpg" width=269 
+      v:shapes="_x0000_i1045"> </SPAN></B><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN>2.16&nbsp;&nbsp; </B><B><SPAN 
+      style="FONT-FAMILY: 宋体">线形插值的示意图</SPAN><SPAN lang=EN-US></SPAN></B></P></TD>
+    <TD class=Normal vAlign=bottom width=276>
+      <P class=a style="LINE-HEIGHT: 18pt"><SPAN lang=EN-US><IMG height=160 
+      src="第2章 图象的几何变换.files/image055.gif" width=143 v:shapes="_x0000_i1046"> 
+      </SPAN></P>
+      <P style="LINE-HEIGHT: 18pt; TEXT-ALIGN: center" align=center><B><SPAN 
+      style="FONT-FAMILY: 宋体">图</SPAN>.217&nbsp;&nbsp;&nbsp; </B><B><SPAN 
+      style="FONT-FAMILY: 宋体">双线形插值的示意图</SPAN><SPAN 
+  lang=EN-US></SPAN></B></P></TD></TR></TBODY></TABLE>
+<P style="LINE-HEIGHT: 18pt"><SPAN style="FONT-FAMILY: 宋体">已知</SPAN><SPAN 
+lang=EN-US>a</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>b</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>c</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>d</SPAN><SPAN style="FONT-FAMILY: 宋体">四点的灰度，要求</SPAN><SPAN 
+lang=EN-US>e</SPAN><SPAN style="FONT-FAMILY: 宋体">点的灰度，可以先在水平方向上由</SPAN><SPAN 
+lang=EN-US>a</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>b</SPAN><SPAN style="FONT-FAMILY: 宋体">线形插值求出</SPAN><SPAN 
+lang=EN-US>g</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>c</SPAN><SPAN style="FONT-FAMILY: 宋体">、</SPAN><SPAN 
+lang=EN-US>d</SPAN><SPAN style="FONT-FAMILY: 宋体">线形插值求出</SPAN><SPAN 
+lang=EN-US>f</SPAN><SPAN style="FONT-FAMILY: 宋体">，然后在垂直方向上由</SPAN><SPAN 
+lang=EN-US>g</SPAN><SPAN style="FONT-FAMILY: 宋体">，</SPAN><SPAN 
+lang=EN-US>f</SPAN><SPAN style="FONT-FAMILY: 宋体">线形插值求出</SPAN><SPAN 
+lang=EN-US>e</SPAN><SPAN style="FONT-FAMILY: 宋体">。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">线形插值基于这样的假设：原图的灰度在两个象素之间是线形变化的。一般情况下，这种插值的效果还不错。更精确的方法是采用曲线插值</SPAN><SPAN 
+lang=EN-US>(Curvilinear Interpolation)</SPAN><SPAN 
+style="FONT-FAMILY: 宋体">，即认为象素之间的灰度变化规律符合某种曲线，但这种处理的计算量是很大的。</SPAN></P>
+<P style="LINE-HEIGHT: 18pt"><SPAN 
+style="FONT-FAMILY: 宋体">关于插值，我们就介绍到这里，有兴趣的读者可以参考“数值分析”方面的书籍。</SPAN></P></DIV>
+<DIV 
+style="DISPLAY: block; FONT-SIZE: 10px; FONT-FAMILY: Verdana, Geneva, Arial">The 
+University of Southern California does not screen or control the content on this 
+website and thus does not guarantee the accuracy, integrity, or quality of such 
+content. All content on this website is provided by and is the sole 
+responsibility of the person from which such content originated, and such 
+content does not necessarily reflect the opinions of the University 
+administration or the Board of Trustees </DIV></BODY></HTML>

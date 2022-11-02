@@ -1,0 +1,48 @@
+#include "bmp.h"
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+BMPMENU MENU DISCARDABLE 
+BEGIN
+    POPUP "File"
+    BEGIN
+        MENUITEM "Open",                        IDM_LOADBMP
+        MENUITEM "Exit",                        IDM_EXIT
+    END
+    POPUP "Geometric Transform"
+    BEGIN
+        MENUITEM "Translation...",              IDM_TRANSLATION
+        MENUITEM "Rotation...",                 IDM_ROTATION
+        MENUITEM "Mirror X Direction",          IDM_MIRRORX
+        MENUITEM "Mirror Y Direction",          IDM_MIRRORY
+        MENUITEM "Transpose",                   IDM_TRANSPOSE
+        MENUITEM "Zoom...",                     IDM_ZOOM
+    END
+END
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+INPUTBOX DIALOG DISCARDABLE  222, 17, 189, 149
+STYLE DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
+CAPTION "InputBox"
+FONT 8, "System"
+BEGIN
+    EDITTEXT        ID_XOFFSET,43,28,44,12,ES_AUTOHSCROLL | ES_WANTRETURN
+    EDITTEXT        ID_YOFFSET,43,50,44,12,ES_AUTOHSCROLL | ES_WANTRETURN
+    DEFPUSHBUTTON   "OK",IDOK,78,132,32,14,WS_GROUP
+    CTEXT           "x:",IDC_STATIC,11,29,23,12
+    CTEXT           "Please input offset",IDC_STATIC,9,17,72,8
+    CTEXT           "y:",IDC_STATIC,11,50,23,12
+    GROUPBOX        "Translation",IDC_STATIC,5,4,88,68
+    EDITTEXT        ID_ANGLE,114,45,53,12,ES_AUTOHSCROLL | ES_WANTRETURN
+    CTEXT           "Please input angle(CW)",IDC_STATIC,100,20,80,8
+    GROUPBOX        "Rotation",IDC_STATIC,97,4,88,68
+    EDITTEXT        ID_ZOOMRATIO,16,105,53,12,ES_AUTOHSCROLL | ES_WANTRETURN
+    LTEXT           "Please input ratio(0.25<=ratio<=4)",IDC_STATIC,16,89,
+                    115,8
+    GROUPBOX        "Zoom",IDC_STATIC,5,73,180,53
+END

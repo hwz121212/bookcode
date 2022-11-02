@@ -1,0 +1,33 @@
+#include "bmp.h"
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+BMPMENU MENU DISCARDABLE 
+BEGIN
+    POPUP "File"
+    BEGIN
+        MENUITEM "Open",                        IDM_LOADBMP
+        MENUITEM "Exit",                        IDM_EXIT
+    END
+    POPUP "Edge Detection"
+    BEGIN
+        POPUP "Sobel"
+        BEGIN
+            MENUITEM "Horizontal",                  IDM_HSOBEL
+            MENUITEM "Vertical",                    IDM_VSOBEL
+        END
+        POPUP "Isotropic Sobel"
+        BEGIN
+            MENUITEM "Horizontal",                  IDM_HISOSOBEL
+            MENUITEM "Vertical",                    IDM_VISOSOBEL
+        END
+        MENUITEM "Laplacian of Gaussian",       IDM_LOG
+        MENUITEM SEPARATOR
+        MENUITEM "Hough",                       IDM_HOUGH
+        MENUITEM "Outline",                     IDM_OUTLINE
+        MENUITEM "SeedFill",                    IDM_SEEDFILL
+        MENUITEM "Contour Following",           IDM_CONTOUR
+    END
+END

@@ -1,0 +1,53 @@
+#include "bmp.h"
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+BMPMENU MENU DISCARDABLE 
+BEGIN
+    POPUP "File"
+    BEGIN
+        MENUITEM "Open",                        IDM_LOADBMP
+        MENUITEM "Exit",                        IDM_EXIT
+    END
+    POPUP "Color Operation"
+    BEGIN
+        MENUITEM "True to 256",                 IDM_TRUE256
+        MENUITEM "Color to Grayscale",          IDM_CLRGRAY
+        MENUITEM "Invert",                      IDM_INVERT
+        MENUITEM SEPARATOR
+        MENUITEM "Contrast Stretching...",      IDM_CONTSTRETCH
+        MENUITEM "Cliping...",                  IDM_CLIPING
+        MENUITEM "Thresholding...",             IDM_THRESHOLD
+        MENUITEM "Slicing without Background...", IDM_SLICEWITHOUTBACK
+        MENUITEM "Slicing with Background...",  IDM_SLICEWITHBACK
+        MENUITEM SEPARATOR
+        MENUITEM "Histogram Display...",        IDM_HISTOGRAM
+        MENUITEM "Histogram Equalization",      IDM_HISTOGRAMEQUA
+    END
+END
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+INPUTBOX DIALOG DISCARDABLE  222, 17, 196, 102
+STYLE DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
+CAPTION "InputBox"
+FONT 8, "System"
+BEGIN
+    EDITTEXT        ID_FIRSTPOINT,59,14,28,12,ES_AUTOHSCROLL | ES_WANTRETURN
+    EDITTEXT        ID_SECONDPOINT,59,33,28,12,ES_AUTOHSCROLL | 
+                    ES_WANTRETURN
+    EDITTEXT        ID_STRETCHRATIO,59,52,28,12,ES_AUTOHSCROLL | 
+                    ES_WANTRETURN
+    EDITTEXT        ID_EQUASCALE,122,46,53,12,ES_AUTOHSCROLL | ES_WANTRETURN
+    DEFPUSHBUTTON   "OK",IDOK,82,82,32,14,WS_GROUP
+    GROUPBOX        "Contrast Stretching",IDC_STATIC,5,5,88,68
+    LTEXT           "first point:",IDC_STATIC,8,15,47,12
+    LTEXT           "ratio:",IDC_STATIC,8,51,47,12
+    LTEXT           "second point:",IDC_STATIC,8,33,47,12
+    LTEXT           "Please input gray scale",IDC_STATIC,104,21,84,8
+    GROUPBOX        "Histogram Equalization",IDC_STATIC,101,5,90,68
+END

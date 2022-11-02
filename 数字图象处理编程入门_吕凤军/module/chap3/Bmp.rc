@@ -1,0 +1,26 @@
+#include "bmp.h"
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+BMPMENU MENU DISCARDABLE 
+BEGIN
+    POPUP "File"
+    BEGIN
+        MENUITEM "Open",                        IDM_LOADBMP
+        MENUITEM "Exit",                        IDM_EXIT
+    END
+    POPUP "Smoothing && Sharpening"
+    BEGIN
+        MENUITEM "Box Smoothing",               IDM_SMOOTHING_BOX
+        MENUITEM "Gauss Smoothing",             IDM_SMOOTHING_GAUSS
+        POPUP "Median Filtering"
+        BEGIN
+            MENUITEM "Horizontal",                  IDM_HMEDIAN
+            MENUITEM "Vertical",                    IDM_VMEDIAN
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Laplacian Sharpening",        IDM_SHARPENING_LAPLACIAN
+    END
+END

@@ -1,0 +1,23 @@
+#include "bmp.h"
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+BMPMENU MENU DISCARDABLE 
+BEGIN
+    POPUP "File"
+    BEGIN
+        MENUITEM "Open",                        IDM_LOADBMP
+        MENUITEM "Exit",                        IDM_EXIT
+    END
+    POPUP "Image Detection"
+    BEGIN
+        POPUP "Projection"
+        BEGIN
+            MENUITEM "Horizontal",                  IDM_HPROJECTION
+            MENUITEM "Vertical",                    IDM_VPROJECTION
+        END
+        MENUITEM "Subtraction",                 IDM_SUBTRACTION
+    END
+END

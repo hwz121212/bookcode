@@ -1,0 +1,14 @@
+#include "bmp.h"
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+BMPMENU MENU DISCARDABLE 
+BEGIN
+    POPUP "Compression && Coding"
+    BEGIN
+        MENUITEM "Run Length",                  IDM_RUNLENGTH
+        MENUITEM "Jpeg",                        IDM_JPEG
+    END
+END
