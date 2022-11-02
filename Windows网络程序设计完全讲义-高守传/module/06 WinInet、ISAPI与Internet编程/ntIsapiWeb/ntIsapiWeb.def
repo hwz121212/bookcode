@@ -1,0 +1,8 @@
+; NTISAPIWEB.def : declares the module parameters for the DLL.
+
+LIBRARY	     "NTISAPIWEB"
+
+EXPORTS
+	HttpExtensionProc
+	GetExtensionVersion
+	TerminateExtension
