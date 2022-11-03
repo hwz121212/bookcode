@@ -1,0 +1,36 @@
+// Ryotai.h: interface for the CRyotai class.
+//
+//////////////////////////////////////////////////////////////////////
+
+#if !defined(AFX_RYOTAI_H__D1D1AB9B_234B_4456_B6DE_C114327871F6__INCLUDED_)
+#define AFX_RYOTAI_H__D1D1AB9B_234B_4456_B6DE_C114327871F6__INCLUDED_
+
+#if _MSC_VER > 1000
+#pragma once
+#endif // _MSC_VER > 1000
+
+#include "Shape.h"
+
+class CRyotai : public CShape  
+{
+	Point m_ptStart;
+	Point m_ptEnd;
+public:
+	CRyotai();
+	virtual ~CRyotai();
+	
+	virtual void Draw(CDC* pDC);
+	virtual void OnLButtonDown(UINT nFlags, CPoint point);
+	virtual void OnLButtonUp(UINT nFlags, CPoint point);
+	virtual void OnMouseMove(UINT nFlags, CPoint point);
+	virtual Rect GetRectBound();
+protected:
+	void SetStartPoint(Point point);
+	void SetEndPoint(Point point);
+	void SetStartAndEndPoint(Point ptStart, Point ptEnd);
+	void DrawSelected(Graphics* graphics);
+	Rect GetRoateRect();
+	Rect GetScaleRect();
+};
+
+#endif // !defined(AFX_RYOTAI_H__D1D1AB9B_234B_4456_B6DE_C114327871F6__INCLUDED_)
