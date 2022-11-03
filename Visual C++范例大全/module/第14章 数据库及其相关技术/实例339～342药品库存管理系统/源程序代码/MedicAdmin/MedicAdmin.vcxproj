@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName />
+    <SccLocalPath />
+    <Keyword>MFCProj</Keyword>
+    <ProjectGuid>{AC51E02D-0EFF-EAA9-8719-89100B287CEC}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)\bin\$(Configuration)\第14章 数据库及其相关技术\</OutDir>
+    <IntDir>$(SolutionDir)..\Temp\$(SolutionName)\$(ProjectName)\$(Configuration)</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)\bin\$(Configuration)\第14章 数据库及其相关技术\</OutDir>
+    <IntDir>$(SolutionDir)..\Temp\$(SolutionName)\$(ProjectName)\$(Configuration)</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_AFXDLL;WIN32;NDEBUG;_WINDOWS;</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    
+    
+    
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      
+      <PreprocessorDefinitions>_AFXDLL;WIN32;_DEBUG;_WINDOWS;</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+    </ClCompile>
+    
+    
+    
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ChangePasswordDlg.cpp" />
+    <ClCompile Include="CleanUpDlg.cpp" />
+    <ClCompile Include="DeleteUserDlg.cpp" />
+    <ClCompile Include="LogInDlg.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="ManageMedic.cpp" />
+    <ClCompile Include="Medic.cpp" />
+    <ClCompile Include="MedicAdmin.cpp" />
+    <ClCompile Include="MedicAdminDoc.cpp" />
+    <ClCompile Include="MedicAdminView.cpp" />
+    <ClCompile Include="MedicListView.cpp" />
+    <ClCompile Include="MedicSearch.cpp" />
+    <ClCompile Include="MedicSet.cpp" />
+    <ClCompile Include="RegisterUserDlg.cpp" />
+    <ClCompile Include="Sale.cpp" />
+    <ClCompile Include="SaleDlg.cpp" />
+    <ClCompile Include="SaleSet.cpp" />
+    <ClCompile Include="SearchIDDlg.cpp" />
+    <ClCompile Include="SearchNameDlg.cpp" />
+    <ClCompile Include="SearchTypeDlg.cpp" />
+    <ClCompile Include="SeekUserDlg.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="StoreDlg.cpp" />
+    <ClCompile Include="User.cpp" />
+    <ClCompile Include="UserChangDlg.cpp" />
+    <ClCompile Include="UserSet.cpp" />
+    <ClCompile Include="UserTreeView.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MedicAdmin.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ChangePasswordDlg.h" />
+    <ClInclude Include="CleanUpDlg.h" />
+    <ClInclude Include="DeleteUserDlg.h" />
+    <ClInclude Include="LogInDlg.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="ManageMedic.h" />
+    <ClInclude Include="Medic.h" />
+    <ClInclude Include="MedicAdmin.h" />
+    <ClInclude Include="MedicAdminDoc.h" />
+    <ClInclude Include="MedicAdminView.h" />
+    <ClInclude Include="MedicListView.h" />
+    <ClInclude Include="MedicSearch.h" />
+    <ClInclude Include="MedicSet.h" />
+    <ClInclude Include="RegisterUserDlg.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="Sale.h" />
+    <ClInclude Include="SaleDlg.h" />
+    <ClInclude Include="SaleSet.h" />
+    <ClInclude Include="SearchIDDlg.h" />
+    <ClInclude Include="SearchNameDlg.h" />
+    <ClInclude Include="SearchTypeDlg.h" />
+    <ClInclude Include="SeekUserDlg.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="StoreDlg.h" />
+    <ClInclude Include="User.h" />
+    <ClInclude Include="UserChangDlg.h" />
+    <ClInclude Include="UserSet.h" />
+    <ClInclude Include="UserTreeView.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="bmp\bitmap5.bmp" />
+    <CustomBuild Include="bmp\clear.BMP" />
+    <CustomBuild Include="bmp\doctor1.BMP" />
+    <CustomBuild Include="bmp\fool1.BMP" />
+    <CustomBuild Include="bmp\fool2.BMP" />
+    <CustomBuild Include="bmp\in.BMP" />
+    <CustomBuild Include="bmp\MA_SMILE 51.BMP" />
+    <CustomBuild Include="res\MedicAdmin.ico" />
+    <CustomBuild Include="res\MedicAdmin.rc2">
+      <FileType>RC</FileType>
+    </CustomBuild>
+    <CustomBuild Include="res\MedicAdminDoc.ico" />
+    <CustomBuild Include="bmp\PASS.BMP" />
+    <CustomBuild Include="bmp\password1.BMP" />
+    <CustomBuild Include="bmp\sale.BMP" />
+    <CustomBuild Include="bmp\salesman1.BMP" />
+    <CustomBuild Include="bmp\selected1.BMP" />
+    <CustomBuild Include="bmp\tool1.BMP" />
+    <CustomBuild Include="res\Toolbar.bmp" />
+    <CustomBuild Include="bmp\unselected1.BMP" />
+    <CustomBuild Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

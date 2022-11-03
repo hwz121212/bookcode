@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName />
+    <SccLocalPath />
+    <Keyword>MFCProj</Keyword>
+    <ProjectGuid>{4E951FF6-2E28-BADE-0DAC-B252384379CF}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)\bin\$(Configuration)\第17章 多媒体开发\</OutDir>
+    <IntDir>$(SolutionDir)..\Temp\$(SolutionName)\$(ProjectName)\$(Configuration)</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)\bin\$(Configuration)\第17章 多媒体开发\</OutDir>
+    <IntDir>$(SolutionDir)..\Temp\$(SolutionName)\$(ProjectName)\$(Configuration)</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <PreprocessorDefinitions>_AFXDLL;WIN32;_DEBUG;_WINDOWS;</PreprocessorDefinitions>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+    </ClCompile>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_AFXDLL;WIN32;NDEBUG;_WINDOWS;</PreprocessorDefinitions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ConnectDlg.cpp" />
+    <ClCompile Include="DSocket.cpp" />
+    <ClCompile Include="Mixer.cpp" />
+    <ClCompile Include="PlaySound.cpp" />
+    <ClCompile Include="VideoVoiceTrans.cpp" />
+    <ClCompile Include="VideoVoiceTransDlg.cpp" />
+    <ClCompile Include="reatReport.cpp" />
+    <ClCompile Include="RecordSound.cpp" />
+    <ClCompile Include="REQUESTCON.cpp" />
+    <ClCompile Include="RequestDlg.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="VideoCapture.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Volume.cpp" />
+    <ClCompile Include="encoder\coder.cpp" />
+    <ClCompile Include="encoder\countbit.cpp" />
+    <ClCompile Include="encoder\dct.cpp" />
+    <ClCompile Include="encoder\Global.cpp" />
+    <ClCompile Include="encoder\huffman.cpp" />
+    <ClCompile Include="encoder\libr263.cpp" />
+    <ClCompile Include="encoder\mot_est.cpp" />
+    <ClCompile Include="encoder\pred.cpp" />
+    <ClCompile Include="encoder\quant.cpp" />
+    <ClCompile Include="encoder\rlib.cpp" />
+    <ClCompile Include="encoder\stream.cpp" />
+    <ClCompile Include="decoder\convert.cpp" />
+    <ClCompile Include="decoder\DGlobal.cpp" />
+    <ClCompile Include="decoder\GetBits.cpp" />
+    <ClCompile Include="decoder\GetBlk.cpp" />
+    <ClCompile Include="decoder\GetHdr.cpp" />
+    <ClCompile Include="decoder\GetPic.cpp" />
+    <ClCompile Include="decoder\GetVlc.cpp" />
+    <ClCompile Include="decoder\Idct.cpp" />
+    <ClCompile Include="decoder\Idctref.cpp" />
+    <ClCompile Include="decoder\Indices.cpp" />
+    <ClCompile Include="decoder\Recon.cpp" />
+    <ClCompile Include="decoder\Sac.cpp" />
+    <ClCompile Include="decoder\Sactbls.cpp" />
+    <ClCompile Include="decoder\Tmndec.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="VideoVoiceTrans.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ConnectDlg.h" />
+    <ClInclude Include="DSocket.h" />
+    <ClInclude Include="Mixer.h" />
+    <ClInclude Include="PlaySound.h" />
+    <ClInclude Include="VideoVoiceTrans.h" />
+    <ClInclude Include="VideoVoiceTransDlg.h" />
+    <ClInclude Include="reatReport.h" />
+    <ClInclude Include="RecordSound.h" />
+    <ClInclude Include="REQUESTCON.h" />
+    <ClInclude Include="RequestDlg.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="VideoCapture.h" />
+    <ClInclude Include="Volume.h" />
+    <ClInclude Include="encoder\coder.h" />
+    <ClInclude Include="encoder\config.h" />
+    <ClInclude Include="encoder\countbit.h" />
+    <ClInclude Include="encoder\ctables.h" />
+    <ClInclude Include="encoder\dct.h" />
+    <ClInclude Include="encoder\def.h" />
+    <ClInclude Include="encoder\Global.h" />
+    <ClInclude Include="encoder\huffman.h" />
+    <ClInclude Include="encoder\libr263.h" />
+    <ClInclude Include="encoder\mot_est.h" />
+    <ClInclude Include="encoder\owntypes.h" />
+    <ClInclude Include="encoder\pred.h" />
+    <ClInclude Include="encoder\quant.h" />
+    <ClInclude Include="encoder\rlib.h" />
+    <ClInclude Include="encoder\stream.h" />
+    <ClInclude Include="encoder\struct.h" />
+    <ClInclude Include="decoder\convert.h" />
+    <ClInclude Include="decoder\decdef.h" />
+    <ClInclude Include="decoder\decstruct.h" />
+    <ClInclude Include="decoder\DGlobal.h" />
+    <ClInclude Include="decoder\GetBits.h" />
+    <ClInclude Include="decoder\GetBlk.h" />
+    <ClInclude Include="decoder\GetHdr.h" />
+    <ClInclude Include="decoder\GetPic.h" />
+    <ClInclude Include="decoder\GetVlc.h" />
+    <ClInclude Include="decoder\Idct.h" />
+    <ClInclude Include="decoder\Idctref.h" />
+    <ClInclude Include="decoder\Indices.h" />
+    <ClInclude Include="decoder\Recon.h" />
+    <ClInclude Include="decoder\Sac.h" />
+    <ClInclude Include="decoder\Sactbls.h" />
+    <ClInclude Include="decoder\Tmndec.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="14.ico" />
+    <CustomBuild Include="Help File HLP.ico" />
+    <CustomBuild Include="VideoVoiceTrans.ico" />
+    <CustomBuild Include="res\VideoVoiceTrans.ico" />
+    <CustomBuild Include="res\VideoVoiceTrans.rc2">
+      <FileType>RC</FileType>
+    </CustomBuild>
+    <CustomBuild Include="shoot03.ico" />
+    <CustomBuild Include="toolbar1.bmp" />
+    <CustomBuild Include="xpblue.bin">
+      <FileType>Document</FileType>
+    </CustomBuild>
+    <CustomBuild Include="bluepinna.urf">
+      <FileType>Document</FileType>
+    </CustomBuild>
+    <CustomBuild Include="Debug\GtBase.urf">
+      <FileType>Document</FileType>
+    </CustomBuild>
+    <CustomBuild Include="face\GtClassic.urf">
+      <FileType>Document</FileType>
+    </CustomBuild>
+    <CustomBuild Include="GtClassic.urf">
+      <FileType>Document</FileType>
+    </CustomBuild>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

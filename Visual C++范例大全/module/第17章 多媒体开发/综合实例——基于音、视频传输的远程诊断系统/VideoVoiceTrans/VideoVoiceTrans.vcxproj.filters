@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{7fbca304-f4af-4295-a6db-53f58bd445a5}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{a87ed7ad-30e6-448b-8a6a-77f77c8b109e}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{aa241d26-4fa9-4c7e-b2d8-1175ad5c3798}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Encoder">
+      <UniqueIdentifier>{b3884c80-07f5-475e-9d90-be9712bef6d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Decoder">
+      <UniqueIdentifier>{a7ba290b-f665-487d-ad62-76ab1b488773}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ConnectDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DSocket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mixer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaySound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoVoiceTrans.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoVoiceTransDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="reatReport.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RecordSound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="REQUESTCON.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RequestDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoCapture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Volume.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="encoder\coder.cpp">
+      <Filter>Encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="encoder\countbit.cpp">
+      <Filter>Encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="encoder\dct.cpp">
+      <Filter>Encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="encoder\Global.cpp">
+      <Filter>Encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="encoder\huffman.cpp">
+      <Filter>Encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="encoder\libr263.cpp">
+      <Filter>Encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="encoder\mot_est.cpp">
+      <Filter>Encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="encoder\pred.cpp">
+      <Filter>Encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="encoder\quant.cpp">
+      <Filter>Encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="encoder\rlib.cpp">
+      <Filter>Encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="encoder\stream.cpp">
+      <Filter>Encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="decoder\convert.cpp">
+      <Filter>Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="decoder\DGlobal.cpp">
+      <Filter>Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="decoder\GetBits.cpp">
+      <Filter>Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="decoder\GetBlk.cpp">
+      <Filter>Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="decoder\GetHdr.cpp">
+      <Filter>Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="decoder\GetPic.cpp">
+      <Filter>Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="decoder\GetVlc.cpp">
+      <Filter>Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="decoder\Idct.cpp">
+      <Filter>Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="decoder\Idctref.cpp">
+      <Filter>Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="decoder\Indices.cpp">
+      <Filter>Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="decoder\Recon.cpp">
+      <Filter>Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="decoder\Sac.cpp">
+      <Filter>Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="decoder\Sactbls.cpp">
+      <Filter>Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="decoder\Tmndec.cpp">
+      <Filter>Decoder</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="VideoVoiceTrans.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ConnectDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DSocket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mixer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaySound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoVoiceTrans.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoVoiceTransDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="reatReport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RecordSound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="REQUESTCON.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RequestDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoCapture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Volume.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="encoder\coder.h">
+      <Filter>Encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="encoder\config.h">
+      <Filter>Encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="encoder\countbit.h">
+      <Filter>Encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="encoder\ctables.h">
+      <Filter>Encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="encoder\dct.h">
+      <Filter>Encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="encoder\def.h">
+      <Filter>Encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="encoder\Global.h">
+      <Filter>Encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="encoder\huffman.h">
+      <Filter>Encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="encoder\libr263.h">
+      <Filter>Encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="encoder\mot_est.h">
+      <Filter>Encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="encoder\owntypes.h">
+      <Filter>Encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="encoder\pred.h">
+      <Filter>Encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="encoder\quant.h">
+      <Filter>Encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="encoder\rlib.h">
+      <Filter>Encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="encoder\stream.h">
+      <Filter>Encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="encoder\struct.h">
+      <Filter>Encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="decoder\convert.h">
+      <Filter>Decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="decoder\decdef.h">
+      <Filter>Decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="decoder\decstruct.h">
+      <Filter>Decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="decoder\DGlobal.h">
+      <Filter>Decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="decoder\GetBits.h">
+      <Filter>Decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="decoder\GetBlk.h">
+      <Filter>Decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="decoder\GetHdr.h">
+      <Filter>Decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="decoder\GetPic.h">
+      <Filter>Decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="decoder\GetVlc.h">
+      <Filter>Decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="decoder\Idct.h">
+      <Filter>Decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="decoder\Idctref.h">
+      <Filter>Decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="decoder\Indices.h">
+      <Filter>Decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="decoder\Recon.h">
+      <Filter>Decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="decoder\Sac.h">
+      <Filter>Decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="decoder\Sactbls.h">
+      <Filter>Decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="decoder\Tmndec.h">
+      <Filter>Decoder</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="14.ico">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Help File HLP.ico">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="VideoVoiceTrans.ico">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="res\VideoVoiceTrans.ico">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="res\VideoVoiceTrans.rc2">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="shoot03.ico">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="toolbar1.bmp">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="xpblue.bin">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="bluepinna.urf" />
+    <CustomBuild Include="Debug\GtBase.urf" />
+    <CustomBuild Include="face\GtClassic.urf" />
+    <CustomBuild Include="GtClassic.urf" />
+  </ItemGroup>
+</Project>

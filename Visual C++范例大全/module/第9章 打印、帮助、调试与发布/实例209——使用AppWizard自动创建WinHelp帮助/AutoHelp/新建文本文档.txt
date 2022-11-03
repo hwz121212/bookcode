@@ -1,0 +1,27 @@
+start /wait hcw /C /E /M "hlp\%(Filename).hpj" 
+if errorlevel 1 goto :Error 
+if not exist "hlp\%(Filename).hlp" goto :Error 
+copy "hlp\%(Filename).hlp" $(OutDir) 
+goto :done 
+:Error 
+echo hlp\%(Filename).hpj(1) : error: 
+type "hlp\%(Filename).log" 
+:done 
+
+
+
+
+Making help file...
+
+
+$(OutDir)\$(InputName).hlp;%(Outputs)
+
+
+
+hlp\AfxCore.rtf;hlp\AfxPrint.rtf;hlp\$(TargetName).hm;%(AdditionalInputs)
+
+
+
+copy "hlp\%(Filename).cnt" $(OutDir)
+Copying contents file...
+$(OutDir)\$(InputName).cnt;%(Outputs)

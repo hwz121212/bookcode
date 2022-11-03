@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HardDeskInfo", "HardDeskInfo.vcproj", "{FDA67399-4B58-42E2-B25B-F309325DEC48}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FDA67399-4B58-42E2-B25B-F309325DEC48}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FDA67399-4B58-42E2-B25B-F309325DEC48}.Debug|Win32.Build.0 = Debug|Win32
+		{FDA67399-4B58-42E2-B25B-F309325DEC48}.Release|Win32.ActiveCfg = Release|Win32
+		{FDA67399-4B58-42E2-B25B-F309325DEC48}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
