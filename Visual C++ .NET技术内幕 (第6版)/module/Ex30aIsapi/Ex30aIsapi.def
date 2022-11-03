@@ -1,0 +1,8 @@
+; Ex30aIsapi.def : declares the module parameters for the DLL.
+
+LIBRARY	     "Ex30aIsapi"
+
+EXPORTS
+	HttpExtensionProc
+	GetExtensionVersion
+	TerminateExtension

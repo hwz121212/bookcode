@@ -1,0 +1,10 @@
+; Ex22b.def : Declares the module parameters for the DLL.
+
+LIBRARY      "Ex22b"
+
+EXPORTS
+    ; Explicit exports can go here
+	DllCanUnloadNow     PRIVATE
+	DllGetClassObject   PRIVATE
+	DllRegisterServer   PRIVATE
+	DllUnregisterServer PRIVATE

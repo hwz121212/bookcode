@@ -1,0 +1,68 @@
+// ClassicATLDiceSvr.idl : IDL source for ClassicATLDiceSvr
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ClassicATLDiceSvr.tlb) and marshalling code.
+
+#include "olectl.h"
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(90621999-47DC-46CE-AC37-8C250AEC96AA),
+	dual,
+	nonextensible,
+	helpstring("IClassicATLDiceControl Interface"),
+	pointer_default(unique)
+]
+interface IClassicATLDiceControl : IDispatch{
+	[propput, bindable, requestedit, id(DISPID_BACKCOLOR)]
+	HRESULT BackColor([in]OLE_COLOR clr);
+	[propget, bindable, requestedit, id(DISPID_BACKCOLOR)]
+	HRESULT BackColor([out,retval]OLE_COLOR* pclr);
+    [propget, id(1), helpstring("property DiceColor")] HRESULT DiceColor([out, retval] SHORT* pVal);
+    [propput, id(1), helpstring("property DiceColor")] HRESULT DiceColor([in] SHORT newVal);
+    [propget, id(2), helpstring("property TimesToRoll")] HRESULT TimesToRoll([out, retval] SHORT* pVal);
+    [propput, id(2), helpstring("property TimesToRoll")] HRESULT TimesToRoll([in] SHORT newVal);
+    [id(3), helpstring("method RollDice")] HRESULT RollDice(void);
+};
+
+[
+	uuid(D66265FF-D959-47FB-BC36-585AFC4FFB49),
+	version(1.0),
+	helpstring("ClassicATLDiceSvr 1.0 Type Library")
+]
+library ClassicATLDiceSvrLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(2FECDCBE-D2C8-46EF-A4A1-E86CDC63B321),
+		helpstring("_IClassicATLDiceControlEvents Interface")
+	]
+	dispinterface _IClassicATLDiceControlEvents
+	{
+		properties:
+		methods:
+			[id(1)]void Doubles(short n);
+			[id(2)]void SnakeEyes();
+			[id(3)]void DiceRolled(short x, short y);
+	};
+	[
+		uuid(75E15528-7E89-431F-B170-D6991C26F944),
+		helpstring("ClassicATLDiceControl Class")
+	]
+	coclass ClassicATLDiceControl
+	{
+		[default] interface IClassicATLDiceControl;
+		[default, source] dispinterface _IClassicATLDiceControlEvents;
+	};
+	[
+		uuid(7A91E3F2-21BB-4286-B02E-4F067FD48DB3),
+		helpstring("CDiceMainPropPage Class")
+	]
+	coclass CDiceMainPropPage
+	{
+		[default] interface IUnknown;
+	};
+};

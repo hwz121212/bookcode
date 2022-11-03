@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{52938dc8-4aa3-433c-8304-59486c57bed4}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{00964dc3-f63b-431d-a582-3b322efcfeef}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{2d9cbe4e-758e-4ef5-866f-83f625ac4c07}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{0378d1b3-49a8-4671-9105-4b8b2795b3f2}</UniqueIdentifier>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CDiceMainPropPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassicATLDiceControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassicATLDiceSvr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassicATLDiceSvr_i.c">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassicATLDiceSvr.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="BLUE1.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="BLUE2.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="BLUE3.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="BLUE4.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="BLUE5.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="BLUE6.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="CDiceMainPropPage.rgs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="ClassicATLDiceControl.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="ClassicATLDiceControl.rgs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="ClassicATLDiceSvr.rgs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="DICE1.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="DICE2.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="DICE3.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="DICE4.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="DICE5.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="DICE6.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RED1.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RED2.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RED3.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RED4.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RED5.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RED6.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="ClassicATLDiceControl.htm" />
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="ClassicATLDiceSvr.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CDiceMainPropPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassicATLDiceControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_IClassicATLDiceControlEvents_CP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ClassicATLDiceSvr.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,64 @@
+import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\prsht.idl";
+import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\MsHTML.idl";
+import "c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\dimm.idl";
+import "c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\dispex.idl";
+import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\dxgitype.idl";
+import "c:\program files (x86)\windows kits\10\include\10.0.17763.0\shared\dxgicommon.idl";
+import "c:\program files (x86)\windows kits\10\include\10.0.17763.0\shared\dxgiformat.idl";
+import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\MsHtmHst.idl";
+import "c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\docobj.idl";
+import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\ExDisp.idl";
+import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\ObjSafe.idl";
+
+[
+	object,
+	dual,
+	uuid(9F3E85AE-09C6-4A3A-A78C-6973F8A328B6),
+	helpstring("ICDHTMLUI Interface"),
+	pointer_default(unique)
+] 
+#line 12 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex29c\\cdhtml.h"
+interface ICDHTMLUI : IDispatch {
+#line 15 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex29c\\cdhtml.h"
+	[id(1)] HRESULT  OnClick([in] IDispatch *pdispBody, [in] VARIANT varColor);
+};
+
+[
+	object,
+	uuid(C0771F2F-6285-48EA-9356-8AA2A4D8C47D),
+	dual,
+	helpstring("ICDHTML Interface"),
+	pointer_default(unique)
+] 
+#line 58 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex29c\\cdhtml.h"
+interface ICDHTML : IDispatch {
+};
+
+
+[ version(1.0), uuid(D937DD91-EAED-40FC-AD14-1A5DAB14BFC2), helpstring("Ex29c 1.0 Type Library") ]
+library Ex29c
+{
+	importlib("stdole2.tlb");
+
+	[
+		version(1.0),
+		uuid(72DB36B5-154C-427E-9BB0-AAF3C496B6EC),
+		noncreatable
+	] 
+#line 24 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex29c\\cdhtml.h"
+	coclass CCDHTMLUI {
+		interface ICDHTMLUI;
+	};
+
+	[
+		version(1.0),
+		uuid(E672F808-00BC-46AD-9970-8DB5585EAA1E),
+		helpstring("CDHTML Class")
+	] 
+#line 75 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex29c\\cdhtml.h"
+	coclass CCDHTML {
+		interface ICDHTML;
+	};
+
+}
+

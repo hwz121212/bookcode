@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'AttributedATLSpaceShipSvr'
+		'AttributedATLSpaceShipSvr.DLL'
+		{
+			val AppID = s '%APPID%'
+		}
+	}
+}

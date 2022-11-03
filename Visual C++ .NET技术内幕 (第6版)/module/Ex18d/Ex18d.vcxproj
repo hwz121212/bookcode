@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{EF8887A5-CE45-42C7-AC6C-CCF435427EF4}</ProjectGuid>
+    <Keyword>MFCProj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)..\Temp\$(SolutionName)\$(ProjectName)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)..\Temp\$(SolutionName)\$(ProjectName)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</EmbedManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_AFXDLL;WIN32;_WINDOWS;_DEBUG;</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX64</TargetMachine>
+      
+    </Link>
+    
+    
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <OmitFramePointers>true</OmitFramePointers>
+      <PreprocessorDefinitions>_AFXDLL;WIN32;_WINDOWS;NDEBUG;</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX64</TargetMachine>
+      
+    </Link>
+    
+    
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ChildFrm.cpp" />
+    <ClCompile Include="Ex18d.cpp" />
+    <ClCompile Include="HexView.cpp" />
+    <ClCompile Include="LogScrollView.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="PoemDoc.cpp" />
+    <ClCompile Include="StringView.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="hlp\Ex18d.hpj">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Making help file...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">start /wait hcw /C /E /M "hlp\$(ProjectName).hpj"
+if errorlevel 1 goto :HelpError
+if not exist "hlp\$(ProjectName).hlp" goto :HelpError
+if not exist "hlp\$(ProjectName).cnt" goto :HelpError
+echo.
+copy "hlp\$(ProjectName).hlp" "$(OutDir)"
+copy "hlp\$(ProjectName).cnt" "$(OutDir)"
+goto :HelpDone
+:HelpError
+echo hlp\$(ProjectName).hpj(1) : error: Problem encountered creating help file
+:HelpDone
+echo.
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">hlp\$(ProjectName).hm;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)$(ProjectName).hlp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Making help file...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">start /wait hcw /C /E /M "hlp\$(ProjectName).hpj"
+if errorlevel 1 goto :HelpError
+if not exist "hlp\$(ProjectName).hlp" goto :HelpError
+if not exist "hlp\$(ProjectName).cnt" goto :HelpError
+echo.
+copy "hlp\$(ProjectName).hlp" "$(OutDir)"
+copy "hlp\$(ProjectName).cnt" "$(OutDir)"
+goto :HelpDone
+:HelpError
+echo hlp\$(ProjectName).hpj(1) : error: Problem encountered creating help file
+:HelpDone
+echo.
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">hlp\$(ProjectName).hm;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)$(ProjectName).hlp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <None Include="res\Ex18d.ico" />
+    <None Include="res\Ex18d.rc2" />
+    <None Include="res\Ex18dDoc.ico" />
+    <None Include="res\Toolbar.bmp" />
+    <None Include="hlp\Ex18d.cnt" />
+    <None Include="hlp\afxcore.rtf" />
+    <None Include="hlp\afxprint.rtf" />
+    <None Include="hlp\Images\bullet.bmp" />
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ChildFrm.h" />
+    <ClInclude Include="Ex18d.h" />
+    <ClInclude Include="HexView.h" />
+    <ClInclude Include="LogScrollView.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="PoemDoc.h" />
+    <CustomBuild Include="Resource.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating map file for help compiler...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">echo // Generated Help Map file.  Used by $(ProjectName).hpj. &gt; "hlp\$(ProjectName).hm"
+echo. &gt; "hlp\$(ProjectName).hm"
+echo // Commands (ID_* and IDM_*) &gt;&gt; "hlp\$(ProjectName).hm"
+makehm ID_,HID_,0x10000 IDM_,HIDM_,0x10000 "%(Filename)%(Extension)" &gt;&gt; "hlp\$(ProjectName).hm"
+echo. &gt;&gt; "hlp\$(ProjectName).hm"
+echo // Prompts (IDP_*) &gt;&gt; "hlp\$(ProjectName).hm"
+makehm IDP_,HIDP_,0x30000 "%(Filename)%(Extension)" &gt;&gt; "hlp\$(ProjectName).hm"
+echo. &gt;&gt; "hlp\$(ProjectName).hm"
+echo // Resources (IDR_*) &gt;&gt; "hlp\$(ProjectName).hm"
+makehm IDR_,HIDR_,0x20000 "%(Filename)%(Extension)" &gt;&gt; "hlp\$(ProjectName).hm"
+echo. &gt;&gt; "hlp\$(ProjectName).hm"
+echo // Dialogs (IDD_*) &gt;&gt; "hlp\$(ProjectName).hm"
+makehm IDD_,HIDD_,0x20000 "%(Filename)%(Extension)" &gt;&gt; "hlp\$(ProjectName).hm"
+echo. &gt;&gt; "hlp\$(ProjectName).hm"
+echo // Frame Controls (IDW_*) &gt;&gt; "hlp\$(ProjectName).hm"
+makehm IDW_,HIDW_,0x50000 "%(Filename)%(Extension)" &gt;&gt; "hlp\$(ProjectName).hm"
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">hlp\$(ProjectName).hm;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating map file for help compiler...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">echo // Generated Help Map file.  Used by $(ProjectName).hpj. &gt; "hlp\$(ProjectName).hm"
+echo. &gt; "hlp\$(ProjectName).hm"
+echo // Commands (ID_* and IDM_*) &gt;&gt; "hlp\$(ProjectName).hm"
+makehm ID_,HID_,0x10000 IDM_,HIDM_,0x10000 "%(Filename)%(Extension)" &gt;&gt; "hlp\$(ProjectName).hm"
+echo. &gt;&gt; "hlp\$(ProjectName).hm"
+echo // Prompts (IDP_*) &gt;&gt; "hlp\$(ProjectName).hm"
+makehm IDP_,HIDP_,0x30000 "%(Filename)%(Extension)" &gt;&gt; "hlp\$(ProjectName).hm"
+echo. &gt;&gt; "hlp\$(ProjectName).hm"
+echo // Resources (IDR_*) &gt;&gt; "hlp\$(ProjectName).hm"
+makehm IDR_,HIDR_,0x20000 "%(Filename)%(Extension)" &gt;&gt; "hlp\$(ProjectName).hm"
+echo. &gt;&gt; "hlp\$(ProjectName).hm"
+echo // Dialogs (IDD_*) &gt;&gt; "hlp\$(ProjectName).hm"
+makehm IDD_,HIDD_,0x20000 "%(Filename)%(Extension)" &gt;&gt; "hlp\$(ProjectName).hm"
+echo. &gt;&gt; "hlp\$(ProjectName).hm"
+echo // Frame Controls (IDW_*) &gt;&gt; "hlp\$(ProjectName).hm"
+makehm IDW_,HIDW_,0x50000 "%(Filename)%(Extension)" &gt;&gt; "hlp\$(ProjectName).hm"
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">hlp\$(ProjectName).hm;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="StringView.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="res\Ex18d.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Ex18d.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

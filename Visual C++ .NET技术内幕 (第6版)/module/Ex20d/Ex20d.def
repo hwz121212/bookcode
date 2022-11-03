@@ -1,0 +1,6 @@
+; Ex20d.def : Declares the module parameters for the DLL.
+
+LIBRARY      "Ex20d"
+
+EXPORTS
+    ; Explicit exports can go here

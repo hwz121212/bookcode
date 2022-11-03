@@ -1,0 +1,82 @@
+import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\prsht.idl";
+import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\MsHTML.idl";
+import "c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\dimm.idl";
+import "c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\dispex.idl";
+import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\dxgitype.idl";
+import "c:\program files (x86)\windows kits\10\include\10.0.17763.0\shared\dxgicommon.idl";
+import "c:\program files (x86)\windows kits\10\include\10.0.17763.0\shared\dxgiformat.idl";
+import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\MsHtmHst.idl";
+import "c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\docobj.idl";
+import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\ExDisp.idl";
+import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\ObjSafe.idl";
+import "e:\hanwenzhi_code\bookcode\visual c++ .net技术内幕 (第6版)\module\ex26\attributedatldicesvr\_attributedatldicesvr.idl";
+
+[
+	object,
+	uuid(5321A066-9E3A-4412-A11A-32D5ED060146),
+	dual,
+	helpstring("IAttributedATLDiceControl Interface"),
+	pointer_default(unique)
+] 
+#line 18 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex26\\attributedatldicesvr\\attributedatldicecontrol.h"
+interface IAttributedATLDiceControl : IDispatch {
+#line 21 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex26\\attributedatldicesvr\\attributedatldicecontrol.h"
+	[propput,bindable,requestedit,id(-501)] HRESULT  BackColor([in] OLE_COLOR clr);
+#line 23 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex26\\attributedatldicesvr\\attributedatldicecontrol.h"
+	[propget,bindable,requestedit,id(-501)] HRESULT  BackColor([out,retval] OLE_COLOR *pclr);
+#line 25 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex26\\attributedatldicesvr\\attributedatldicecontrol.h"
+	[propget,id(1),helpstring("property DiceColor")] HRESULT  DiceColor([out,retval] SHORT *pVal);
+#line 27 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex26\\attributedatldicesvr\\attributedatldicecontrol.h"
+	[propput,id(1),helpstring("property DiceColor")] HRESULT  DiceColor([in] SHORT newVal);
+#line 29 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex26\\attributedatldicesvr\\attributedatldicecontrol.h"
+	[propget,id(2),helpstring("property TimesToRoll")] HRESULT  TimesToRoll([out,retval] SHORT *pVal);
+#line 31 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex26\\attributedatldicesvr\\attributedatldicecontrol.h"
+	[propput,id(2),helpstring("property TimesToRoll")] HRESULT  TimesToRoll([in] SHORT newVal);
+	[id(3),helpstring("method RollDice")] HRESULT  RollDice();
+};
+
+
+[ version(1.0), uuid(1EEE94B7-E4A3-4059-87C6-8033A49BB2DB), helpstring("AttributedATLDiceSvr 1.0 Type Library") ]
+library AttributedATLDiceSvr
+{
+	importlib("stdole2.tlb");
+	importlib("olepro32.dll");
+
+	[
+		uuid(4AB0D205-044E-4641-A0A5-B606D8685FE5),
+		helpstring("_IAttributedATLDiceControlEvents Interface")
+	] 
+#line 42 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex26\\attributedatldicesvr\\attributedatldicecontrol.h"
+	dispinterface _IAttributedATLDiceControlEvents {
+	properties:
+
+	methods:
+#line 44 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex26\\attributedatldicesvr\\attributedatldicecontrol.h"
+		[id(1),helpstring("method Doubles")] HRESULT  Doubles([in]SHORT n);
+		[id(2),helpstring("method SnakeEyes")] HRESULT  SnakeEyes();
+		[id(3),helpstring("method DiceRolled")] HRESULT  DiceRolled([in]SHORT x, [in]SHORT y);
+	};
+
+	[
+		version(1.0),
+		uuid(48350572-BE82-4FBB-AA6F-B4691E30173A),
+		helpstring("AttributedATLDiceControl Class")
+	] 
+#line 65 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex26\\attributedatldicesvr\\attributedatldicecontrol.h"
+	coclass CAttributedATLDiceControl {
+		interface IAttributedATLDiceControl;
+		[default, source]	interface _IAttributedATLDiceControlEvents;
+	};
+
+	[
+		version(1.0),
+		uuid(0B276055-2D66-4738-91D3-EF8C1D0497AE),
+		helpstring("DiceMainPropPage Class")
+	] 
+#line 21 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex26\\attributedatldicesvr\\dicemainproppage.h"
+	coclass CDiceMainPropPage {
+		[default] interface IUnknown;
+	};
+
+}
+

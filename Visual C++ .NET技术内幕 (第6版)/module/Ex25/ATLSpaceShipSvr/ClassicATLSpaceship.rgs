@@ -1,0 +1,27 @@
+HKCR
+{
+	ATLSpaceShipSvr.ClassicATLSpaceship.1 = s 'ClassicATLSpaceship Class'
+	{
+		CLSID = s '{E485E21E-A23C-413F-A93B-909318565113}'
+	}
+	ATLSpaceShipSvr.ClassicATLSpaceship = s 'ClassicATLSpaceship Class'
+	{
+		CLSID = s '{E485E21E-A23C-413F-A93B-909318565113}'
+		CurVer = s 'ATLSpaceShipSvr.ClassicATLSpaceship.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {E485E21E-A23C-413F-A93B-909318565113} = s 'ClassicATLSpaceship Class'
+		{
+			ProgID = s 'ATLSpaceShipSvr.ClassicATLSpaceship.1'
+			VersionIndependentProgID = s 'ATLSpaceShipSvr.ClassicATLSpaceship'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			val AppID = s '%APPID%'
+			'TypeLib' = s '{F5FD4043-22AE-470D-8C43-1AC904D2E8E0}'
+		}
+	}
+}

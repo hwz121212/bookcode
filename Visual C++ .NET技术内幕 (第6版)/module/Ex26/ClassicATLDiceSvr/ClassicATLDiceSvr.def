@@ -1,0 +1,9 @@
+; ClassicATLDiceSvr.def : Declares the module parameters.
+
+LIBRARY      "ClassicATLDiceSvr.DLL"
+
+EXPORTS
+	DllCanUnloadNow		PRIVATE
+	DllGetClassObject	PRIVATE
+	DllRegisterServer	PRIVATE
+	DllUnregisterServer	PRIVATE

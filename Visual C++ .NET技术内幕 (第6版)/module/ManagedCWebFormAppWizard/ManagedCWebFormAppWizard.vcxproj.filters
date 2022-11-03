@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Template Files">
+      <UniqueIdentifier>{2c108ccc-f531-4824-bcee-dd64b3f8f583}</UniqueIdentifier>
+      <Extensions>txt</Extensions>
+    </Filter>
+    <Filter Include="HTML Files">
+      <UniqueIdentifier>{dab4475b-1a8d-4b08-a5cb-4a851d44b121}</UniqueIdentifier>
+      <Extensions>htm</Extensions>
+    </Filter>
+    <Filter Include="Image Files">
+      <UniqueIdentifier>{03ecde4f-adb0-4607-81f5-9d552012ec8c}</UniqueIdentifier>
+      <Extensions>bmp</Extensions>
+    </Filter>
+    <Filter Include="Script Files">
+      <UniqueIdentifier>{8f513f36-9f01-4d02-9b15-b717c3d65289}</UniqueIdentifier>
+      <Extensions>js</Extensions>
+    </Filter>
+    <Filter Include="Miscellaneous Files">
+      <UniqueIdentifier>{fb2eb3a2-fb40-457a-9ca2-63cdaa9e71ca}</UniqueIdentifier>
+      <Extensions>vsz;vsdir;ico;vcproj;csproj;css;inf</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Templates\1033\ReadMe.txt">
+      <Filter>Template Files</Filter>
+    </None>
+    <None Include="Templates\1033\Sample.txt">
+      <Filter>Template Files</Filter>
+    </None>
+    <None Include="HTML\1033\default.htm">
+      <Filter>HTML Files</Filter>
+    </None>
+    <None Include="Scripts\1033\default.js">
+      <Filter>Script Files</Filter>
+    </None>
+    <None Include="ManagedCWebFormAppWizard.ico">
+      <Filter>Miscellaneous Files</Filter>
+    </None>
+    <None Include="ManagedCWebFormAppWizard.vsdir">
+      <Filter>Miscellaneous Files</Filter>
+    </None>
+    <None Include="ManagedCWebFormAppWizard.vsz">
+      <Filter>Miscellaneous Files</Filter>
+    </None>
+    <None Include="Templates\1033\Templates.inf">
+      <Filter>Miscellaneous Files</Filter>
+    </None>
+    <None Include="default.vcproj">
+      <Filter>Miscellaneous Files</Filter>
+    </None>
+    <None Include="1033\styles.css">
+      <Filter>Miscellaneous Files</Filter>
+    </None>
+    <None Include="Images\ManagedCWebFormAppWizard.gif" />
+    <None Include="Images\ManagedCWebFormAppWizard_Background.gif" />
+  </ItemGroup>
+</Project>

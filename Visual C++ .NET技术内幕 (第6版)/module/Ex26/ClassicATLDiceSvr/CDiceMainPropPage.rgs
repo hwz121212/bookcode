@@ -1,0 +1,26 @@
+HKCR
+{
+	ClassicATLDiceSvr.CDiceMainPropPage.1 = s 'CDiceMainPropPage Class'
+	{
+		CLSID = s '{7A91E3F2-21BB-4286-B02E-4F067FD48DB3}'
+	}
+	ClassicATLDiceSvr.CDiceMainPropPage = s 'CDiceMainPropPage Class'
+	{
+		CLSID = s '{7A91E3F2-21BB-4286-B02E-4F067FD48DB3}'
+		CurVer = s 'ClassicATLDiceSvr.CDiceMainPropPage.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {7A91E3F2-21BB-4286-B02E-4F067FD48DB3} = s 'CDiceMainPropPage Class'
+		{
+			ProgID = s 'ClassicATLDiceSvr.CDiceMainPropPage.1'
+			VersionIndependentProgID = s 'ClassicATLDiceSvr.CDiceMainPropPage'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			val AppID = s '%APPID%'
+			'TypeLib' = s '{D66265FF-D959-47FB-BC36-585AFC4FFB49}'
+		}
+	}
+}

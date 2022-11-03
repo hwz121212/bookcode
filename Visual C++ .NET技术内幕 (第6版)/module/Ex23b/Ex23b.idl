@@ -1,0 +1,30 @@
+// Ex23b.idl : type library source for Ex23b.dll
+// This file will be processed by the MIDL compiler to produce the
+// type library (Ex23b.tlb).
+
+#include "olectl.h"
+[ uuid(EE56DC40-B710-4543-8841-8D9C27ADA504), version(1.0) ]
+library Ex23b
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+	//  Primary dispatch interface for Ex23bAuto
+		
+	[ uuid(125FECB2-734D-49FD-95C7-FE44B77FDE2C) ]
+	dispinterface IEx23bAuto
+	{
+		properties:
+        [id(1), helpstring("property LongData")] LONG LongData;
+        [id(2), helpstring("property TextData")] VARIANT TextData;
+methods:
+        [id(3), helpstring("method DisplayDialog")] VARIANT_BOOL DisplayDialog(void);
+    };
+
+	//  Class information for Ex23bAuto
+
+	[ uuid(BAF3D9ED-4518-43CA-B017-2EBA332CB618) ]
+	coclass Ex23bAuto
+	{
+		[default] dispinterface IEx23bAuto;
+	};
+};

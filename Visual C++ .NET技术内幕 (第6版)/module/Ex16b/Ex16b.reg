@@ -1,0 +1,13 @@
+REGEDIT
+; This .REG file may be used by your SETUP program.
+;   If a SETUP program is not available, the entries below will be
+;   registered in your InitInstance automatically with a call to
+;   CWinApp::RegisterShellFileTypes and COleObjectFactory::UpdateRegistryAll.
+
+HKEY_CLASSES_ROOT\.16b = Ex16b.Document
+HKEY_CLASSES_ROOT\Ex16b.Document\shell\open\command = Ex16b.EXE %1
+HKEY_CLASSES_ROOT\Ex16b.Document\shell\open\ddeexec = [open("%1")]
+HKEY_CLASSES_ROOT\Ex16b.Document\shell\open\ddeexec\application = Ex16b
+    ; note: the application is optional
+    ;  (it defaults to the app name in "command")
+HKEY_CLASSES_ROOT\Ex16b.Document = Ex16b.Document

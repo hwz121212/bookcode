@@ -1,0 +1,18 @@
+ 
+// Commands (ID_* and IDM_*) 
+HID_Menu                                0x10082
+HID_WINDOW_NEWSTRINGWINDOW              0x10084
+HID_WINDOW_NEWHEXWINDOW                 0x10085
+ 
+// Prompts (IDP_*) 
+HIDP_OLE_INIT_FAILED                    0x30064
+ 
+// Resources (IDR_*) 
+HIDR_MANIFEST                           0x20001
+HIDR_MAINFRAME                          0x20080
+HIDR_Ex18dTYPE                          0x20081
+ 
+// Dialogs (IDD_*) 
+HIDD_ABOUTBOX                           0x20064
+ 
+// Frame Controls (IDW_*) 

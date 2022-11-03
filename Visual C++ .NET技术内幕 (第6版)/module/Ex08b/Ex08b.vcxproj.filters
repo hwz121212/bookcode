@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{09232acf-dcc6-44ef-b2c9-08f4b8d170f8}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{5a19da70-6ee3-4ae5-9994-f74ad6a2b2cb}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{4d60af20-7c91-4570-bd8d-717407061c99}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;jpg;jpeg;jpe;manifest</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Ex08bDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ex08b.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ex08bDoc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ex08bView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Ex08bDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ex08b.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ex08bDoc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ex08bView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\Icon0.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Icon1.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Icon2.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Icon3.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Icon4.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Icon5.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Icon6.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Icon7.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Toolbar.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\bird.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\birdsel.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\dog.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\dogsel.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Ex08b.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Ex08b.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Ex08bDoc.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\fish.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\fishsel.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="res\Ex08b.manifest">
+      <Filter>Resource Files</Filter>
+    </Manifest>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Ex08b.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

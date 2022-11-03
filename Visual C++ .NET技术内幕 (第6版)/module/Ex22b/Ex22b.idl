@@ -1,0 +1,27 @@
+// Ex22b.idl : type library source for Ex22b.dll
+// This file will be processed by the MIDL compiler to produce the
+// type library (Ex22b.tlb).
+
+#include "olectl.h"
+[ uuid(4F6835AC-A235-4549-86F2-B6A6BEEDCC31), version(1.0) ]
+library Ex22b
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+	//  Primary dispatch interface for Spaceship
+		
+	[ uuid(A1E91507-C075-4AA5-B653-149C482E71DA) ]
+	dispinterface ISpaceship
+	{
+		properties:
+		methods:
+	};
+
+	//  Class information for Spaceship
+
+	[ uuid(DF55C608-9598-4EDD-B9ED-9198426471B3) ]
+	coclass Spaceship
+	{
+		[default] dispinterface ISpaceship;
+	};
+};

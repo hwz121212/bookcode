@@ -1,0 +1,24 @@
+<html>
+{{// use MSDN's "ATL Server Response File Reference" to learn about SRF files.}}
+<head>
+</head>
+<body>
+<p>{{handler Ex30a.dll/Default}}
+</p>
+<p>{{Hello}}
+</p>
+<p>{{PersonalGreeting}}
+</p>
+<form action="Ex30a.srf" method="post" id="Form1">
+<div id="DIV1" ms_positioning="FlowLayout">
+<table height="15" cellSpacing="0" cellPadding="0" width="70" border="0" ms_1d_layout="TRUE" id="Table1">
+<tr>
+<td>Name:</td>
+</tr>
+</table>
+</div>
+<input id="Name" type="text" name="Name">
+<p><input id="Submit" type="submit" value="Button" name="Submit"></p>
+</form>
+</body>
+</html>

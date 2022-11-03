@@ -1,0 +1,53 @@
+// Ex23c.idl : type library source for Ex23c.exe
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (Ex23c.tlb).
+
+#include "olectl.h"
+[ uuid(02AF3B57-774B-4F74-B86D-B61C746A2F8C), version(1.0) ]
+library Ex23c
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	//  Primary dispatch interface for CEx23cDoc
+	
+	[ uuid(74084826-F896-446F-8414-3FF2BB911A63) ]
+	dispinterface IEx23c
+	{
+		properties:
+        [id(1), helpstring("property Time")] DATE Time;
+
+		methods:
+        [id(2), helpstring("method ShowWin")] void ShowWin(void);
+        [id(3), helpstring("method CreateAlarm")] IDispatch* CreateAlarm(DATE time);
+        [id(4), helpstring("method RefreshWin")] void RefreshWin(void);
+        [id(5), propget, helpstring("property Figure")] VARIANT Figure(SHORT n);
+        [id(5), propput, helpstring("property Figure")] void Figure(SHORT n, VARIANT newVal);
+    };
+
+	//  Class information for CEx23cDoc
+	
+	[ uuid(488A97C7-EBD1-4725-9804-C31B940D0DCA) ]
+	coclass CEx23cDoc
+	{
+		[default] dispinterface IEx23c;
+	};
+	//  Primary dispatch interface for Alarm
+		
+	[ uuid(8DB7D0FB-355F-464B-BBD5-0F17553E71C8) ]
+	dispinterface IAlarm
+	{
+		properties:
+        [id(1), helpstring("property Time")] DATE Time;
+methods:
+	};
+
+	//  Class information for Alarm
+
+	[ uuid(052D0691-A19F-426F-BA06-E62234B405F3) ]
+	coclass Alarm
+	{
+		[default] dispinterface IAlarm;
+	};
+};

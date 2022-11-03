@@ -1,0 +1,19 @@
+<HTML> 
+<HEAD>
+<TITLE>Welcome!</TITLE>
+<SCRIPT LANGUAGE="JScript">
+function changeMe() { 
+    document.all.MyHeading.outerHTML = 
+        "<H1 ID=MyHeading>Dynamic HTML is magic!</H1>";
+    document.all.MyHeading.style.color = "green"; 
+    document.all.MyText.innerText = "Presto Change-o! "; 
+    document.all.MyText.align = "center";
+    document.body.insertAdjacentHTML("BeforeEnd", 
+        "<P ALIGN=\"center\">Open Sesame!</P>");
+} 
+</SCRIPT>
+<BODY onclick="changeMe()">
+<H3 ID=MyHeading> Dynamic HTML demo!</H3>
+<P ID=MyText>Click anywhere to see the power of DHTML!</P>
+</BODY>
+</HTML>

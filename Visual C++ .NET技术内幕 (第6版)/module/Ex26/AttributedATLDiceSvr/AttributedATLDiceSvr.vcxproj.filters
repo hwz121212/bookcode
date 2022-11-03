@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{5cc491c1-2544-4ae2-9fef-2c1d161bf986}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{8cc141f1-f238-4f76-86df-965a702fe3b7}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{90454bad-0af3-4cb2-8fba-80a3514c72ed}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AttributedATLDiceControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AttributedATLDiceSvr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DiceMainPropPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AttributedATLDiceControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DiceMainPropPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AttributedATLDiceControl.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="AttributedATLDiceSvr.rgs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="BLUE1.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="BLUE2.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="BLUE3.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="BLUE4.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="BLUE5.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="BLUE6.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="DICE1.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="DICE2.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="DICE3.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="DICE4.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="DICE5.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="DICE6.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RED1.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RED2.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RED3.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RED4.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RED5.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RED6.BMP">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="AttributedATLDiceControl.htm" />
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AttributedATLDiceSvr.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

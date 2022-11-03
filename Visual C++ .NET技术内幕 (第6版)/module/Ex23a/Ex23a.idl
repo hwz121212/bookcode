@@ -1,0 +1,49 @@
+// Ex23a.idl : type library source for Ex23a.exe
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (Ex23a.tlb).
+
+#include "olectl.h"
+[ uuid(60BCA7D2-14D1-4832-A278-50670CD9975E), version(1.0) ]
+library Ex23a
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	//  Primary dispatch interface for CEx23aDoc
+	
+	[ uuid(1F013122-EA3D-414F-B58F-5A31A64EA5D5) ]
+	dispinterface IEx23a
+	{
+		properties:
+			
+		methods:
+	};
+
+	//  Class information for CEx23aDoc
+	
+	[ uuid(5EE5C98C-5CCF-46F4-9E95-17BC06237D8B) ]
+	coclass Ex23a
+	{
+		[default] dispinterface IEx23a;
+	};
+	//  Primary dispatch interface for Bank
+		
+	[ uuid(8BAD2B0C-62CC-4952-811C-C736DA06858E) ]
+	dispinterface IBank
+	{
+		properties:
+        [id(3), helpstring("property Balance")] DOUBLE Balance;
+methods:
+        [id(1), helpstring("method Withdrawal")] DOUBLE Withdrawal(DOUBLE dAmount);
+        [id(2), helpstring("method Deposit")] void Deposit(DOUBLE dAmount);
+    };
+
+	//  Class information for Bank
+
+	[ uuid(3EC6FA59-9F9F-4619-9F62-BA5FE37176F0) ]
+	coclass Bank
+	{
+		[default] dispinterface IBank;
+	};
+};

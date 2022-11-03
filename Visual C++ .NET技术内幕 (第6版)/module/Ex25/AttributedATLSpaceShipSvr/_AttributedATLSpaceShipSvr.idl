@@ -1,0 +1,69 @@
+import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\prsht.idl";
+import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\MsHTML.idl";
+import "c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\dimm.idl";
+import "c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\dispex.idl";
+import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\dxgitype.idl";
+import "c:\program files (x86)\windows kits\10\include\10.0.17763.0\shared\dxgicommon.idl";
+import "c:\program files (x86)\windows kits\10\include\10.0.17763.0\shared\dxgiformat.idl";
+import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\MsHtmHst.idl";
+import "c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\docobj.idl";
+import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\ExDisp.idl";
+import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um\ObjSafe.idl";
+
+[
+	object,
+	uuid(4B8685BD-00F1-4D38-AFC1-3012C786480D),
+	dual,
+	helpstring("IAttributedATLSpaceShip Interface"),
+	pointer_default(unique)
+] 
+#line 14 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex25\\attributedatlspaceshipsvr\\attributedatlspaceship.h"
+interface IAttributedATLSpaceShip : IDispatch {
+#line 16 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex25\\attributedatlspaceshipsvr\\attributedatlspaceship.h"
+	[id(1),helpstring("method CallStarFleet")] HRESULT  CallStarFleet([in] FLOAT fStarDate, [out,retval] BSTR *pbstrRecipient);
+};
+
+[
+	object,
+	uuid(692D03A4-C689-11CE-B337-88EA36DE9E4E),
+	dual,
+	helpstring("IMotion interface")
+] 
+#line 25 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex25\\attributedatlspaceshipsvr\\attributedatlspaceship.h"
+interface IMotion : IDispatch {
+#line 27 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex25\\attributedatlspaceshipsvr\\attributedatlspaceship.h"
+	HRESULT  Fly();
+	HRESULT  GetPosition([out,retval] long *nPosition);
+};
+
+[
+	object,
+	uuid(692D03A5-C689-11CE-B337-88EA36DE9E4E),
+	helpstring("IVisual interface")
+] 
+#line 37 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex25\\attributedatlspaceshipsvr\\attributedatlspaceship.h"
+interface IVisual : IUnknown {
+#line 39 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex25\\attributedatlspaceshipsvr\\attributedatlspaceship.h"
+	HRESULT  Display();
+};
+
+
+[ version(1.0), uuid(FD11BA43-99D4-4857-8366-9749B031904C), helpstring("AttributedATLSpaceShipSvr 1.0 Type Library") ]
+library AttributedATLSpaceShipSvr
+{
+	importlib("stdole2.tlb");
+
+	[
+		version(1.0),
+		uuid(CE07EBA4-0858-4A81-AD1C-C12710B4A1A2),
+		helpstring("AttributedATLSpaceShip Class")
+	] 
+#line 54 "e:\\hanwenzhi_code\\bookcode\\visual c++ .net技术内幕 (第6版)\\module\\ex25\\attributedatlspaceshipsvr\\attributedatlspaceship.h"
+	coclass CAttributedATLSpaceShip {
+		interface IAttributedATLSpaceShip;
+		interface IMotion;
+		interface IVisual;
+	};
+
+}
+
