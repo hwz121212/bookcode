@@ -1,2 +1,4 @@
 Linux 入门教程
 https://www.5axxw.com/wiki/topic/1txmrh
+如何理解GNU
+https://www.isolves.com/it/cxkf/bk/2021-07-20/41788.html
