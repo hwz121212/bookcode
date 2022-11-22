@@ -2,3 +2,5 @@ Linux 入门教程
 https://www.5axxw.com/wiki/topic/1txmrh
 如何理解GNU
 https://www.isolves.com/it/cxkf/bk/2021-07-20/41788.html
+GCC源码全版本集合
+https://ftp.gnu.org/gnu/gcc/
