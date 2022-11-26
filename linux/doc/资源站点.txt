@@ -6,3 +6,16 @@ GCC源码全版本集合
 https://ftp.gnu.org/gnu/gcc/
 MinGW-w64
 https://www.mingw-w64.org/
+
+
+底下列出几个主要的 Linux distributions 发行者网址： 
+• Red Hat: http://www.redhat.com 
+• Fedora: http://fedora.redhat.com 
+• Mandriva: http://www.mandriva.com 
+• Novell SuSE: http://www.novell.com/linux/suse/ 
+• Debian: http://www.debian.org/ 
+• Slackware: http://www.slackware.com/ 
+• Linpus: http://www.linpus.com.tw/ 
+• Gentoo: http://www.gentoo.org/ 
+• Ubuntu: http://www.ubuntulinux.org/ 
+• CentOS: http://www.centos.org/
