@@ -19,3 +19,27 @@ https://www.mingw-w64.org/
 • Gentoo: http://www.gentoo.org/ 
 • Ubuntu: http://www.ubuntulinux.org/ 
 • CentOS: http://www.centos.org/
+
+自由软件技术交流网： http://freesf.tnc.edu.tw/index.php 
+• B2D: http://b2d.tnc.edu.tw/
+
+国人发起的 CLE 计划： 
+http://cle.linux.org.tw/
+
+• http://www.knoppix.net/ 
+• 中文 KNOPPIX: http://knoppix.tnc.edu.tw/
+
+ Linux distributions 的下载与使用信息，可以参考： 
+• http://www.linuxiso.org/ 
+• http://distrowatch.com/
+
+FHS: http://www.pathname.com/fhs/ 
+• LSB: http://www.linuxbase.org/
+
+• 网络农夫，2001， Unix 简史 
+http://netlab.cse.yzu.edu.tw/~statue/freebsd/docs/csh/ 
+• Ken Thompson 的个人网站： http://plan9.bell-labs.com/cm/cs/who/ken/index.html 
+• Dennis Ritchie 的个人网站： http://cm.bell-labs.com/cm/cs/who/dmr/ 
+• Richard Stallman 的个人网站： http://www.stallman.org/ 
+• GNU 计划： http://www.gnu.org 
+• 洪朝贵老师的 GNU/FSF 介绍： http://saturn.stu.edu.tw/~ckhung/a/c_83.php
