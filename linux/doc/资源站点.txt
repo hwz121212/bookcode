@@ -43,3 +43,55 @@ http://netlab.cse.yzu.edu.tw/~statue/freebsd/docs/csh/
 • Richard Stallman 的个人网站： http://www.stallman.org/ 
 • GNU 计划： http://www.gnu.org 
 • 洪朝贵老师的 GNU/FSF 介绍： http://saturn.stu.edu.tw/~ckhung/a/c_83.php
+
+
+• Ubuntu: http://www.ubuntulinux.org/ 
+• Novell SuSE: http://www.novell.com/linux/suse/ 
+• Mandriva: http://www.mandriva.com
+
+• 杨老师的图解桌面 http://apt.nc.hcc.edu.tw/docs/FC3_X/ 
+• 中文指南 http://tw.ubuntuguide.org/
+
+
+• Study-Area http://www.study-area.org 
+• 鸟哥的私房菜馆 http://linux.vbird.org 
+• 狼主的网络实验室 http://netlab.kh.edu.tw/index.htm 
+• 卧龙大师的网络技术文件 http://linux.tnc.edu.tw/techdoc/ 
+• 大南国小（林克敏主任文件集） http://freebsd.lab.mlc.edu.tw/ 
+• 张毓麟先生的小文章 http://www.se.ntou.edu.tw/~ylchang/MyDocuments/index.html 
+• 台湾 Linux 社群 http://www.linux.org.tw/ 
+• 吴仁智的文件集 http://www.cses.tcc.edu.tw/~chihwu/
+
+• Linux 自己的文件数据： /usr/share/doc (在你的 PC 中) 
+• CLDP 中文文件计划 http://www.linux.org.tw/CLDP/ 
+• Unix 的一般常见问题 http://www.csie.nctu.edu.tw/document/unixfaq/ 
+• The Linux Documentation Project：http://www.tldp.org/
+
+http://www.google.com.tw
+http://linux.vbird.org/Searching.php
+
+提问的智慧 http://phorum.vbird.org/viewtopic.php?t=96
+• Study-Area 讨论区 http://phorum.study-area.org 
+• 鸟哥的私房菜馆讨论区 http://phorum.vbird.org 
+• 狼主的网络实验室讨论区 http://netlab.kh.edu.tw/board/board.asp 
+• telnet://bbs.sayya.org
+
+• 李果正先生之 GNU/Linux 初学者之旅： http://info.sayya.org/~edt1023/linux_entry.html 
+鸟哥这里有也一个备份 
+http://linux.vbird.org/linux_basic/0120howtolinux/0120howtolinux_3.php 
+• 信息人的有效学习(洪朝贵教授网页) 
+http://www.cyut.edu.tw/~ckhung/published/018learn.shtml
+
+
+• Linux 的硬件中文 HowTo： http://www.linux.org.tw/CLDP/HOWTO/hardware.html#hardware 
+• Mandriva 的硬件支持： http://www.linux-mandrake.com/en/hardware.php3 
+• Red Hat 的硬件支持： http://hardware.redhat.com/hcl/?pagename=hcl 
+• SuSE 的硬件支持： http://hardwaredb.suse.de/index.php?LANG=en_UK 
+• Linux 对 Printer 的支援： http://www.linuxprinting.org/ 
+• Linux 对 Notebook 计算机的支持： http://www.linux-laptop.net/ 
+• 显示卡对 XFree86/Xorg 的支持： http://www.linuxhardware.org/
+
+义守大学的 FTP 网站： http://ftp.isu.edu.tw/pub/Linux/
+
+
+SPFdisk http://spfdisk.sourceforge.net/
