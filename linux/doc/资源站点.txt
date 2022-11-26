@@ -1,97 +1,63 @@
-Linux 入门教程
 https://www.5axxw.com/wiki/topic/1txmrh
-如何理解GNU
 https://www.isolves.com/it/cxkf/bk/2021-07-20/41788.html
-GCC源码全版本集合
 https://ftp.gnu.org/gnu/gcc/
-MinGW-w64
 https://www.mingw-w64.org/
-
-
-底下列出几个主要的 Linux distributions 发行者网址： 
-• Red Hat: http://www.redhat.com 
-• Fedora: http://fedora.redhat.com 
-• Mandriva: http://www.mandriva.com 
-• Novell SuSE: http://www.novell.com/linux/suse/ 
-• Debian: http://www.debian.org/ 
-• Slackware: http://www.slackware.com/ 
-• Linpus: http://www.linpus.com.tw/ 
-• Gentoo: http://www.gentoo.org/ 
-• Ubuntu: http://www.ubuntulinux.org/ 
-• CentOS: http://www.centos.org/
-
-自由软件技术交流网： http://freesf.tnc.edu.tw/index.php 
-• B2D: http://b2d.tnc.edu.tw/
-
-国人发起的 CLE 计划： 
+http://www.redhat.com 
+http://fedora.redhat.com 
+http://www.mandriva.com 
+http://www.novell.com/linux/suse/ 
+http://www.debian.org/ 
+http://www.slackware.com/ 
+http://www.linpus.com.tw/ 
+http://www.gentoo.org/ 
+http://www.ubuntulinux.org/ 
+http://www.centos.org/
+http://freesf.tnc.edu.tw/index.php 
+http://b2d.tnc.edu.tw/
 http://cle.linux.org.tw/
-
-• http://www.knoppix.net/ 
-• 中文 KNOPPIX: http://knoppix.tnc.edu.tw/
-
- Linux distributions 的下载与使用信息，可以参考： 
-• http://www.linuxiso.org/ 
-• http://distrowatch.com/
-
-FHS: http://www.pathname.com/fhs/ 
-• LSB: http://www.linuxbase.org/
-
-• 网络农夫，2001， Unix 简史 
+http://www.knoppix.net/ 
+http://knoppix.tnc.edu.tw/
+http://www.linuxiso.org/ 
+http://distrowatch.com/
+http://www.pathname.com/fhs/ 
+http://www.linuxbase.org/
 http://netlab.cse.yzu.edu.tw/~statue/freebsd/docs/csh/ 
-• Ken Thompson 的个人网站： http://plan9.bell-labs.com/cm/cs/who/ken/index.html 
-• Dennis Ritchie 的个人网站： http://cm.bell-labs.com/cm/cs/who/dmr/ 
-• Richard Stallman 的个人网站： http://www.stallman.org/ 
-• GNU 计划： http://www.gnu.org 
-• 洪朝贵老师的 GNU/FSF 介绍： http://saturn.stu.edu.tw/~ckhung/a/c_83.php
-
-
-• Ubuntu: http://www.ubuntulinux.org/ 
-• Novell SuSE: http://www.novell.com/linux/suse/ 
-• Mandriva: http://www.mandriva.com
-
-• 杨老师的图解桌面 http://apt.nc.hcc.edu.tw/docs/FC3_X/ 
-• 中文指南 http://tw.ubuntuguide.org/
-
-
-• Study-Area http://www.study-area.org 
-• 鸟哥的私房菜馆 http://linux.vbird.org 
-• 狼主的网络实验室 http://netlab.kh.edu.tw/index.htm 
-• 卧龙大师的网络技术文件 http://linux.tnc.edu.tw/techdoc/ 
-• 大南国小（林克敏主任文件集） http://freebsd.lab.mlc.edu.tw/ 
-• 张毓麟先生的小文章 http://www.se.ntou.edu.tw/~ylchang/MyDocuments/index.html 
-• 台湾 Linux 社群 http://www.linux.org.tw/ 
-• 吴仁智的文件集 http://www.cses.tcc.edu.tw/~chihwu/
-
-• Linux 自己的文件数据： /usr/share/doc (在你的 PC 中) 
-• CLDP 中文文件计划 http://www.linux.org.tw/CLDP/ 
-• Unix 的一般常见问题 http://www.csie.nctu.edu.tw/document/unixfaq/ 
-• The Linux Documentation Project：http://www.tldp.org/
-
+http://plan9.bell-labs.com/cm/cs/who/ken/index.html 
+http://cm.bell-labs.com/cm/cs/who/dmr/ 
+http://www.stallman.org/ 
+http://www.gnu.org 
+http://saturn.stu.edu.tw/~ckhung/a/c_83.php
+http://www.ubuntulinux.org/ 
+http://www.novell.com/linux/suse/ 
+http://www.mandriva.com
+http://apt.nc.hcc.edu.tw/docs/FC3_X/ 
+http://tw.ubuntuguide.org/
+http://www.study-area.org 
+http://linux.vbird.org 
+http://netlab.kh.edu.tw/index.htm 
+http://linux.tnc.edu.tw/techdoc/ 
+http://freebsd.lab.mlc.edu.tw/ 
+http://www.se.ntou.edu.tw/~ylchang/MyDocuments/index.html 
+http://www.linux.org.tw/ 
+http://www.cses.tcc.edu.tw/~chihwu/
+http://www.linux.org.tw/CLDP/ 
+http://www.csie.nctu.edu.tw/document/unixfaq/ 
+http://www.tldp.org/
 http://www.google.com.tw
 http://linux.vbird.org/Searching.php
-
-提问的智慧 http://phorum.vbird.org/viewtopic.php?t=96
-• Study-Area 讨论区 http://phorum.study-area.org 
-• 鸟哥的私房菜馆讨论区 http://phorum.vbird.org 
-• 狼主的网络实验室讨论区 http://netlab.kh.edu.tw/board/board.asp 
-• telnet://bbs.sayya.org
-
-• 李果正先生之 GNU/Linux 初学者之旅： http://info.sayya.org/~edt1023/linux_entry.html 
-鸟哥这里有也一个备份 
+http://phorum.vbird.org/viewtopic.php?t=96
+http://phorum.study-area.org 
+http://phorum.vbird.org 
+http://netlab.kh.edu.tw/board/board.asp 
+http://info.sayya.org/~edt1023/linux_entry.html 
 http://linux.vbird.org/linux_basic/0120howtolinux/0120howtolinux_3.php 
-• 信息人的有效学习(洪朝贵教授网页) 
 http://www.cyut.edu.tw/~ckhung/published/018learn.shtml
-
-
-• Linux 的硬件中文 HowTo： http://www.linux.org.tw/CLDP/HOWTO/hardware.html#hardware 
-• Mandriva 的硬件支持： http://www.linux-mandrake.com/en/hardware.php3 
-• Red Hat 的硬件支持： http://hardware.redhat.com/hcl/?pagename=hcl 
-• SuSE 的硬件支持： http://hardwaredb.suse.de/index.php?LANG=en_UK 
-• Linux 对 Printer 的支援： http://www.linuxprinting.org/ 
-• Linux 对 Notebook 计算机的支持： http://www.linux-laptop.net/ 
-• 显示卡对 XFree86/Xorg 的支持： http://www.linuxhardware.org/
-
-义守大学的 FTP 网站： http://ftp.isu.edu.tw/pub/Linux/
-
-
-SPFdisk http://spfdisk.sourceforge.net/
+http://www.linux.org.tw/CLDP/HOWTO/hardware.html#hardware 
+http://www.linux-mandrake.com/en/hardware.php3 
+http://hardware.redhat.com/hcl/?pagename=hcl 
+http://hardwaredb.suse.de/index.php?LANG=en_UK 
+http://www.linuxprinting.org/ 
+http://www.linux-laptop.net/ 
+http://www.linuxhardware.org/
+http://ftp.isu.edu.tw/pub/Linux/
+http://spfdisk.sourceforge.net/
