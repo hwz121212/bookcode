@@ -1,0 +1,5 @@
+su root
+tar -zxvf zlib-1.2.13.tar.gz
+cd zlib-1.2.13
+./configure --prefix=/usr/local 
+make && make install
