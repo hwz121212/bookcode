@@ -44,7 +44,7 @@
 #endif /* __RPCPROXY_H_VERSION__ */
 
 
-#include "MagicBoxer_h.h"
+#include "MagicBoxer.h"
 
 #define TYPE_FORMAT_STRING_SIZE   7                                 
 #define PROC_FORMAT_STRING_SIZE   153                               
