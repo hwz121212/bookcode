@@ -1,0 +1,450 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\MoniControl.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.chs\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\MoniControl.ico"
+IDI_ICON_UP_P           ICON    DISCARDABLE     "res\\icon_up.ico"
+IDI_ICON_UP_O           ICON    DISCARDABLE     "res\\icon_up_.ico"
+IDI_ICON_UP_N           ICON    DISCARDABLE     "res\\icon3.ico"
+IDI_ICON_LEFT_P         ICON    DISCARDABLE     "res\\icon4.ico"
+IDI_ICON_LEFT_O         ICON    DISCARDABLE     "res\\icon5.ico"
+IDI_ICON_LEFT_N         ICON    DISCARDABLE     "res\\icon6.ico"
+IDI_ICON_DOWN_P         ICON    DISCARDABLE     "res\\icon7.ico"
+IDI_ICON_DOWN_O         ICON    DISCARDABLE     "res\\icon8.ico"
+IDI_ICON_DOWN_N         ICON    DISCARDABLE     "res\\icon9.ico"
+IDI_ICON_LEFTDOWN_O     ICON    DISCARDABLE     "res\\icon10.ico"
+IDI_ICON_LEFTDOWN_N     ICON    DISCARDABLE     "res\\icon11.ico"
+IDI_ICON_RIGHTDOWN_P    ICON    DISCARDABLE     "res\\icon12.ico"
+IDI_ICON_RIGHTDOWN_O    ICON    DISCARDABLE     "res\\icon13.ico"
+IDI_ICON_RIGHTDOWN_N    ICON    DISCARDABLE     "res\\icon14.ico"
+IDI_ICON_RIGHTUP_P      ICON    DISCARDABLE     "res\\icon15.ico"
+IDI_ICON_RIGHTUP_O      ICON    DISCARDABLE     "res\\icon16.ico"
+IDI_ICON_RIGHTUP_N      ICON    DISCARDABLE     "res\\icon17.ico"
+IDI_ICON_RIGHT_P        ICON    DISCARDABLE     "res\\icon18.ico"
+IDI_ICON_RIGHT_O        ICON    DISCARDABLE     "res\\icon19.ico"
+IDI_ICON_RIGHT_N        ICON    DISCARDABLE     "res\\icon20.ico"
+IDI_ICON_LEFTDOWN_P     ICON    DISCARDABLE     "res\\icon1.ico"
+IDI_ICON_OPEN_P         ICON    DISCARDABLE     "res\\ico00018.ico"
+IDI_ICON_FAR_O          ICON    DISCARDABLE     "res\\ico00006.ico"
+IDI_ICON_SMALL_N        ICON    DISCARDABLE     "res\\ico00005.ico"
+IDI_ICON_BIG_P          ICON    DISCARDABLE     "res\\ico00004.ico"
+IDI_ICON_BIG_O          ICON    DISCARDABLE     "res\\icon_.ico"
+IDI_ICON_LEFTUP_P       ICON    DISCARDABLE     "res\\ico00003.ico"
+IDI_ICON_LEFTUP_O       ICON    DISCARDABLE     "res\\ico00002.ico"
+IDI_ICON_LEFTUP_N       ICON    DISCARDABLE     "res\\ico00001.ico"
+IDI_ICON_OPEN_O         ICON    DISCARDABLE     "res\\ico00017.ico"
+IDI_ICON_OPEN_N         ICON    DISCARDABLE     "res\\ico00016.ico"
+IDI_ICON_CLOSE_P        ICON    DISCARDABLE     "res\\ico00015.ico"
+IDI_ICON_CLOSE_O        ICON    DISCARDABLE     "res\\ico00014.ico"
+IDI_ICON_CLOSE_N        ICON    DISCARDABLE     "res\\ico00013.ico"
+IDI_ICON_SHORT_P        ICON    DISCARDABLE     "res\\ico00007.ico"
+IDI_ICON_SHORT_O        ICON    DISCARDABLE     "res\\icon21.ico"
+IDI_ICON_SHORT_N        ICON    DISCARDABLE     "res\\icon22.ico"
+IDI_ICON_LONG_P         ICON    DISCARDABLE     "res\\icon23.ico"
+IDI_ICON_LONG_O         ICON    DISCARDABLE     "res\\icon24.ico"
+IDI_ICON_LONG_N         ICON    DISCARDABLE     "res\\icon25.ico"
+IDI_ICON_NEAR_P         ICON    DISCARDABLE     "res\\icon26.ico"
+IDI_ICON_NEAR_O         ICON    DISCARDABLE     "res\\icon27.ico"
+IDI_ICON_NEAR_N         ICON    DISCARDABLE     "res\\icon28.ico"
+IDI_ICON_FAR_P          ICON    DISCARDABLE     "res\\icon29.ico"
+IDI_ICON_FAR_N          ICON    DISCARDABLE     "res\\icon30.ico"
+IDI_ICON_SMALL_P        ICON    DISCARDABLE     "res\\icon31.ico"
+IDI_ICON_SMALL_O        ICON    DISCARDABLE     "res\\icon32.ico"
+IDI_ICON_BIG_N          ICON    DISCARDABLE     "res\\icon33.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MONICONTROL_DIALOG DIALOGEX 0, 0, 307, 213
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "云台控制程序"
+FONT 9, "宋体"
+BEGIN
+    LTEXT           "当前操作：",IDC_STATIC,10,10,41,8
+    LTEXT           "操作状态",IDC_ACTSTATUS,56,10,94,10
+    LTEXT           "设备地址：",IDC_STATIC,10,180,41,8
+    GROUPBOX        "镜头控制",IDC_STATIC,126,117,174,89
+    GROUPBOX        "云台控制",IDC_STATIC,125,21,175,90
+    GROUPBOX        "其他设备控制",IDC_STATIC,6,117,115,89
+    GROUPBOX        "通信参数选择",IDC_STATIC,6,22,115,89
+    LTEXT           "端口号:",IDC_STATIC,16,37,29,8
+    LTEXT           "波特率:",IDC_STATIC,16,53,29,8
+    LTEXT           "N,8,1",IDC_STATIC,57,68,25,8
+    COMBOBOX        IDC_COMBO_COM,48,35,58,49,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_COMBO_BAUDRATE,48,51,57,49,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    ICON            IDI_ICON_UP_N,IDC_UPMICRO,245,36,20,20
+    ICON            IDI_ICON_RIGHT_N,IDC_RIGHTMICRO,267,58,20,20
+    ICON            IDI_ICON_DOWN_N,IDC_DOWNMICRO,245,80,20,20
+    ICON            IDI_ICON_UP_N,IDC_UP,159,33,20,20
+    ICON            IDI_ICON_LEFT_N,IDC_LEFTMICRO,223,58,20,20
+    ICON            IDI_ICON_LEFTUP_N,IDC_LEFTUP,133,33,20,20
+    ICON            IDI_ICON_RIGHTUP_N,IDC_RIGHTUP,185,33,20,20
+    ICON            IDI_ICON_RIGHT_N,IDC_RIGHT,185,59,20,20
+    ICON            IDI_ICON_DOWN_N,IDC_DOWN,159,85,20,20
+    ICON            IDI_ICON_LEFTDOWN_N,IDC_LEFTDOWN,133,85,20,20
+    ICON            IDI_ICON_RIGHTDOWN_N,IDC_RIGHTDOWN,185,85,20,20
+    ICON            IDI_ICON_LEFT_N,IDC_LEFT,133,59,20,20
+    LTEXT           "<<雨刷>>",IDC_STATIC,23,131,33,8
+    LTEXT           "<<射灯>>",IDC_STATIC,76,131,33,8
+    LTEXT           "<<光圈>>",IDC_STATIC,140,130,33,8
+    LTEXT           "<<景深>>",IDC_STATIC,195,129,33,8
+    LTEXT           "<<焦距>>",IDC_STATIC,249,129,33,8
+    ICON            IDI_ICON_BIG_N,IDC_BIGMICRO,134,175,20,20
+    ICON            IDI_ICON_SMALL_N,IDC_SMALL,157,144,20,20
+    ICON            IDI_ICON_FAR_N,IDC_FAR,187,144,20,20
+    ICON            IDI_ICON_NEAR_N,IDC_NEAR,212,144,20,20
+    ICON            IDI_ICON_LONG_N,IDC_LONG,241,144,20,20
+    ICON            IDI_ICON_SHORT_N,IDC_SHORT,266,144,20,20
+    ICON            IDI_ICON_SHORT_N,IDC_SHORTMICRO,266,175,20,20
+    ICON            IDI_ICON_BIG_N,IDC_BIG,133,144,20,20
+    ICON            IDI_ICON_SMALL_N,IDC_SMALLMICRO,158,175,20,20
+    ICON            IDI_ICON_FAR_N,IDC_FARMICRO,187,175,20,20
+    ICON            IDI_ICON_NEAR_N,IDC_NEARMICRO,212,175,20,20
+    ICON            IDI_ICON_LONG_N,IDC_LONGMICRO,241,175,20,20
+    ICON            IDI_ICON_OPEN_N,IDC_OPENBRUSH,15,143,20,20
+    ICON            IDI_ICON_CLOSE_N,IDC_CLOSELIGHT,93,144,20,20
+    ICON            IDI_ICON_CLOSE_N,IDC_CLOSEBRUSH,40,144,20,20
+    ICON            IDI_ICON_OPEN_N,IDC_OPENLIGHT,68,144,20,20
+    COMBOBOX        IDC_COMBO_ADDRESS,54,178,59,49,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "打开串口",IDC_OPENCOM,16,83,43,19
+    PUSHBUTTON      "关闭串口",IDC_CLOSECOM,63,83,42,19
+    LTEXT           "注释：粗方框内的按钮为微动操作。",IDC_STATIC,168,10,129,
+                    8,0,WS_EX_TRANSPARENT
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME,128,169,165,33,
+                    WS_EX_DLGMODALFRAME | WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE | WS_EX_STATICEDGE
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,218,31,76,75,
+                    WS_EX_DLGMODALFRAME | WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE | WS_EX_STATICEDGE
+    LTEXT           "其他参数:",IDC_STATIC,16,68,37,8
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,166,7,134,13
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,7,7,156,13
+    CONTROL         "",IDC_MSCOMM1,"{648A5600-2C6E-101B-82B6-000000000014}",
+                    WS_TABSTOP,275,106,25,25
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "MoniControl Microsoft 基础类应用程序\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "MoniControl\0"
+            VALUE "LegalCopyright", "版权所有 (C) 2005\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "MoniControl.EXE\0"
+            VALUE "ProductName", "MoniControl 应用程序\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_MONICONTROL_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 300
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 206
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_MONICONTROL_DIALOG DLGINIT
+BEGIN
+    IDC_COMBO_COM, 0x403, 5, 0
+0x4f43, 0x314d, "\000" 
+    IDC_COMBO_COM, 0x403, 5, 0
+0x4f43, 0x324d, "\000" 
+    IDC_COMBO_COM, 0x403, 5, 0
+0x4f43, 0x334d, "\000" 
+    IDC_COMBO_COM, 0x403, 5, 0
+0x4f43, 0x344d, "\000" 
+    IDC_COMBO_COM, 0x403, 5, 0
+0x4f43, 0x354d, "\000" 
+    IDC_COMBO_COM, 0x403, 5, 0
+0x4f43, 0x364d, "\000" 
+    IDC_COMBO_BAUDRATE, 0x403, 5, 0
+0x3639, 0x3030, "\000" 
+    IDC_COMBO_BAUDRATE, 0x403, 5, 0
+0x3834, 0x3030, "\000" 
+    IDC_COMBO_BAUDRATE, 0x403, 5, 0
+0x3432, 0x3030, "\000" 
+    IDC_COMBO_BAUDRATE, 0x403, 5, 0
+0x3231, 0x3030, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 2, 0
+0x0030, 
+    IDC_COMBO_ADDRESS, 0x403, 2, 0
+0x0031, 
+    IDC_COMBO_ADDRESS, 0x403, 2, 0
+0x0032, 
+    IDC_COMBO_ADDRESS, 0x403, 2, 0
+0x0033, 
+    IDC_COMBO_ADDRESS, 0x403, 2, 0
+0x0034, 
+    IDC_COMBO_ADDRESS, 0x403, 2, 0
+0x0035, 
+    IDC_COMBO_ADDRESS, 0x403, 2, 0
+0x0036, 
+    IDC_COMBO_ADDRESS, 0x403, 2, 0
+0x0037, 
+    IDC_COMBO_ADDRESS, 0x403, 2, 0
+0x0038, 
+    IDC_COMBO_ADDRESS, 0x403, 2, 0
+0x0039, 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3031, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3131, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3231, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3331, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3431, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3531, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3631, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3731, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3831, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3931, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3032, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3132, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3232, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3332, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3432, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3532, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3632, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3732, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3832, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3932, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3033, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3133, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3233, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3333, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3433, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3533, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3633, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3733, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3833, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3933, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3034, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3134, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3234, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3334, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3434, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3534, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3634, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3734, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3834, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3934, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3035, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3135, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3235, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3335, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3435, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3535, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3635, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3735, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3835, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3935, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3036, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3136, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3236, "\000" 
+    IDC_COMBO_ADDRESS, 0x403, 3, 0
+0x3336, "\000" 
+    IDC_MSCOMM1, 0x376, 102, 0
+0x0013, 0x0000, 0x0043, 0x006f, 0x0070, 0x0079, 0x0072, 0x0069, 0x0067, 
+0x0068, 0x0074, 0x0020, 0x0028, 0x0063, 0x0029, 0x0020, 0x0031, 0x0039, 
+0x0039, 0x0034, 0x0020, 0x4321, 0x1234, 0x0008, 0x0000, 0x03ed, 0x0000, 
+0x03ed, 0x0000, 0x5601, 0x648a, 0x0000, 0x0006, 0x0000, 0x0001, 0x0400, 
+0x0000, 0x0200, 0x0000, 0x2580, 0x0000, 0x0000, 0x0008, 0x0000, 0x0000, 
+0x0000, 0x0000, 0x003f, 0x0000, 0x0001, 0x0000, 
+    0
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE 4, 2
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\MoniControl.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.chs\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

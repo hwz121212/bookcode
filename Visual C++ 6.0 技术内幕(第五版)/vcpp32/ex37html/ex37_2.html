@@ -1,0 +1,16 @@
+<HTML>
+<HEAD><TITLE>Iterating through the all collection.</TITLE>
+<SCRIPT LANGUAGE="JScript">
+function listAllElements() {
+    var tag_names = "";
+    for (i=0; i<document.all.length; i++)
+        tag_names = tag_names + document.all(i).tagName + " ";
+    alert("This document contains: " + tag_names);
+}
+</SCRIPT>
+</HEAD>
+<BODY onload="listAllElements()">
+<H1>DHTML Rocks!</H1>
+<P>This document is <B>very</B> short.
+</BODY>
+</HTML>

@@ -1,0 +1,26 @@
+HKCR
+{
+	Spaceshipsvr.AtlSpaceShip.1 = s 'AtlSpaceShip Class'
+	{
+		CLSID = s '{A9D750E2-51A1-11D1-8CAA-FD10872CC837}'
+	}
+	Spaceshipsvr.AtlSpaceShip = s 'AtlSpaceShip Class'
+	{
+		CLSID = s '{A9D750E2-51A1-11D1-8CAA-FD10872CC837}'
+		CurVer = s 'Spaceshipsvr.AtlSpaceShip.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {A9D750E2-51A1-11D1-8CAA-FD10872CC837} = s 'AtlSpaceShip Class'
+		{
+			ProgID = s 'Spaceshipsvr.AtlSpaceShip.1'
+			VersionIndependentProgID = s 'Spaceshipsvr.AtlSpaceShip'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{A0736061-50DF-11D1-8CAA-FD10872CC837}'
+		}
+	}
+}

@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Enc">
+      <UniqueIdentifier>{d9816d4f-fbbd-40cc-8d2c-8a5a51ccbdf4}</UniqueIdentifier>
+      <Extensions>.c</Extensions>
+    </Filter>
+    <Filter Include="Enc\enc_h">
+      <UniqueIdentifier>{272b4a74-9a5e-482f-92dc-f8ccd797f7ec}</UniqueIdentifier>
+      <Extensions>.h</Extensions>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{aaab6421-9727-4a1c-b401-28866e91924a}</UniqueIdentifier>
+      <Extensions>.c;.h;</Extensions>
+    </Filter>
+    <Filter Include="Core\core_h">
+      <UniqueIdentifier>{8a9a072c-ccaa-4ded-877f-0134ffe3ab73}</UniqueIdentifier>
+      <Extensions>.h</Extensions>
+    </Filter>
+    <Filter Include="Core\I386">
+      <UniqueIdentifier>{e5fa4b2d-3a0c-4f5b-a423-f61d0bcd1a8f}</UniqueIdentifier>
+      <Extensions>*.h,*.c,*-a.asm</Extensions>
+    </Filter>
+    <Filter Include="Core\AMD64">
+      <UniqueIdentifier>{fdff965b-3531-480b-bf12-08f8d74a2e6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dec">
+      <UniqueIdentifier>{5d0a9e3f-dc99-4f76-acdd-7454a7fcf2bd}</UniqueIdentifier>
+      <Extensions>.c</Extensions>
+    </Filter>
+    <Filter Include="Dec\dec_h">
+      <UniqueIdentifier>{c811ae1d-2607-486c-b210-b6e681806ddd}</UniqueIdentifier>
+      <Extensions>.h</Extensions>
+    </Filter>
+    <Filter Include="extras">
+      <UniqueIdentifier>{69e98f60-0297-4c16-92e2-705c2ca32482}</UniqueIdentifier>
+      <Extensions>.c</Extensions>
+    </Filter>
+    <Filter Include="extras\extras_h">
+      <UniqueIdentifier>{8125b50f-c154-4a8a-b685-ac4773b4ca88}</UniqueIdentifier>
+      <Extensions>.h</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\encoder\analyse.c">
+      <Filter>Enc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\cabac.c">
+      <Filter>Enc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\cavlc.c">
+      <Filter>Enc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\encoder.c">
+      <Filter>Enc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\eval.c">
+      <Filter>Enc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\macroblock.c">
+      <Filter>Enc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\me.c">
+      <Filter>Enc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\ratecontrol.c">
+      <Filter>Enc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\encoder\set.c">
+      <Filter>Enc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\cabac.c">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\common.c">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\cpu.c">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\csp.c">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\dct.c">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\frame.c">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\macroblock.c">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\i386\mc-c.c">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\mc.c">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\mdate.c">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\pixel.c">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\predict.c">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\quant.c">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\set.c">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\i386\dct-c.c">
+      <Filter>Core\I386</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\i386\predict.c">
+      <Filter>Core\I386</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\decoder\decoder.c">
+      <Filter>Dec</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\decoder\macroblock.c">
+      <Filter>Dec</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\decoder\set.c">
+      <Filter>Dec</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\decoder\vlc.c">
+      <Filter>Dec</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\extras\getopt.c">
+      <Filter>extras</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\encoder\analyse.h">
+      <Filter>Enc\enc_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\macroblock.h">
+      <Filter>Enc\enc_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\me.h">
+      <Filter>Enc\enc_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\ratecontrol.h">
+      <Filter>Enc\enc_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\encoder\set.h">
+      <Filter>Enc\enc_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\bs.h">
+      <Filter>Core\core_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\cabac.h">
+      <Filter>Core\core_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\clip1.h">
+      <Filter>Core\core_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\common.h">
+      <Filter>Core\core_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\cpu.h">
+      <Filter>Core\core_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\csp.h">
+      <Filter>Core\core_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\dct.h">
+      <Filter>Core\core_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\frame.h">
+      <Filter>Core\core_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\macroblock.h">
+      <Filter>Core\core_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\mc.h">
+      <Filter>Core\core_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\pixel.h">
+      <Filter>Core\core_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\predict.h">
+      <Filter>Core\core_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\set.h">
+      <Filter>Core\core_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\vlc.h">
+      <Filter>Core\core_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\i386\dct.h">
+      <Filter>Core\I386</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\i386\pixel.h">
+      <Filter>Core\I386</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\decoder\macroblock.h">
+      <Filter>Dec\dec_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\decoder\set.h">
+      <Filter>Dec\dec_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\decoder\vlc.h">
+      <Filter>Dec\dec_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\extras\getopt.h">
+      <Filter>extras\extras_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\extras\stdint.h">
+      <Filter>extras\extras_h</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\common\amd64\amd64inc.asm">
+      <Filter>Core\AMD64</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\common\i386\cpu-a.asm">
+      <Filter>Core\I386</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\common\i386\dct-a.asm">
+      <Filter>Core\I386</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\common\i386\deblock-a.asm">
+      <Filter>Core\I386</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\common\i386\mc-a.asm">
+      <Filter>Core\I386</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\common\i386\mc-a2.asm">
+      <Filter>Core\I386</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\common\i386\pixel-a.asm">
+      <Filter>Core\I386</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\common\i386\pixel-sse2.asm">
+      <Filter>Core\I386</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\common\i386\predict-a.asm">
+      <Filter>Core\I386</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\common\i386\quant-a.asm">
+      <Filter>Core\I386</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\common\amd64\cpu-a.asm">
+      <Filter>Core\AMD64</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\common\amd64\dct-a.asm">
+      <Filter>Core\AMD64</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\common\amd64\mc-a.asm">
+      <Filter>Core\AMD64</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\common\amd64\mc-a2.asm">
+      <Filter>Core\AMD64</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\common\amd64\pixel-a.asm">
+      <Filter>Core\AMD64</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\common\amd64\predict-a.asm">
+      <Filter>Core\AMD64</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\common\amd64\quant-a.asm">
+      <Filter>Core\AMD64</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

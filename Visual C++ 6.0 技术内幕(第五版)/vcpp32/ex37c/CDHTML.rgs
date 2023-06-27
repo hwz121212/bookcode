@@ -1,0 +1,32 @@
+HKCR
+{
+	Ex37c.CDHTML.1 = s 'CDHTML Class'
+	{
+		CLSID = s '{4B8FDD5D-09D1-11D2-B30A-0080C7360DC1}'
+	}
+	Ex37c.CDHTML = s 'CDHTML Class'
+	{
+		CLSID = s '{4B8FDD5D-09D1-11D2-B30A-0080C7360DC1}'
+		CurVer = s 'Ex37c.CDHTML.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {4B8FDD5D-09D1-11D2-B30A-0080C7360DC1} = s 'CDHTML Class'
+		{
+			ProgID = s 'Ex37c.CDHTML.1'
+			VersionIndependentProgID = s 'Ex37c.CDHTML'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{4B8FDD51-09D1-11D2-B30A-0080C7360DC1}'
+			ForceRemove 'Control'
+			ForceRemove 'Insertable'
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 101'
+			'MiscStatus' = s '0'
+			{
+			    '1' = s '131473'
+			}
+			'TypeLib' = s '{4B8FDD50-09D1-11D2-B30A-0080C7360DC1}'
+			'Version' = s '1.0'
+		}
+	}
+}

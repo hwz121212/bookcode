@@ -1,0 +1,16 @@
+// ex27b.odl : type library source for ex27b.dll
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (ex27b.tlb).
+
+[ uuid(62451990-F64F-11D1-B30A-D09549C10710), version(1.0) ]
+library Ex27b
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

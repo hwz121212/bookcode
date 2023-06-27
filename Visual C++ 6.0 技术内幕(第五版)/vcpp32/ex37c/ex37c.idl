@@ -1,0 +1,56 @@
+// ex37c.idl : IDL source for ex37c.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ex37c.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+#include "olectl.h"
+	
+
+	[
+		object,
+		uuid(4B8FDD5C-09D1-11D2-B30A-0080C7360DC1),
+		dual,
+		helpstring("ICDHTML Interface"),
+		pointer_default(unique)
+	]
+	interface ICDHTML : IDispatch
+	{
+	};
+	
+
+	
+	[
+		object, dual,
+		uuid(4B8FDD5E-09D1-11D2-B30A-0080C7360DC1),
+		helpstring("ICDHTMLUI Interface"),
+		pointer_default(unique)
+	]
+	interface ICDHTMLUI : IDispatch
+	{
+		// Example method that will be called by the HTML
+		HRESULT OnClick([in]IDispatch* pdispBody, [in]VARIANT varColor);
+	};
+
+[
+	uuid(4B8FDD50-09D1-11D2-B30A-0080C7360DC1),
+	version(1.0),
+	helpstring("ex37c 1.0 Type Library")
+]
+library EX37CLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(4B8FDD5D-09D1-11D2-B30A-0080C7360DC1),
+		helpstring("CDHTML Class")
+	]
+	coclass CDHTML
+	{
+		[default] interface ICDHTML;
+		interface ICDHTMLUI;
+	};
+};

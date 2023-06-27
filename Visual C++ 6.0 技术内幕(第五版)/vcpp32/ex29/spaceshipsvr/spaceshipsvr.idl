@@ -1,0 +1,62 @@
+// spaceshipsvr.idl : IDL source for spaceshipsvr.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (spaceshipsvr.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+	[
+		object,
+		uuid(A9D750E1-51A1-11D1-8CAA-FD10872CC837),
+		dual,
+		helpstring("IAtlSpaceShip Interface"),
+		pointer_default(unique)
+	]
+	interface IAtlSpaceShip : IDispatch
+	{
+		[id(1), helpstring("method CallStarFleet")] HRESULT CallStarFleet([in]float fStarDate, [out, retval]BSTR* pbstRecipient);
+	};
+
+    [
+        object,
+        uuid(692D03A4-C689-11CE-B337-88EA36DE9E4E),
+        dual,
+        helpstring("IMotion interface")
+    ]
+    interface IMotion : IDispatch
+    {
+	     HRESULT Fly();
+		 HRESULT GetPosition([out,retval]long* nPosition);
+	};
+
+    [
+        object,
+        uuid(692D03A5-C689-11CE-B337-88EA36DE9E4E),
+        helpstring("IVisual interface")
+    ]
+    interface IVisual : IUnknown
+    {
+	        HRESULT Display();
+    };
+
+
+[
+	uuid(A0736061-50DF-11D1-8CAA-FD10872CC837),
+	version(1.0),
+	helpstring("spaceshipsvr 1.0 Type Library")
+]
+library SPACESHIPSVRLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(A9D750E2-51A1-11D1-8CAA-FD10872CC837),
+		helpstring("AtlSpaceShip Class")
+	]
+	coclass AtlSpaceShip
+	{
+		[default] interface IAtlSpaceShip;
+	};
+};

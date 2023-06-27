@@ -1,0 +1,275 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\FaxMachine.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.chs\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\FaxMachine.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_FAXMACHINE_DIALOG DIALOGEX 0, 0, 232, 304
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "软件传真机"
+FONT 9, "宋体"
+BEGIN
+    COMBOBOX        IDC_COMBO_MODEMLIST,45,11,180,66,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "设备名称:",IDC_STATIC,7,13,37,8
+    LTEXT           "音量关",IDC_STATIC,7,34,25,8
+    CONTROL         "Slider1",IDC_VOLUME,"msctls_trackbar32",TBS_AUTOTICKS | 
+                    TBS_TOP | WS_TABSTOP,35,31,152,14
+    LTEXT           "传真速度:",IDC_STATIC,7,55,37,8
+    LTEXT           "传真协议:",IDC_STATIC,103,56,37,8
+    LTEXT           "端口类型:",IDC_STATIC,7,76,37,8
+    LTEXT           "身份识别码:",IDC_STATIC,103,76,45,8
+    COMBOBOX        IDC_FAXSPEED,45,53,54,66,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_FAXPROTOCOL,149,53,72,66,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_PORTTYPE,45,74,53,85,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    EDITTEXT        IDC_IDENTITY,149,74,71,12,ES_AUTOHSCROLL
+    CONTROL         "启用高速压缩算法(2D)",IDC_COMPRESS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,111,96,10
+    CONTROL         "启用纠错模式(ECM)",IDC_ECM,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,125,84,10
+    CONTROL         "生成传真文件头",IDC_FAXHEAD,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,139,84,10
+    LTEXT           "从:",IDC_STATIC_FROM,7,94,13,8
+    LTEXT           "到:",IDC_STATIC_TO,104,96,13,8
+    EDITTEXT        IDC_FROM,23,93,72,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TO,142,94,79,12,ES_AUTOHSCROLL
+    CONTROL         "自动应答所有来电",IDC_AUTOREPLY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,153,84,10
+    LTEXT           "当前状态:",IDC_STATIC,19,178,37,8
+    LTEXT           "发送数据:",IDC_STATIC_DATA,19,192,37,8
+    LTEXT           "传真速度:",IDC_STATIC,19,206,37,8
+    LTEXT           "时    间:",IDC_STATIC,19,220,37,8
+    LTEXT           "页    码:",IDC_STATIC,19,234,37,8
+    LTEXT           "主叫号码:",IDC_STATIC_CALLERNO,19,248,37,8
+    LTEXT           "状态",IDC_STATUS,61,178,160,8
+    LTEXT           "数据",IDC_DATA,61,192,160,8
+    LTEXT           "速度",IDC_ACTUALSPEED,61,206,100,8
+    LTEXT           "连接时间",IDC_TIME,61,220,114,8
+    LTEXT           "页号",IDC_PAGE,61,234,70,8
+    LTEXT           "号码",IDC_CALLERNO,61,248,143,8
+    PUSHBUTTON      "发送传真",IDC_SENDFAX,10,277,53,18
+    PUSHBUTTON      "接收传真",IDC_RECEIVEFAX,64,277,53,18
+    PUSHBUTTON      "中断操作",IDC_ABORT,118,277,53,18
+    PUSHBUTTON      "退出",IDC_EXIT,172,277,53,18
+    LTEXT           "传真文件:",IDC_STATIC,103,112,37,8
+    EDITTEXT        IDC_FILE,143,110,77,12,ES_AUTOHSCROLL
+    LTEXT           "音量最大",IDC_STATIC,189,35,33,8
+    GROUPBOX        "工作方式选择",IDC_STATIC,101,138,64,35
+    CONTROL         "发送传真",IDC_RADIO_SEND,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,107,149,48,10
+    CONTROL         "接收传真",IDC_RADIO_RCV,"Button",BS_AUTORADIOBUTTON,107,
+                    161,48,10
+    LTEXT           "传真号码:",IDC_STATIC_PHONE,102,125,37,8
+    EDITTEXT        IDC_PHONE,142,124,78,12,ES_AUTOHSCROLL
+    GROUPBOX        "分辨率",IDC_STATIC_RESOLUTION,169,137,51,35
+    CONTROL         "高清晰",IDC_HIGH,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+                    173,148,40,10
+    CONTROL         "标准",IDC_NORMAL,"Button",BS_AUTORADIOBUTTON,173,161,32,
+                    10
+    LTEXT           "远 程 ID:",IDC_STATIC,19,262,37,8
+    LTEXT           "远程",IDC_REMOTE,61,262,153,8
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "FaxMachine Microsoft 基础类应用程序\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "FaxMachine\0"
+            VALUE "LegalCopyright", "版权所有 (C) 2005\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "FaxMachine.EXE\0"
+            VALUE "ProductName", "FaxMachine 应用程序\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_FAXMACHINE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 225
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 297
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_FAXMACHINE_DIALOG DLGINIT
+BEGIN
+    IDC_FAXSPEED, 0x403, 10, 0
+0x3431, 0x3034, 0x2030, 0x7062, 0x0073, 
+    IDC_FAXSPEED, 0x403, 10, 0
+0x3231, 0x3030, 0x2030, 0x7062, 0x0073, 
+    IDC_FAXSPEED, 0x403, 10, 0
+0x3639, 0x3030, 0x2020, 0x7062, 0x0073, 
+    IDC_FAXSPEED, 0x403, 10, 0
+0x3237, 0x3030, 0x2020, 0x7062, 0x0073, 
+    IDC_FAXSPEED, 0x403, 10, 0
+0x3834, 0x3030, 0x2020, 0x7062, 0x0073, 
+    IDC_FAXSPEED, 0x403, 10, 0
+0x3432, 0x3030, 0x2020, 0x7062, 0x0073, 
+    IDC_FAXPROTOCOL, 0x403, 8, 0
+0x6c43, 0x7361, 0x2073, 0x0031, 
+    IDC_FAXPROTOCOL, 0x403, 8, 0
+0x6c43, 0x7361, 0x2073, 0x0032, 
+    IDC_PORTTYPE, 0x403, 5, 0
+0x4154, 0x4950, "\000" 
+    IDC_PORTTYPE, 0x403, 5, 0
+0x4f43, 0x314d, "\000" 
+    IDC_PORTTYPE, 0x403, 5, 0
+0x4f43, 0x324d, "\000" 
+    IDC_PORTTYPE, 0x403, 5, 0
+0x4f43, 0x334d, "\000" 
+    IDC_PORTTYPE, 0x403, 5, 0
+0x4f43, 0x344d, "\000" 
+    IDC_PORTTYPE, 0x403, 5, 0
+0x4f43, 0x354d, "\000" 
+    IDC_PORTTYPE, 0x403, 5, 0
+0x4f43, 0x364d, "\000" 
+    0
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE 4, 2
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\FaxMachine.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.chs\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

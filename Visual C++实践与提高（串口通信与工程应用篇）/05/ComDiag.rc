@@ -1,0 +1,292 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\ComDiag.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.chs\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\ComDiag.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_COMDIAG_DIALOG DIALOGEX 0, 0, 369, 238
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "ComDiag"
+FONT 9, "宋体"
+BEGIN
+    EDITTEXT        IDC_Dis,7,18,355,79,ES_MULTILINE | ES_WANTRETURN | 
+                    WS_VSCROLL
+    LTEXT           "接收到的数据:",IDC_STATIC,7,7,55,9
+    PUSHBUTTON      "发送1",IDC_SEND1,7,103,32,14
+    PUSHBUTTON      "退出",IDC_EXIT,322,175,40,21
+    EDITTEXT        IDC_SENDDATA1,43,103,195,12,ES_UPPERCASE
+    PUSHBUTTON      "发送2",IDC_SEND2,7,120,32,14
+    EDITTEXT        IDC_SENDDATA2,43,120,195,12,ES_UPPERCASE
+    PUSHBUTTON      "发送3",IDC_SEND3,7,137,32,14
+    PUSHBUTTON      "发送4",IDC_SEND4,7,154,32,14
+    PUSHBUTTON      "发送5",IDC_SEND5,7,171,32,14
+    EDITTEXT        IDC_SENDDATA3,43,137,195,12,ES_UPPERCASE
+    EDITTEXT        IDC_SENDDATA4,43,154,195,12,ES_UPPERCASE
+    EDITTEXT        IDC_SENDDATA5,43,171,195,12,ES_UPPERCASE
+    LTEXT           "超时:",IDC_STATIC,249,104,22,9
+    LTEXT           "超时:",IDC_STATIC,249,121,22,9
+    LTEXT           "超时:",IDC_STATIC,249,138,22,9
+    LTEXT           "超时:",IDC_STATIC,249,155,22,9
+    LTEXT           "超时:",IDC_STATIC,249,172,22,9
+    EDITTEXT        IDC_DELAY1,271,103,32,12,ES_NUMBER
+    EDITTEXT        IDC_DELAY2,271,120,32,12,ES_NUMBER
+    EDITTEXT        IDC_DELAY3,271,137,32,12,ES_NUMBER
+    EDITTEXT        IDC_DELAY4,271,154,32,12,ES_NUMBER
+    EDITTEXT        IDC_DELAY5,271,171,32,12,ES_NUMBER
+    LTEXT           "ms",IDC_STATIC,308,104,11,9
+    LTEXT           "ms",IDC_STATIC,308,121,11,9
+    LTEXT           "ms",IDC_STATIC,308,138,11,9
+    LTEXT           "ms",IDC_STATIC,308,155,11,9
+    LTEXT           "ms",IDC_STATIC,308,172,11,9
+    PUSHBUTTON      "关闭串口",IDC_CLOSECOM,322,150,40,21
+    PUSHBUTTON      "打开串口",IDC_OPENCOM,322,125,40,21
+    PUSHBUTTON      "设置",IDC_SETUPCOM,322,100,40,21
+    PUSHBUTTON      "发送6",IDC_SEND6,7,188,32,14
+    PUSHBUTTON      "发送7",IDC_SEND7,7,205,32,14
+    EDITTEXT        IDC_SENDDATA6,43,188,195,12,ES_UPPERCASE
+    EDITTEXT        IDC_SENDDATA7,43,205,195,12,ES_UPPERCASE
+    LTEXT           "超时:",IDC_STATIC,249,189,22,9
+    LTEXT           "超时:",IDC_STATIC,249,206,22,9
+    EDITTEXT        IDC_DELAY6,271,188,32,12,ES_NUMBER
+    EDITTEXT        IDC_DELAY7,271,205,32,12,ES_NUMBER
+    LTEXT           "ms",IDC_STATIC,308,189,11,9
+    LTEXT           "ms",IDC_STATIC,308,206,11,9
+    CONTROL         "",IDC_MSCOMM1,"{648A5600-2C6E-101B-82B6-000000000014}",
+                    WS_TABSTOP,337,206,25,25
+END
+
+IDD_DIALOG1 DIALOG DISCARDABLE  0, 0, 159, 52
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "串口参数设置"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,102,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,102,24,50,14
+    LTEXT           "通信端口:",IDC_STATIC,7,7,36,8
+    LTEXT           "波特率:",IDC_STATIC,7,20,29,8
+    LTEXT           "bit/s",IDC_STATIC,76,21,14,8
+    LTEXT           "奇偶校验:",IDC_STATIC,7,35,36,8
+    COMBOBOX        IDC_COMBO_COM,44,7,45,37,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_COMBO_B,37,19,38,40,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_COMBO_P,44,33,43,36,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "ComDiag Microsoft 基础类应用程序\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "ComDiag\0"
+            VALUE "LegalCopyright", "版权所有 (C) 2005\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "ComDiag.EXE\0"
+            VALUE "ProductName", "ComDiag 应用程序\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_COMDIAG_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 362
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 231
+    END
+
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 152
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 45
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_DIALOG1 DLGINIT
+BEGIN
+    IDC_COMBO_COM, 0x403, 5, 0
+0x4f43, 0x314d, "\000" 
+    IDC_COMBO_COM, 0x403, 5, 0
+0x4f43, 0x324d, "\000" 
+    IDC_COMBO_COM, 0x403, 5, 0
+0x4f43, 0x334d, "\000" 
+    IDC_COMBO_COM, 0x403, 5, 0
+0x4f43, 0x344d, "\000" 
+    IDC_COMBO_COM, 0x403, 5, 0
+0x4f43, 0x354d, "\000" 
+    IDC_COMBO_COM, 0x403, 5, 0
+0x4f43, 0x364d, "\000" 
+    IDC_COMBO_B, 0x403, 6, 0
+0x3931, 0x3032, 0x0030, 
+    IDC_COMBO_B, 0x403, 5, 0
+0x3639, 0x3030, "\000" 
+    IDC_COMBO_B, 0x403, 5, 0
+0x3834, 0x3030, "\000" 
+    IDC_COMBO_B, 0x403, 5, 0
+0x3432, 0x3030, "\000" 
+    IDC_COMBO_P, 0x403, 7, 0
+0xdece, 0xa3d0, 0xe9d1, "\000" 
+    IDC_COMBO_P, 0x403, 7, 0
+0xe6c6, 0xa3d0, 0xe9d1, "\000" 
+    IDC_COMBO_P, 0x403, 7, 0
+0xbcc5, 0xa3d0, 0xe9d1, "\000" 
+    0
+END
+
+IDD_COMDIAG_DIALOG DLGINIT
+BEGIN
+    IDC_MSCOMM1, 0x376, 102, 0
+0x0013, 0x0000, 0x0043, 0x006f, 0x0070, 0x0079, 0x0072, 0x0069, 0x0067, 
+0x0068, 0x0074, 0x0020, 0x0028, 0x0063, 0x0029, 0x0020, 0x0031, 0x0039, 
+0x0039, 0x0034, 0x0020, 0x4321, 0x1234, 0x0008, 0x0000, 0x03ed, 0x0000, 
+0x03ed, 0x0000, 0x5601, 0x648a, 0x0000, 0x0006, 0x0000, 0x0001, 0x0400, 
+0x0000, 0x0200, 0x0000, 0x2580, 0x0000, 0x0000, 0x0008, 0x0000, 0x0000, 
+0x0000, 0x0000, 0x003f, 0x0000, 0x0001, 0x0000, 
+    0
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE 4, 2
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\ComDiag.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.chs\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

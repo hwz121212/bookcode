@@ -1,0 +1,23 @@
+HKCR
+{
+	Atldicesrvr.DiceMainPropPage.1 = s 'DiceMainPropPage Class'
+	{
+		CLSID = s '{93BC134D-065C-11D2-8CAA-A5273A388638}'
+	}
+	Atldicesrvr.DiceMainPropPage = s 'DiceMainPropPage Class'
+	{
+		CLSID = s '{93BC134D-065C-11D2-8CAA-A5273A388638}'
+		CurVer = s 'Atldicesrvr.DiceMainPropPage.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {93BC134D-065C-11D2-8CAA-A5273A388638} = s 'DiceMainPropPage Class'
+		{
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+	}
+}

@@ -1,0 +1,10 @@
+; ex25b.def : Declares the module parameters for the DLL.
+
+LIBRARY      "ex25b"
+DESCRIPTION  'ex25b Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here
+	DllCanUnloadNow PRIVATE
+	DllGetClassObject PRIVATE
+	DllRegisterServer PRIVATE

@@ -1,0 +1,7 @@
+; EX35B.def : declares the module parameters for the DLL.
+
+LIBRARY	     "EX35B"
+
+EXPORTS
+	HttpFilterProc
+	GetFilterVersion

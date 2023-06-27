@@ -1,0 +1,13 @@
+REGEDIT
+; This .REG file may be used by your SETUP program.
+;   If a SETUP program is not available, the entries below will be
+;   registered in your InitInstance automatically with a call to
+;   CWinApp::RegisterShellFileTypes and COleObjectFactory::UpdateRegistryAll.
+
+
+HKEY_CLASSES_ROOT\Usespaceshipsvr.Application = Usespaceshipsvr Application
+HKEY_CLASSES_ROOT\Usespaceshipsvr.Application\CLSID = {FACE88F7-06C8-11D2-B77D-0060081EE21C}
+
+HKEY_CLASSES_ROOT\CLSID\{FACE88F7-06C8-11D2-B77D-0060081EE21C} = Usespaceshipsvr Application
+HKEY_CLASSES_ROOT\CLSID\{FACE88F7-06C8-11D2-B77D-0060081EE21C}\ProgId = Usespaceshipsvr.Application
+HKEY_CLASSES_ROOT\CLSID\{FACE88F7-06C8-11D2-B77D-0060081EE21C}\LocalServer32 = USESPACESHIPSVR.EXE

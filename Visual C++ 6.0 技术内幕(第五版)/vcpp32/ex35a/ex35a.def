@@ -1,0 +1,7 @@
+; EX35A.def : declares the module parameters for the DLL.
+
+LIBRARY	     "EX35A"
+
+EXPORTS
+	HttpExtensionProc
+	GetExtensionVersion

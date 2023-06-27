@@ -1,0 +1,258 @@
+--------------------Configuration: MeowMoniker - Win32 Debug--------------------
+Begining build with project "C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\MeowMoniker.dsp", at root.
+Active configuration is Win32 (x86) Dynamic-Link Library (based on Win32 (x86) Dynamic-Link Library)
+
+Project's tools are:
+			"32-bit C/C++ Compiler for 80x86" with flags "/nologo /MTd /W3 /Gm /GX /Zi /Od /I "..\mkinclude" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_USRDLL" /Fp"Debug/MeowMoniker.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /c "
+			"OLE Type Library Maker" with flags "/nologo /D "_DEBUG" /mktyplib203 /o NUL /win32 "
+			"Win32 Resource Compiler" with flags "/l 0x409 /fo"Debug/MeowMoniker.res" /d "_DEBUG" "
+			"Browser Database Maker" with flags "/nologo /o"Debug/MeowMoniker.bsc" "
+			"COFF Linker for 80x86" with flags "kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:yes /pdb:"Debug/MeowMoniker.pdb" /debug /machine:I386 /def:".\MeowMoniker.def" /out:"Debug/MeowMoniker.dll" /implib:"Debug/MeowMoniker.lib" /pdbtype:sept "
+			"Custom Build" with flags ""
+			"<Component 0xa>" with flags ""
+
+Creating command line "rc.exe /l 0x409 /fo"Debug/MeowMoniker.res" /d "_DEBUG" "C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\MeowMoniker.rc"" 
+Creating temp file "C:\WINDOWS\TEMP\RSP8303.TMP" with contents </nologo /MTd /W3 /Gm /GX /Zi /Od /I "..\mkinclude" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_USRDLL" /Fp"Debug/MeowMoniker.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /c 
+"C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\CoFeline.cpp"
+"C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\CoMeowMoniker.cpp"
+"C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\MeowMoniker.cpp"
+>
+Creating command line "cl.exe @C:\WINDOWS\TEMP\RSP8303.TMP" 
+Creating temp file "C:\WINDOWS\TEMP\RSP8304.TMP" with contents <kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:yes /pdb:"Debug/MeowMoniker.pdb" /debug /machine:I386 /def:".\MeowMoniker.def" /out:"Debug/MeowMoniker.dll" /implib:"Debug/MeowMoniker.lib" /pdbtype:sept 
+.\Debug\Base64.obj
+.\Debug\CoFeline.obj
+.\Debug\CoMeowMoniker.obj
+.\Debug\MeowMoniker.obj
+.\Debug\StdAfx.obj
+.\Debug\MeowMoniker.res>
+Creating command line "link.exe @C:\WINDOWS\TEMP\RSP8304.TMP" 
+Creating temp file "C:\WINDOWS\TEMP\RSP8305.BAT" with contents <@echo off
+regsvr32 /s /c ".\Debug\MeowMoniker.dll"
+echo regsvr32 exec. time > ".\Debug\regsvr32.trg"
+>
+Creating command line "C:\WINDOWS\TEMP\RSP8305.BAT" 
+Compiling resources...
+Compiling...
+CoFeline.cpp
+Generating Code...
+Compiling...
+CoMeowMoniker.cpp
+MeowMoniker.cpp
+Generating Code...
+Linking...
+Registering ActiveX Control...
+
+
+
+MeowMoniker.dll - 0 error(s), 0 warning(s)
+--------------------Configuration: MeowMoniker - Win32 Unicode Debug--------------------
+Begining build with project "C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\MeowMoniker.dsp", at root.
+Active configuration is Win32 (x86) Dynamic-Link Library (based on Win32 (x86) Dynamic-Link Library)
+
+Project's tools are:
+			"32-bit C/C++ Compiler for 80x86" with flags "/nologo /MTd /W3 /Gm /GX /Zi /Od /I "..\mkinclude" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_USRDLL" /D "_UNICODE" /Fp"DebugU/MeowMoniker.pch" /Yu"stdafx.h" /Fo"DebugU/" /Fd"DebugU/" /FD /c "
+			"OLE Type Library Maker" with flags "/nologo /D "_DEBUG" /mktyplib203 /o NUL /win32 "
+			"Win32 Resource Compiler" with flags "/l 0x409 /fo"DebugU/MeowMoniker.res" /d "_DEBUG" "
+			"Browser Database Maker" with flags "/nologo /o"DebugU/MeowMoniker.bsc" "
+			"COFF Linker for 80x86" with flags "kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:yes /pdb:"DebugU/MeowMoniker.pdb" /debug /machine:I386 /def:".\MeowMoniker.def" /out:"DebugU/MeowMoniker.dll" /implib:"DebugU/MeowMoniker.lib" /pdbtype:sept "
+			"Custom Build" with flags ""
+			"<Component 0xa>" with flags ""
+
+Creating command line "rc.exe /l 0x409 /fo"DebugU/MeowMoniker.res" /d "_DEBUG" "C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\MeowMoniker.rc"" 
+Creating temp file "C:\WINDOWS\TEMP\RSP9090.TMP" with contents </nologo /MTd /W3 /Gm /GX /Zi /Od /I "..\mkinclude" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_USRDLL" /D "_UNICODE" /Fp"DebugU/MeowMoniker.pch" /Yu"stdafx.h" /Fo"DebugU/" /Fd"DebugU/" /FD /c 
+"C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\CoFeline.cpp"
+"C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\CoMeowMoniker.cpp"
+"C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\MeowMoniker.cpp"
+>
+Creating command line "cl.exe @C:\WINDOWS\TEMP\RSP9090.TMP" 
+Creating temp file "C:\WINDOWS\TEMP\RSP9091.TMP" with contents <kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:yes /pdb:"DebugU/MeowMoniker.pdb" /debug /machine:I386 /def:".\MeowMoniker.def" /out:"DebugU/MeowMoniker.dll" /implib:"DebugU/MeowMoniker.lib" /pdbtype:sept 
+.\DebugU\Base64.obj
+.\DebugU\CoFeline.obj
+.\DebugU\CoMeowMoniker.obj
+.\DebugU\MeowMoniker.obj
+.\DebugU\StdAfx.obj
+.\DebugU\MeowMoniker.res>
+Creating command line "link.exe @C:\WINDOWS\TEMP\RSP9091.TMP" 
+Creating temp file "C:\WINDOWS\TEMP\RSP9092.BAT" with contents <@echo off
+regsvr32 /s /c ".\DebugU\MeowMoniker.dll"
+echo regsvr32 exec. time > ".\DebugU\regsvr32.trg"
+>
+Creating command line "C:\WINDOWS\TEMP\RSP9092.BAT" 
+Compiling resources...
+Compiling...
+CoFeline.cpp
+CoMeowMoniker.cpp
+Generating Code...
+Compiling...
+MeowMoniker.cpp
+Generating Code...
+Linking...
+   Creating library DebugU/MeowMoniker.lib and object DebugU/MeowMoniker.exp
+Registering ActiveX Control...
+RegSvr32: DllRegisterServer in .\DebugU\MeowMoniker.dll failed.
+
+
+
+
+MeowMoniker.dll - 0 error(s), 0 warning(s)
+--------------------Configuration: MeowMoniker - Win32 Release MinSize--------------------
+Begining build with project "C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\MeowMoniker.dsp", at root.
+Active configuration is Win32 (x86) Dynamic-Link Library (based on Win32 (x86) Dynamic-Link Library)
+
+Project's tools are:
+			"32-bit C/C++ Compiler for 80x86" with flags "/nologo /MT /W3 /GX /O1 /I "..\mkinclude" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_USRDLL" /D "_ATL_DLL" /Fp"ReleaseMinSize/MeowMoniker.pch" /Yu"stdafx.h" /Fo"ReleaseMinSize/" /Fd"ReleaseMinSize/" /FD /c "
+			"OLE Type Library Maker" with flags "/nologo /D "NDEBUG" /mktyplib203 /o NUL /win32 "
+			"Win32 Resource Compiler" with flags "/l 0x409 /fo"ReleaseMinSize/MeowMoniker.res" /d "NDEBUG" "
+			"Browser Database Maker" with flags "/nologo /o"ReleaseMinSize/MeowMoniker.bsc" "
+			"COFF Linker for 80x86" with flags "kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:no /pdb:"ReleaseMinSize/MeowMoniker.pdb" /machine:I386 /def:".\MeowMoniker.def" /out:"ReleaseMinSize/MeowMoniker.dll" /implib:"ReleaseMinSize/MeowMoniker.lib" "
+			"Custom Build" with flags ""
+			"<Component 0xa>" with flags ""
+
+Creating command line "rc.exe /l 0x409 /fo"ReleaseMinSize/MeowMoniker.res" /d "NDEBUG" "C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\MeowMoniker.rc"" 
+Creating temp file "C:\WINDOWS\TEMP\RSP9225.TMP" with contents </nologo /MT /W3 /GX /O1 /I "..\mkinclude" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_USRDLL" /D "_ATL_DLL" /Fp"ReleaseMinSize/MeowMoniker.pch" /Yu"stdafx.h" /Fo"ReleaseMinSize/" /Fd"ReleaseMinSize/" /FD /c 
+"C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\CoFeline.cpp"
+"C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\CoMeowMoniker.cpp"
+"C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\MeowMoniker.cpp"
+>
+Creating command line "cl.exe @C:\WINDOWS\TEMP\RSP9225.TMP" 
+Creating temp file "C:\WINDOWS\TEMP\RSP9226.TMP" with contents <kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:no /pdb:"ReleaseMinSize/MeowMoniker.pdb" /machine:I386 /def:".\MeowMoniker.def" /out:"ReleaseMinSize/MeowMoniker.dll" /implib:"ReleaseMinSize/MeowMoniker.lib" 
+.\ReleaseMinSize\Base64.obj
+.\ReleaseMinSize\CoFeline.obj
+.\ReleaseMinSize\CoMeowMoniker.obj
+.\ReleaseMinSize\MeowMoniker.obj
+.\ReleaseMinSize\StdAfx.obj
+.\ReleaseMinSize\MeowMoniker.res>
+Creating command line "link.exe @C:\WINDOWS\TEMP\RSP9226.TMP" 
+Creating temp file "C:\WINDOWS\TEMP\RSP9227.BAT" with contents <@echo off
+regsvr32 /s /c ".\ReleaseMinSize\MeowMoniker.dll"
+echo regsvr32 exec. time > ".\ReleaseMinSize\regsvr32.trg"
+>
+Creating command line "C:\WINDOWS\TEMP\RSP9227.BAT" 
+Compiling resources...
+Compiling...
+CoFeline.cpp
+CoMeowMoniker.cpp
+MeowMoniker.cpp
+Generating Code...
+Linking...
+   Creating library ReleaseMinSize/MeowMoniker.lib and object ReleaseMinSize/MeowMoniker.exp
+Registering ActiveX Control...
+RegSvr32: DllRegisterServer in .\ReleaseMinSize\MeowMoniker.dll succeeded.
+
+
+
+
+MeowMoniker.dll - 0 error(s), 0 warning(s)
+--------------------Configuration: MeowMoniker - Win32 Release MinDependency--------------------
+Begining build with project "C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\MeowMoniker.dsp", at root.
+Active configuration is Win32 (x86) Dynamic-Link Library (based on Win32 (x86) Dynamic-Link Library)
+
+Project's tools are:
+			"32-bit C/C++ Compiler for 80x86" with flags "/nologo /MT /W3 /GX /O1 /I "..\mkinclude" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_USRDLL" /D "_ATL_STATIC_REGISTRY" /Fp"ReleaseMinDependency/MeowMoniker.pch" /Yu"stdafx.h" /Fo"ReleaseMinDependency/" /Fd"ReleaseMinDependency/" /FD /c "
+			"OLE Type Library Maker" with flags "/nologo /D "NDEBUG" /mktyplib203 /o NUL /win32 "
+			"Win32 Resource Compiler" with flags "/l 0x409 /fo"ReleaseMinDependency/MeowMoniker.res" /d "NDEBUG" "
+			"Browser Database Maker" with flags "/nologo /o"ReleaseMinDependency/MeowMoniker.bsc" "
+			"COFF Linker for 80x86" with flags "kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:no /pdb:"ReleaseMinDependency/MeowMoniker.pdb" /machine:I386 /def:".\MeowMoniker.def" /out:"ReleaseMinDependency/MeowMoniker.dll" /implib:"ReleaseMinDependency/MeowMoniker.lib" "
+			"Custom Build" with flags ""
+			"<Component 0xa>" with flags ""
+
+Creating command line "rc.exe /l 0x409 /fo"ReleaseMinDependency/MeowMoniker.res" /d "NDEBUG" "C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\MeowMoniker.rc"" 
+Creating temp file "C:\WINDOWS\TEMP\RSP9370.TMP" with contents </nologo /MT /W3 /GX /O1 /I "..\mkinclude" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_USRDLL" /D "_ATL_STATIC_REGISTRY" /Fp"ReleaseMinDependency/MeowMoniker.pch" /Yu"stdafx.h" /Fo"ReleaseMinDependency/" /Fd"ReleaseMinDependency/" /FD /c 
+"C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\CoFeline.cpp"
+"C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\CoMeowMoniker.cpp"
+"C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\MeowMoniker.cpp"
+>
+Creating command line "cl.exe @C:\WINDOWS\TEMP\RSP9370.TMP" 
+Creating temp file "C:\WINDOWS\TEMP\RSP9371.TMP" with contents <kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:no /pdb:"ReleaseMinDependency/MeowMoniker.pdb" /machine:I386 /def:".\MeowMoniker.def" /out:"ReleaseMinDependency/MeowMoniker.dll" /implib:"ReleaseMinDependency/MeowMoniker.lib" 
+.\ReleaseMinDependency\Base64.obj
+.\ReleaseMinDependency\CoFeline.obj
+.\ReleaseMinDependency\CoMeowMoniker.obj
+.\ReleaseMinDependency\MeowMoniker.obj
+.\ReleaseMinDependency\StdAfx.obj
+.\ReleaseMinDependency\MeowMoniker.res>
+Creating command line "link.exe @C:\WINDOWS\TEMP\RSP9371.TMP" 
+Creating temp file "C:\WINDOWS\TEMP\RSP9372.BAT" with contents <@echo off
+regsvr32 /s /c ".\ReleaseMinDependency\MeowMoniker.dll"
+echo regsvr32 exec. time > ".\ReleaseMinDependency\regsvr32.trg"
+>
+Creating command line "C:\WINDOWS\TEMP\RSP9372.BAT" 
+Compiling resources...
+Compiling...
+CoFeline.cpp
+CoMeowMoniker.cpp
+MeowMoniker.cpp
+Generating Code...
+Linking...
+   Creating library ReleaseMinDependency/MeowMoniker.lib and object ReleaseMinDependency/MeowMoniker.exp
+Registering ActiveX Control...
+RegSvr32: DllRegisterServer in .\ReleaseMinDependency\MeowMoniker.dll succeeded.
+
+
+
+
+MeowMoniker.dll - 0 error(s), 0 warning(s)
+--------------------Configuration: MeowMoniker - Win32 Unicode Release MinSize--------------------
+Begining build with project "C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\MeowMoniker.dsp", at root.
+Active configuration is Win32 (x86) Dynamic-Link Library (based on Win32 (x86) Dynamic-Link Library)
+
+Project's tools are:
+			"32-bit C/C++ Compiler for 80x86" with flags "/nologo /MT /W3 /GX /O1 /I "..\mkinclude" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_USRDLL" /D "_UNICODE" /D "_ATL_DLL" /Fp"ReleaseUMinSize/MeowMoniker.pch" /Yu"stdafx.h" /Fo"ReleaseUMinSize/" /Fd"ReleaseUMinSize/" /FD /c "
+			"OLE Type Library Maker" with flags "/nologo /D "NDEBUG" /mktyplib203 /o NUL /win32 "
+			"Win32 Resource Compiler" with flags "/l 0x409 /fo"ReleaseUMinSize/MeowMoniker.res" /d "NDEBUG" "
+			"Browser Database Maker" with flags "/nologo /o"ReleaseUMinSize/MeowMoniker.bsc" "
+			"COFF Linker for 80x86" with flags "kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:no /pdb:"ReleaseUMinSize/MeowMoniker.pdb" /machine:I386 /def:".\MeowMoniker.def" /out:"ReleaseUMinSize/MeowMoniker.dll" /implib:"ReleaseUMinSize/MeowMoniker.lib" "
+			"Custom Build" with flags ""
+			"<Component 0xa>" with flags ""
+
+Creating command line "rc.exe /l 0x409 /fo"ReleaseUMinSize/MeowMoniker.res" /d "NDEBUG" "C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\MeowMoniker.rc"" 
+Creating temp file "C:\WINDOWS\TEMP\RSPA0C2.TMP" with contents </nologo /MT /W3 /GX /O1 /I "..\mkinclude" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_USRDLL" /D "_UNICODE" /D "_ATL_DLL" /Fp"ReleaseUMinSize/MeowMoniker.pch" /Yu"stdafx.h" /Fo"ReleaseUMinSize/" /Fd"ReleaseUMinSize/" /FD /c 
+"C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\CoFeline.cpp"
+"C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\CoMeowMoniker.cpp"
+"C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\MeowMoniker.cpp"
+>
+Creating command line "cl.exe @C:\WINDOWS\TEMP\RSPA0C2.TMP" 
+Creating temp file "C:\WINDOWS\TEMP\RSPA0C3.TMP" with contents <kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:no /pdb:"ReleaseUMinSize/MeowMoniker.pdb" /machine:I386 /def:".\MeowMoniker.def" /out:"ReleaseUMinSize/MeowMoniker.dll" /implib:"ReleaseUMinSize/MeowMoniker.lib" 
+.\ReleaseUMinSize\Base64.obj
+.\ReleaseUMinSize\CoFeline.obj
+.\ReleaseUMinSize\CoMeowMoniker.obj
+.\ReleaseUMinSize\MeowMoniker.obj
+.\ReleaseUMinSize\StdAfx.obj
+.\ReleaseUMinSize\MeowMoniker.res>
+Creating command line "link.exe @C:\WINDOWS\TEMP\RSPA0C3.TMP" 
+Creating temp file "C:\WINDOWS\TEMP\RSPA0C4.BAT" with contents <@echo off
+regsvr32 /s /c ".\ReleaseUMinSize\MeowMoniker.dll"
+echo regsvr32 exec. time > ".\ReleaseUMinSize\regsvr32.trg"
+>
+Creating command line "C:\WINDOWS\TEMP\RSPA0C4.BAT" 
+Compiling resources...
+Compiling...
+CoFeline.cpp
+CoMeowMoniker.cpp
+MeowMoniker.cpp
+Generating Code...
+Linking...
+   Creating library ReleaseUMinSize/MeowMoniker.lib and object ReleaseUMinSize/MeowMoniker.exp
+Registering ActiveX Control...
+RegSvr32: DllRegisterServer in .\ReleaseUMinSize\MeowMoniker.dll succeeded.
+
+
+
+
+MeowMoniker.dll - 0 error(s), 0 warning(s)
+--------------------Configuration: MeowMoniker - Win32 Unicode Release MinDependency--------------------
+Begining build with project "C:\WINDOWS\DESKTOP\Briefcase\Monikers\MeowMoniker\MeowMoniker.dsp", at root.
+Active configuration is Win32 (x86) Dynamic-Link Library (based on Win32 (x86) Dynamic-Link Library)
+
+Project's tools are:
+			"32-bit C/C++ Compiler for 80x86" with flags "/nologo /MT /W3 /GX /O1 /I "..\mkinclude" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_USRDLL" /D "_UNICODE" /D "_ATL_STATIC_REGISTRY" /Fp"ReleaseUMinDependency/MeowMoniker.pch" /Yu"stdafx.h" /Fo"ReleaseUMinDependency/" /Fd"ReleaseUMinDependency/" /FD /c "
+			"OLE Type Library Maker" with flags "/nologo /D "NDEBUG" /mktyplib203 /o NUL /win32 "
+			"Win32 Resource Compiler" with flags "/l 0x409 /fo"ReleaseUMinDependency/MeowMoniker.res" /d "NDEBUG" "
+			"Browser Database Maker" with flags "/nologo /o"ReleaseUMinDependency/MeowMoniker.bsc" "
+			"COFF Linker for 80x86" with flags "kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:no /pdb:"ReleaseUMinDependency/MeowMoniker.pdb" /machine:I386 /def:".\MeowMoniker.def" /out:"ReleaseUMinDependency/MeowMoniker.dll" /implib:"ReleaseUMinDependency/MeowMoniker.lib" "
+			"Custom Build" with flags ""
+			"<Component 0xa>" with flags ""
+
+
+
+
+MeowMoniker.dll - 0 error(s), 0 warning(s)

@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		{4B8FDD51-09D1-11D2-B30A-0080C7360DC1} = s 'ex37c'
+		'ex37c.EXE'
+		{
+			val AppID = s {4B8FDD51-09D1-11D2-B30A-0080C7360DC1}
+		}
+	}
+}

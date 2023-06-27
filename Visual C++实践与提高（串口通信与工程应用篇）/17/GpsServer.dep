@@ -1,0 +1,420 @@
+# Microsoft Developer Studio Generated Dependency File, included by GpsServer.mak
+
+.\CJButton.cpp : \
+	".\CJButton.h"\
+	
+
+.\CJComboBox.cpp : \
+	".\CJComboBox.h"\
+	
+
+.\CJControlBar.cpp : \
+	".\CJButton.h"\
+	".\CJControlBar.h"\
+	
+
+.\CJDockBar.cpp : \
+	".\CJDockBar.h"\
+	".\CJToolBar.h"\
+	
+
+.\CJFrameWnd.cpp : \
+	".\CJDockBar.h"\
+	".\CJFrameWnd.h"\
+	".\COOLMENU.H"\
+	".\SUBCLASS.H"\
+	
+
+.\CJMDIFrameWnd.cpp : \
+	".\CJDockBar.h"\
+	".\CJMDIFrameWnd.h"\
+	".\COOLMENU.H"\
+	".\SUBCLASS.H"\
+	
+
+.\CJOutlookBar.cpp : \
+	".\CJOutlookBar.h"\
+	
+
+.\CJPagerCtrl.cpp : \
+	".\CJPagerCtrl.h"\
+	
+
+.\CJTabctrlBar.cpp : \
+	".\CJButton.h"\
+	".\CJControlBar.h"\
+	".\CJTabCtrlBar.h"\
+	
+
+.\CJToolBar.cpp : \
+	".\CJComboBox.h"\
+	".\CJToolBar.h"\
+	
+
+.\CoolBar.cpp : \
+	".\CJToolBar.h"\
+	".\CoolBar.h"\
+	
+
+.\COOLMENU.CPP : \
+	".\COOLMENU.H"\
+	".\SUBCLASS.H"\
+	
+
+.\GfxGroupEdit.cpp : \
+	".\cj60lib.h"\
+	".\CJButton.h"\
+	".\CJComboBox.h"\
+	".\CJControlBar.h"\
+	".\CJDockBar.h"\
+	".\CJFrameWnd.h"\
+	".\CJMDIFrameWnd.h"\
+	".\CJOutlookBar.h"\
+	".\CJPagerCtrl.h"\
+	".\CJTabCtrlBar.h"\
+	".\CJToolBar.h"\
+	".\COOLMENU.H"\
+	".\GfxGroupEdit.h"\
+	".\GfxOutBarCtrl.h"\
+	".\hyperlink.h"\
+	".\SUBCLASS.H"\
+	
+
+.\GfxOutBarCtrl.cpp : \
+	".\cj60lib.h"\
+	".\CJButton.h"\
+	".\CJComboBox.h"\
+	".\CJControlBar.h"\
+	".\CJDockBar.h"\
+	".\CJFrameWnd.h"\
+	".\CJMDIFrameWnd.h"\
+	".\CJOutlookBar.h"\
+	".\CJPagerCtrl.h"\
+	".\CJTabCtrlBar.h"\
+	".\CJToolBar.h"\
+	".\COOLMENU.H"\
+	".\GfxGroupEdit.h"\
+	".\GfxOutBarCtrl.h"\
+	".\GfxPopupMenu.h"\
+	".\hyperlink.h"\
+	".\SUBCLASS.H"\
+	
+
+.\GfxPopupMenu.cpp : \
+	".\GfxPopupMenu.h"\
+	
+
+.\hyperlink.cpp : \
+	".\hyperlink.h"\
+	
+
+.\Splash.cpp : \
+	".\Splash.h"\
+	
+
+.\SUBCLASS.CPP : \
+	".\SUBCLASS.H"\
+	
+
+.\RSComConfig.cpp : \
+	".\GpsServer.h"\
+	".\RSComConfig.h"\
+	
+
+.\RSOper.cpp : \
+	".\GpsServer.h"\
+	".\RSOper.h"\
+	
+
+.\RSOperType.cpp : \
+	".\GpsServer.h"\
+	".\RSOperType.h"\
+	
+
+.\RSUser.cpp : \
+	".\GpsServer.h"\
+	".\RSUser.h"\
+	
+
+.\DlgComConfig.cpp : \
+	".\DlgComConfig.h"\
+	".\GpsServer.h"\
+	
+
+.\DlgComData.cpp : \
+	".\ComWorkFlow.h"\
+	".\DataFlow.h"\
+	".\DlgComData.h"\
+	".\GpsServer.h"\
+	".\GpsServerDoc.h"\
+	".\RSComConfig.h"\
+	".\RSOper.h"\
+	".\RSOperType.h"\
+	".\RSUser.h"\
+	".\ThreadCom.h"\
+	
+
+.\DlgLogin.cpp : \
+	".\DlgLogin.h"\
+	".\GpsServer.h"\
+	
+
+.\ViewLog.cpp : \
+	".\GpsServer.h"\
+	".\ViewLog.h"\
+	
+
+.\ViewNEMADecode.cpp : \
+	".\GpsServer.h"\
+	".\ViewNEMADecode.h"\
+	
+
+.\ViewRecvContent.cpp : \
+	".\GpsServer.h"\
+	".\ViewRecvContent.h"\
+	
+
+.\ViewSend.cpp : \
+	".\GpsServer.h"\
+	".\ViewSend.h"\
+	
+
+.\ViewTreeCom.cpp : \
+	".\ComWorkFlow.h"\
+	".\DataFlow.h"\
+	".\GpsServer.h"\
+	".\ThreadCom.h"\
+	".\ViewTreeCom.h"\
+	
+
+.\ComWorkFlow.cpp : \
+	".\cj60lib.h"\
+	".\CJButton.h"\
+	".\CJComboBox.h"\
+	".\CJControlBar.h"\
+	".\CJDockBar.h"\
+	".\CJFrameWnd.h"\
+	".\CJMDIFrameWnd.h"\
+	".\CJOutlookBar.h"\
+	".\CJPagerCtrl.h"\
+	".\CJTabCtrlBar.h"\
+	".\CJToolBar.h"\
+	".\ComWorkFlow.h"\
+	".\COOLMENU.H"\
+	".\DataFlow.h"\
+	".\GfxOutBarCtrl.h"\
+	".\hyperlink.h"\
+	".\MainFrm.h"\
+	".\SUBCLASS.H"\
+	".\ThreadCom.h"\
+	
+
+.\DataFlow.cpp : \
+	".\DataFlow.h"\
+	".\ThreadCom.h"\
+	
+
+.\ThreadCom.cpp : \
+	".\ThreadCom.h"\
+	
+
+.\NEMA0183Parse.cpp : \
+	".\GpsServer.h"\
+	".\NEMA0183Parse.h"\
+	
+
+.\NEMA0183Sentence.cpp : \
+	".\GpsServer.h"\
+	".\NEMA0183Sentence.h"\
+	
+
+.\NEMAGPGGA.cpp : \
+	".\GpsServer.h"\
+	".\NEMA0183Sentence.h"\
+	".\NEMAGPGGA.h"\
+	".\NEMAPublic.h"\
+	
+
+.\GpsServer.cpp : \
+	".\cj60lib.h"\
+	".\CJButton.h"\
+	".\CJComboBox.h"\
+	".\CJControlBar.h"\
+	".\CJDockBar.h"\
+	".\CJFrameWnd.h"\
+	".\CJMDIFrameWnd.h"\
+	".\CJOutlookBar.h"\
+	".\CJPagerCtrl.h"\
+	".\CJTabCtrlBar.h"\
+	".\CJToolBar.h"\
+	".\ComWorkFlow.h"\
+	".\COOLMENU.H"\
+	".\DataFlow.h"\
+	".\DlgComData.h"\
+	".\DlgLogin.h"\
+	".\GfxOutBarCtrl.h"\
+	".\GpsServer.h"\
+	".\GpsServerDoc.h"\
+	".\GpsServerView.h"\
+	".\hyperlink.h"\
+	".\MainFrm.h"\
+	".\RSComConfig.h"\
+	".\RSOper.h"\
+	".\RSOperType.h"\
+	".\RSUser.h"\
+	".\Splash.h"\
+	".\SUBCLASS.H"\
+	".\ThreadCom.h"\
+	".\ViewNEMADecode.h"\
+	
+
+.\GpsServer.rc : \
+	".\mdi.ico"\
+	".\res\bitmap1.bmp"\
+	".\res\GpsServer.bmp"\
+	".\res\GpsServer.rc2"\
+	".\res\HLP.BMP"\
+	".\res\ico00001.ico"\
+	".\res\ico00002.ico"\
+	".\res\icon3.ico"\
+	".\res\icon4.ico"\
+	".\res\idr_main.ico"\
+	".\res\MYCOMP.ICO"\
+	".\res\NETHOOD.ICO"\
+	".\res\RESOURCE.BMP"\
+	".\res\Toolbar.bmp"\
+	".\Splsh16.bmp"\
+	
+
+.\GpsServerDoc.cpp : \
+	".\cj60lib.h"\
+	".\CJButton.h"\
+	".\CJComboBox.h"\
+	".\CJControlBar.h"\
+	".\CJDockBar.h"\
+	".\CJFrameWnd.h"\
+	".\CJMDIFrameWnd.h"\
+	".\CJOutlookBar.h"\
+	".\CJPagerCtrl.h"\
+	".\CJTabCtrlBar.h"\
+	".\CJToolBar.h"\
+	".\ComWorkFlow.h"\
+	".\COOLMENU.H"\
+	".\DataFlow.h"\
+	".\DlgComData.h"\
+	".\GfxOutBarCtrl.h"\
+	".\GpsServer.h"\
+	".\GpsServerDoc.h"\
+	".\GpsServerView.h"\
+	".\hyperlink.h"\
+	".\MainFrm.h"\
+	".\RSComConfig.h"\
+	".\RSOper.h"\
+	".\RSOperType.h"\
+	".\RSUser.h"\
+	".\SUBCLASS.H"\
+	".\ThreadCom.h"\
+	
+
+.\GpsServerView.cpp : \
+	".\cj60lib.h"\
+	".\CJButton.h"\
+	".\CJComboBox.h"\
+	".\CJControlBar.h"\
+	".\CJDockBar.h"\
+	".\CJFrameWnd.h"\
+	".\CJMDIFrameWnd.h"\
+	".\CJOutlookBar.h"\
+	".\CJPagerCtrl.h"\
+	".\CJTabCtrlBar.h"\
+	".\CJToolBar.h"\
+	".\ComWorkFlow.h"\
+	".\COOLMENU.H"\
+	".\DataFlow.h"\
+	".\DlgComData.h"\
+	".\DlgLogin.h"\
+	".\GfxOutBarCtrl.h"\
+	".\GpsServer.h"\
+	".\GpsServerDoc.h"\
+	".\GpsServerView.h"\
+	".\hyperlink.h"\
+	".\MainFrm.h"\
+	".\RSComConfig.h"\
+	".\RSOper.h"\
+	".\RSOperType.h"\
+	".\RSUser.h"\
+	".\Splash.h"\
+	".\SUBCLASS.H"\
+	".\ThreadCom.h"\
+	".\UnicodeTable.h"\
+	".\ViewRecvContent.h"\
+	".\ViewTreeCom.h"\
+	
+
+.\MainFrm.cpp : \
+	".\cj60lib.h"\
+	".\CJButton.h"\
+	".\CJComboBox.h"\
+	".\CJControlBar.h"\
+	".\CJDockBar.h"\
+	".\CJFrameWnd.h"\
+	".\CJMDIFrameWnd.h"\
+	".\CJOutlookBar.h"\
+	".\CJPagerCtrl.h"\
+	".\CJTabCtrlBar.h"\
+	".\CJToolBar.h"\
+	".\ComWorkFlow.h"\
+	".\COOLMENU.H"\
+	".\DataFlow.h"\
+	".\DlgComConfig.h"\
+	".\DlgComData.h"\
+	".\DlgLogin.h"\
+	".\GfxOutBarCtrl.h"\
+	".\GpsServer.h"\
+	".\GpsServerDoc.h"\
+	".\GpsServerView.h"\
+	".\hyperlink.h"\
+	".\MainFrm.h"\
+	".\RSComConfig.h"\
+	".\RSOper.h"\
+	".\RSOperType.h"\
+	".\RSUser.h"\
+	".\Splash.h"\
+	".\SUBCLASS.H"\
+	".\ThreadCom.h"\
+	".\UnicodeTable.h"\
+	".\ViewLog.h"\
+	".\ViewNEMADecode.h"\
+	".\ViewRecvContent.h"\
+	".\ViewSend.h"\
+	".\ViewTreeCom.h"\
+	
+
+.\PUBLIC.CPP : \
+	".\cj60lib.h"\
+	".\CJButton.h"\
+	".\CJComboBox.h"\
+	".\CJControlBar.h"\
+	".\CJDockBar.h"\
+	".\CJFrameWnd.h"\
+	".\CJMDIFrameWnd.h"\
+	".\CJOutlookBar.h"\
+	".\CJPagerCtrl.h"\
+	".\CJTabCtrlBar.h"\
+	".\CJToolBar.h"\
+	".\ComWorkFlow.h"\
+	".\COOLMENU.H"\
+	".\DataFlow.h"\
+	".\GfxOutBarCtrl.h"\
+	".\hyperlink.h"\
+	".\MainFrm.h"\
+	".\SUBCLASS.H"\
+	".\ThreadCom.h"\
+	".\UnicodeTable.h"\
+	
+
+.\StdAfx.cpp : \
+	".\PUBLIC.H"\
+	".\StdAfx.h"\
+	"d:\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	

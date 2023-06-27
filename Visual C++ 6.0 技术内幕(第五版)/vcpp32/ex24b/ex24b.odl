@@ -1,0 +1,44 @@
+// ex24b.odl : type library source for ex24b.dll
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (ex24b.tlb).
+
+[ uuid(E16369CE-EA5A-11D1-B30A-0080C7360DC1), version(1.0) ]
+library Ex24b
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+
+
+
+	//  Primary dispatch interface for CSpaceship
+	
+	[ uuid(9D4F0917-EA79-11D1-B30A-0080C7360DC1) ]
+	dispinterface ISpaceship
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CSpaceship)
+			//}}AFX_ODL_PROP
+			
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CSpaceship)
+			//}}AFX_ODL_METHOD
+
+	};
+
+	//  Class information for CSpaceship
+
+	[ uuid(9D4F0918-EA79-11D1-B30A-0080C7360DC1) ]
+	coclass Spaceship
+	{
+		[default] dispinterface ISpaceship;
+	};
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

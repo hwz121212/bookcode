@@ -1,0 +1,34 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<meta name="keywords" content="LTMarker,LTMaps.addOverLay,JavaScript,GPS,地图,范例文档,vml"/>
+<title>GPS位置</title>
+<style type="text/css">v\:*{behavior:url(#default#VML);}</style>
+<script language="javascript" src=http://api.51ditu.com/js/maps.js></script>
+<script language="javascript">
+	var map;
+	function onload()
+	{
+		map=new LTMaps("mapDiv");
+		map.centerAndZoom("青岛",6);
+		map.addControl(new LTStandMapControl());		
+	}
+
+	function showpoint(x, y, name)
+	{
+		map.clearOverLays();
+		var point = new LTPoint( x , y);		
+		var marker1 = new LTMarker( point ); 
+		map.addOverLay( marker1 );	
+		var infoWin = new LTInfoWindow( marker1 );		
+		infoWin.setLabel(name);
+		map.addOverLay( infoWin );
+		map.setCenterAtLatLng(point);
+	}
+</script>
+</head>
+
+<body onLoad="onload()">
+	<div id="mapDiv" style="position:absolute;width:100%; height:100%;"><div align="center" style="margin:12px;"><a href="http://api.51ditu.com/docs/mapsapi/help.html" target="_blank" style="color:#D01E14;font-weight:bolder;font-size:12px;">看不到地图请点这里</a></div></div>
+<script language="javascript" src="http://api.51ditu.com/js/pv.js"></script></body>
+</html>

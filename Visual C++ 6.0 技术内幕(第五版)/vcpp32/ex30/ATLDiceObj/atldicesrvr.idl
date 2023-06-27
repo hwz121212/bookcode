@@ -1,0 +1,73 @@
+// atldicesrvr.idl : IDL source for atldicesrvr.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (atldicesrvr.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+#include "olectl.h"
+	
+
+	[
+		object,
+		uuid(93BC1349-065C-11D2-8CAA-A5273A388638),
+		dual,
+		helpstring("IATLDiceObj Interface"),
+		pointer_default(unique)
+	]
+	interface IATLDiceObj : IDispatch
+	{
+		[propput, id(DISPID_BACKCOLOR)]
+		HRESULT BackColor([in]OLE_COLOR clr);
+		[propget, id(DISPID_BACKCOLOR)]
+		HRESULT BackColor([out,retval]OLE_COLOR* pclr);
+		[id(1), helpstring("method RollDice")] HRESULT RollDice();
+		[propget, id(2), helpstring("property TimesToRoll")] HRESULT TimesToRoll([out, retval] short *pVal);
+		[propput, id(2), helpstring("property TimesToRoll")] HRESULT TimesToRoll([in] short newVal);
+		[propget, id(3), helpstring("property DiceColor")] HRESULT DiceColor([out, retval] short *pVal);
+		[propput, id(3), helpstring("property DiceColor")] HRESULT DiceColor([in] short newVal);
+	};
+
+[
+	uuid(93BC133D-065C-11D2-8CAA-A5273A388638),
+	version(1.0),
+	helpstring("atldicesrvr 1.0 Type Library")
+]
+library ATLDICESRVRLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(93BC134B-065C-11D2-8CAA-A5273A388638),
+		helpstring("_IATLDiceObjEvents Interface")
+	]
+	dispinterface _IATLDiceObjEvents
+	{
+		properties:
+		methods:
+			[id(1)]void Doubles(short n);
+			[id(2)]void SnakeEyes();
+			[id(3)]void DiceRolled(short x, short y);
+	};
+
+	[
+		uuid(93BC134A-065C-11D2-8CAA-A5273A388638),
+		helpstring("ATLDiceObj Class")
+	]
+	coclass ATLDiceObj
+	{
+		[default] interface IATLDiceObj;
+		[default, source] dispinterface _IATLDiceObjEvents;
+	};
+
+	[
+		uuid(93BC134D-065C-11D2-8CAA-A5273A388638),
+		helpstring("DiceMainPropPage Class")
+	]
+	coclass DiceMainPropPage
+	{
+		interface IUnknown;
+	};
+};

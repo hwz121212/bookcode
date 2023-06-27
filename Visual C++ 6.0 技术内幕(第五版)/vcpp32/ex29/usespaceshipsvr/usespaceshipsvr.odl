@@ -1,0 +1,42 @@
+// usespaceshipsvr.odl : type library source for usespaceshipsvr.exe
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (usespaceshipsvr.tlb).
+
+[ uuid(FACE88F8-06C8-11D2-B77D-0060081EE21C), version(1.0) ]
+library Usespaceshipsvr
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+
+	//  Primary dispatch interface for CUsespaceshipsvrDoc
+	
+	[ uuid(FACE88F9-06C8-11D2-B77D-0060081EE21C) ]
+	dispinterface IUsespaceshipsvr
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CUsespaceshipsvrDlgAutoProxy)
+			//}}AFX_ODL_PROP
+			
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CUsespaceshipsvrDlgAutoProxy)
+			//}}AFX_ODL_METHOD
+
+	};
+
+	//  Class information for CUsespaceshipsvrDoc
+	
+	[ uuid(FACE88F7-06C8-11D2-B77D-0060081EE21C) ]
+	coclass Usespaceshipsvr
+	{
+		[default] dispinterface IUsespaceshipsvr;
+	};
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

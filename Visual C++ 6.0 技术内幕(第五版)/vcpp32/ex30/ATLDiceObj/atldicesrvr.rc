@@ -1,0 +1,187 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "1 TYPELIB ""atldicesrvr.tlb""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "atldicesrvr Module\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "atldicesrvr\0"
+            VALUE "LegalCopyright", "Copyright 1998\0"
+            VALUE "OriginalFilename", "atldicesrvr.DLL\0"
+            VALUE "ProductName", "atldicesrvr Module\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "OLESelfRegister", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_ATLDICEOBJ          BITMAP  DISCARDABLE     "atldiceo.bmp"
+
+IDB_BLUEDICE1           BITMAP  DISCARDABLE     "BLUE1.BMP"
+IDB_BLUEDICE2           BITMAP  DISCARDABLE     "BLUE2.BMP"
+IDB_BLUEDICE3           BITMAP  DISCARDABLE     "BLUE3.BMP"
+IDB_BLUEDICE4           BITMAP  DISCARDABLE     "BLUE4.BMP"
+IDB_BLUEDICE5           BITMAP  DISCARDABLE     "BLUE5.BMP"
+IDB_BLUEDICE6           BITMAP  DISCARDABLE     "BLUE6.BMP"
+IDB_DICE1               BITMAP  DISCARDABLE     "DICE1.BMP"
+IDB_DICE2               BITMAP  DISCARDABLE     "DICE2.BMP"
+IDB_DICE3               BITMAP  DISCARDABLE     "DICE3.BMP"
+IDB_DICE4               BITMAP  DISCARDABLE     "DICE4.BMP"
+IDB_DICE5               BITMAP  DISCARDABLE     "DICE5.BMP"
+IDB_DICE6               BITMAP  DISCARDABLE     "DICE6.BMP"
+IDB_REDDICE1            BITMAP  DISCARDABLE     "RED1.BMP"
+IDB_REDDICE2            BITMAP  DISCARDABLE     "RED2.BMP"
+IDB_REDDICE3            BITMAP  DISCARDABLE     "RED3.BMP"
+IDB_REDDICE4            BITMAP  DISCARDABLE     "RED4.BMP"
+IDB_REDDICE5            BITMAP  DISCARDABLE     "RED5.BMP"
+IDB_REDDICE6            BITMAP  DISCARDABLE     "RED6.BMP"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REGISTRY
+//
+
+IDR_ATLDICEOBJ          REGISTRY DISCARDABLE    "ATLDiceObj.rgs"
+IDR_DICEMAINPROPPAGE    REGISTRY DISCARDABLE    "DiceMainPropPage.rgs"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DICEMAINPROPPAGE DIALOG DISCARDABLE  0, 0, 271, 105
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Color:",IDC_STATIC,23,26,19,8
+    EDITTEXT        IDC_TIMESTOROLL,83,44,36,16,ES_AUTOHSCROLL
+    LTEXT           "Times to Roll:",IDC_STATIC,23,48,44,8
+    COMBOBOX        IDC_COLOR,83,22,37,51,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_DICEMAINPROPPAGE DLGINIT
+BEGIN
+    IDC_COLOR, 0x403, 6, 0
+0x6857, 0x7469, 0x0065, 
+    IDC_COLOR, 0x403, 5, 0
+0x6c42, 0x6575, "\000" 
+    IDC_COLOR, 0x403, 4, 0
+0x6552, 0x0064, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PROJNAME            "atldicesrvr"
+    IDS_TITLEDiceMainPropPage "Dice Attributes"
+    IDS_DOCSTRINGDiceMainPropPage "Dice attributes"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+1 TYPELIB "atldicesrvr.tlb"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,7 @@
+; ex22d.def : Declares the module parameters for the DLL.
+
+LIBRARY      "ex22d"
+DESCRIPTION  'ex22d Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here
