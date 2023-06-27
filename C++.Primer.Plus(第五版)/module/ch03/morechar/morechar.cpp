@@ -3,7 +3,7 @@
 int main()
 {
     using namespace std;
-    char c = 'M';       // assign ASCII code for M to c
+    char ch = 'M';       // assign ASCII code for M to c
     int i = ch;          // store same code in an int
     cout << "The ASCII code for " << ch << " is " << i << endl;
 
