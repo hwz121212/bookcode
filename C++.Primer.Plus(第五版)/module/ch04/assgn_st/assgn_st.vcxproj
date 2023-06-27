@@ -15,7 +15,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{3CFD8D3C-5D69-47BF-9E96-BCD6AC473C8C}</ProjectGuid>
+    <ProjectGuid>{45E87963-A049-4FF6-B09A-CCEED0E41C1B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>templateexe</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
